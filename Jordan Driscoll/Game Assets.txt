@@ -1,0 +1,16 @@
+What things are we going to have to program: 
+- The Monsters
+	- AI
+	- Death
+	- Spawning In
+- The Bubbles
+- The Player
+- Being able to jump
+- All Animations
+- The Starting Menu
+- Game Over Screen
+- The Foods that randomly appear
+- The Score
+- Animations
+- The Letters
+
