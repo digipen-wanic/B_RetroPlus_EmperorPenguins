@@ -1,16 +1,28 @@
 What things are we going to have to program: 
-- The Monsters
-	- AI
-	- Death
-	- Spawning In
-- The Bubbles
-- The Player
-- Being able to jump
-- All Animations
-- The Starting Menu
-- Game Over Screen
-- The Foods that randomly appear
-- The Score
-- Animations
-- The Letters
+
+1. The player
+	a. Moving
+	b. Jumping
+	c. Killing Monsters
+	d. Shooting Bubbles
+	e. Animation
+2. The Monster
+	a. Movement AI 
+	b. Spawning
+	c. Death
+	d. Turning into foods
+	e. Animations
+3. Foods
+	a. Spawning in
+	b. Being Eaten
+4. Score
+5. Letters
+	a. Spawning in
+6. Menus
+	a. Game over Screen
+	b. Main Menu Screen
+
+7. Plus Stuff
+	a. 2 Players?
+	b. 2 Levels? 
 
