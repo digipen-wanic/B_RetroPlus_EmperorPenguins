@@ -1,0 +1,59 @@
+/******************************
+Jordan Driscoll
+March 27th, 2019
+Goal: Make the enemy move so it's similair to the original game
+*******************************/
+
+class TEP_TECH_JD_EnemyMovement : ZilchComponent
+{
+  //The Speed which the enemy is moving
+  var Speed : Real = 0.05; 
+  //Boolean that dtermines if the player is being tracked
+  //If the player is jumping, this will be set to true
+  //The original placement
+  var EnemyLocation : Real3; 
+  //The Enemy's X Position
+  var XPos : Real; 
+  //The Enemy's Y Position
+ var YPos : Real;
+  
+  
+  function Initialize(init : CogInitializer)
+  {
+   this.EnemyLocation = this.Owner.Transform.Translation;
+   this.XPos = this.EnemyLocation.X; 
+   this.YPos = this.EnemyLocation.Y; 
+    Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+  }
+
+  function OnLogicUpdate(event : UpdateEvent)
+  {
+    this.FreeMovement(); 
+    //Sets tracking player to true or false based on randomization
+    
+    //if tracking player
+      //followPlayer(); 
+    //else
+      //FreeMovement(); 
+  }
+  
+  //There has to be 2 functions:
+    //Follow player
+    
+    //Free Movement
+    //Jump
+    //Go Up a Layer
+    
+    function FreeMovement(){
+      Console.WriteLine("Nous avons reussi"); 
+      //Move Randomly Left or Right
+      //Every once in a while have it go up
+      //this will determine if it moves left or right 
+      var movingLeft : Real = this.Speed; 
+      this.Owner.Transform.Translation += Real3(this.XPos + this.Speed, this.YPos, 0); 
+      
+      
+      
+      
+      }
+}
