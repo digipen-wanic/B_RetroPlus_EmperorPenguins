@@ -1,0 +1,11 @@
+[Version:1]
+DataContent 
+{
+	DataBuilder 
+	{
+		var Name = "Orange"
+		var ResourceId = 0x5c47cbf137788741
+		var LoaderType = "Cog"
+		var Version = 0
+	}
+}

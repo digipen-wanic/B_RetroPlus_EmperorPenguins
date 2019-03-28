@@ -1,0 +1,19 @@
+[Version:1]
+DataContent 
+{
+	DataBuilder 
+	{
+		var Name = "Pepper"
+		var ResourceId = 0x5c47c7a89b61993a
+		var LoaderType = "Cog"
+		var Version = 0
+	}
+	ContentTags 
+	{
+		var Tags = Array
+		{
+			"Archetype"
+			"Cog"
+		}
+	}
+}

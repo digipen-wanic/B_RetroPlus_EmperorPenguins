@@ -1,0 +1,19 @@
+[Version:1]
+DataContent 
+{
+	DataBuilder 
+	{
+		var Name = "Grape"
+		var ResourceId = 0x5c47c65dbeff7279
+		var LoaderType = "Cog"
+		var Version = 0
+	}
+	ContentTags 
+	{
+		var Tags = Array
+		{
+			"Archetype"
+			"Cog"
+		}
+	}
+}
