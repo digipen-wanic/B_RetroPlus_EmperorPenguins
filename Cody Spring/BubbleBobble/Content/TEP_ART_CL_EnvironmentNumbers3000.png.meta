@@ -1,0 +1,20 @@
+[Version:1]
+ImageContent 
+{
+	SpriteSourceBuilder 
+	{
+		var Name = "TEP_ART_CL_EnvironmentNumbers3000"
+		var ResourceId = 0x5c47d7fb44a846b2
+		var FrameSizeX = 24
+		var FrameSizeY = 24
+		var FrameCount = 1
+		var FrameDelay = 0.0833333358
+		var OriginX = 12
+		var OriginY = 12
+		var PixelsPerUnit = 12
+		var Sampling = SpriteSampling.Nearest
+		var Looping = true
+		var Slices = Real4{0, 0, 0, 0}
+		var Fill = SpriteFill.Stretch
+	}
+}

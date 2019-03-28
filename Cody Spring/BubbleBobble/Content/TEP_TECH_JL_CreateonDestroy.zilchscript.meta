@@ -1,0 +1,9 @@
+[Version:1]
+TextContent 
+{
+	ZilchScriptBuilder 
+	{
+		var Name = "TEP_TECH_JL_CreateonDestroy"
+		var ResourceId = 0x5c47c3c2432991d5
+	}
+}
