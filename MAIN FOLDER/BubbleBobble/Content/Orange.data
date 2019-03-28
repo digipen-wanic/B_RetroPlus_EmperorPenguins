@@ -4,7 +4,7 @@ Cog
 	var Name = "Sprite"
 	Transform 
 	{
-		var Translation = Real3{4.84333324, 3.80100107, 0}
+		var Translation = Real3{3.07539201, 4.59202528, 0}
 		var Scale = Real3{8, 8, 1}
 		var Rotation = Quaternion{0, 0, 0, 1}
 	}
@@ -20,7 +20,7 @@ Cog
 		var Material = "582c575af53d18c9:AlphaSprite"
 		var VertexColor = Real4{1, 1, 1, 1}
 		var GeometryMode = SpriteGeometryMode.ZPlane
-		var SpriteSource = "5c47c8b37474cc4c:TEP_ART_CL_EnviromentOrange"
+		var SpriteSource = "5c47db75d829679a:TEP_ART_CL_EnviromentOrange"
 		var FlipX = false
 		var FlipY = false
 		var AnimationActive = true
@@ -40,10 +40,10 @@ Cog
 	{
 		var Velocity = Real3{0, 0, 0}
 		var AngularVelocity = Real3{0, 0, 0}
-		var DynamicState = RigidBodyDynamicState.Static
+		var DynamicState = RigidBodyDynamicState.Dynamic
 		var AllowSleep = true
 		var Asleep = false
-		var RotationLocked = false
+		var RotationLocked = true
 		var Mode2D = Mode2DStates.InheritFromSpace
 	}
 	TEP_TECH_CS_ScoreObject 

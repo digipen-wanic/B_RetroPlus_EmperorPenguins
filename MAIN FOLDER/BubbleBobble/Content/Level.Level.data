@@ -130,7 +130,7 @@ Level
 			var FarPlane = 500
 			var PerspectiveMode = PerspectiveMode.Orthographic
 			var FieldOfView = 45
-			var Size = 26.9971561
+			var Size = 22.1034069
 		}
 		EditorCameraController 
 		{
@@ -257,10 +257,6 @@ Level
 			var Rotation = Quaternion{0, 0, 0, 1}
 			var Scale = Real3{8, 8, 1}
 		}
-		RigidBody 
-		{
-			var DynamicState = RigidBodyDynamicState.Dynamic
-		}
 	}
 	Cog [InheritId:"5c47d89b2cd91757:Orange"][ContextId:7]
 	{
@@ -269,10 +265,6 @@ Level
 			var Translation = Real3{3.07539201, 4.59202528, 0}
 			var Rotation = Quaternion{0, 0, 0, 1}
 			var Scale = Real3{8, 8, 1}
-		}
-		RigidBody 
-		{
-			var DynamicState = RigidBodyDynamicState.Dynamic
 		}
 	}
 	Cog [InheritId:"5c47d89b2cde7bff:Grape"][ContextId:8]
@@ -283,10 +275,6 @@ Level
 			var Rotation = Quaternion{0, 0, 0, 1}
 			var Scale = Real3{8, 8, 1}
 		}
-		RigidBody 
-		{
-			var DynamicState = RigidBodyDynamicState.Dynamic
-		}
 	}
 	Cog [InheritId:"5c47d89b2cdfdcec:Cucumber"][ContextId:9]
 	{
@@ -295,10 +283,6 @@ Level
 			var Translation = Real3{0.3902812, 4.5077672, 0}
 			var Rotation = Quaternion{0, 0, 0, 1}
 			var Scale = Real3{8, 8, 1}
-		}
-		RigidBody 
-		{
-			var DynamicState = RigidBodyDynamicState.Dynamic
 		}
 	}
 	Cog [ContextId:10]
@@ -347,6 +331,37 @@ Level
 			var CollisionGroup = "4e740859314e5515:DefaultGroup"
 			var Offset = Real3{0, 0, 0}
 			var HalfSize = Real3{0.125, 0.125, 0.5}
+		}
+		TEP_TECH_JL_PlayerMovementController 
+		{
+			var WorldUp = Real3{0, 1, 0}
+			var LockZAxis = false
+			var ForwardEvents = false
+			var Gravity = 10
+			var JumpSpeed = 5
+			var JumpCancelFactor = 0.5
+			var MaxMoveSpeed = 10
+			var MaxFallSpeed = 50
+			var GroundAcceleration = 50
+			var AirAcceleration = 10
+			var GroundDeceleration = 50
+			var AirDeceleration = 10
+			var MaxGroundSlope = 45
+			var MaxCeilingSlope = 45
+			var GroundSnapDistance = 0.100000001
+			var ControllerVelocity = Real3{0, 0, 0}
+			var Grounded = true
+			var Jumping = false
+			var GroundTraction = 1
+			var AirTraction = 1
+		}
+		TEP_TECH_JL_PlayerMovementImput 
+		{
+			var LeftKey = Keys.A
+			var RightKey = Keys.D
+			var JumpKey = Keys.Space
+			var Shoot = Keys.E
+			var PowerShot = Keys.W
 		}
 	}
 }
