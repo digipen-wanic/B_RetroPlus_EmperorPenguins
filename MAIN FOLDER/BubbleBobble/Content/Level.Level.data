@@ -130,7 +130,7 @@ Level
 			var FarPlane = 500
 			var PerspectiveMode = PerspectiveMode.Orthographic
 			var FieldOfView = 45
-			var Size = 40.2750092
+			var Size = 44.5107651
 		}
 		EditorCameraController 
 		{
@@ -247,6 +247,58 @@ Level
 			var Source = "5c4103b335353b7f:Level_TileMap00"
 			var PaletteName = "5c41036425e4e324:LevelPallete"
 			var MeshThickness = 1.20000005
+		}
+	}
+	Cog [InheritId:"5c47d89b2cd9e701:Pepper"][ContextId:6]
+	{
+		Transform 
+		{
+			var Translation = Real3{5.47672796, 4.42351055, 0}
+			var Rotation = Quaternion{0, 0, 0, 1}
+			var Scale = Real3{8, 8, 1}
+		}
+		RigidBody 
+		{
+			var DynamicState = RigidBodyDynamicState.Dynamic
+		}
+	}
+	Cog [InheritId:"5c47d89b2cd91757:Orange"][ContextId:7]
+	{
+		Transform 
+		{
+			var Translation = Real3{3.07539201, 4.59202528, 0}
+			var Rotation = Quaternion{0, 0, 0, 1}
+			var Scale = Real3{8, 8, 1}
+		}
+		RigidBody 
+		{
+			var DynamicState = RigidBodyDynamicState.Dynamic
+		}
+	}
+	Cog [InheritId:"5c47d89b2cde7bff:Grape"][ContextId:8]
+	{
+		Transform 
+		{
+			var Translation = Real3{7.75167656, 4.38138199, 0}
+			var Rotation = Quaternion{0, 0, 0, 1}
+			var Scale = Real3{8, 8, 1}
+		}
+		RigidBody 
+		{
+			var DynamicState = RigidBodyDynamicState.Dynamic
+		}
+	}
+	Cog [InheritId:"5c47d89b2cdfdcec:Cucumber"][ContextId:9]
+	{
+		Transform 
+		{
+			var Translation = Real3{0.3902812, 4.5077672, 0}
+			var Rotation = Quaternion{0, 0, 0, 1}
+			var Scale = Real3{8, 8, 1}
+		}
+		RigidBody 
+		{
+			var DynamicState = RigidBodyDynamicState.Dynamic
 		}
 	}
 }

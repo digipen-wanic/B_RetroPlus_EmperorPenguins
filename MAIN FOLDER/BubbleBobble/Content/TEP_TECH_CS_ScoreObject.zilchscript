@@ -1,0 +1,30 @@
+/**********************
+TEP_TECH_CS_ScoreObject.zilch
+Cody Spring
+3/28/19
+Add this to objects that give score to the player
+**********************/
+
+class TEP_TECH_CS_ScoreObject : ZilchComponent
+{
+  //change to modify the amount of score you want to add with this object
+  [Property]
+  var ScoreModifier : Real = Real();
+  
+  function Initialize(init : CogInitializer)
+  {
+    Zero.Connect(this.Space, Events.CollisionStarted, this.OnCollisionStarted);
+  }
+
+  function OnCollisionStarted(event : CollisionEvent)
+  {
+    //if the object has collided into the player add the score
+    this.GameSession.TEP_TECH_CS_GameVars.PlayerScore += this.ScoreModifier;
+    this.Owner.Destroy();
+    
+  }
+
+  function OnLogicUpdate(event : UpdateEvent)
+  {
+  }
+}
