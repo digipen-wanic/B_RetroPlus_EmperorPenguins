@@ -6,7 +6,40 @@ Goal: Make the enemy move so it's similair to the original game
 
 class TEP_TECH_JD_EnemyMovement : ZilchComponent
 {
+  [Property]
+  var TopLevelY : Real; 
+  [Property]
+  var FirstHole : Real2;
+  [Property]
+  var SecondHole : Real2;   //Random seed
+  var Random : Random = Random();
+  //These next like, 5 or so variables are ALL based on going up 
+  //The Timer to make it randomly go up 
+  var GoUpTimer : Integer = 0; 
+  //When he goes up 
+  var IsGoingUp : Boolean = false; 
+  //the Y Before it goes up 
+  var OriginalY : Real; 
+  //The Intended Y
+  var IntendedY : Real; 
+  //How high up the Inteded Y Is from the Original Y
+  [Property]
+  var YDistance : Real = 5; 
+  //How Quickly it goes up 
+  [Property]
+  var YSpeed : Real = 0.5; 
+  //Array of Max X Positions that have it change the direction that it's going 
+  [Property]
+  var MaxRightXPos : Real = 5; 
+  
+  [Property]
+  var MaxLeftXPos : Real = -5; 
+  
+  //This is the speed it starts with, and will get set back to after changes (for example, rush)
+  [Property]
+  var OriginalSpeed : Real = 0.05; 
   //The Speed which the enemy is moving
+  
   var Speed : Real = 0.05; 
   //Boolean that dtermines if the player is being tracked
   //If the player is jumping, this will be set to true
@@ -16,19 +49,85 @@ class TEP_TECH_JD_EnemyMovement : ZilchComponent
   var XPos : Real; 
   //The Enemy's Y Position
  var YPos : Real;
+ //if it's grounded 
+ [Property]
+ var IsGrounded : Boolean = false; 
   
   
   function Initialize(init : CogInitializer)
   {
    this.EnemyLocation = this.Owner.Transform.Translation;
-   this.XPos = this.EnemyLocation.X; 
-   this.YPos = this.EnemyLocation.Y; 
-    Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+    
+   Zero.Connect(this.Owner, Events.CollisionEnded, this.OnCollisionEnded);
+   Zero.Connect(this.Owner, Events.CollisionStarted, this.OnCollisionStarted);
+   Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+  }
+
+ function OnCollisionEnded(event : CollisionEvent)
+  {
+    
+   // this.IsGrounded =false; 
+  }
+//enemy on collision
+ function OnCollisionStarted(event : CollisionEvent)
+  {
+    
+  
+    this.IsGrounded = true; 
+    //when it hits the ground
+    
+      //set is grounded != is grounded
+    //when it hits a  wall
+      //Speed *= -1
+      //this.Speed *= -1; 
   }
 
   function OnLogicUpdate(event : UpdateEvent)
   {
-    this.FreeMovement(); 
+   
+    
+    ++this.GoUpTimer; 
+    this.XPos = this.Owner.Transform.Translation.X;
+    this.YPos = this.Owner.Transform.Translation.Y; 
+    //looks complicated, all it is is just if it's in the holes, then it's true, otherwise it's false 
+    var inHole : Boolean = (this.XPos > this.FirstHole.X && this.XPos < this.FirstHole.Y || this.XPos > this.SecondHole.X && this.XPos < this.SecondHole.Y) && this.YPos > -10; 
+    
+    //.If it's too far up or down, it will move
+    if(this.XPos < this.MaxLeftXPos || this.XPos > this.MaxRightXPos){
+        this.Speed *= -1; 
+      }
+    //If it's in the hole, grounded will be set to false 
+    if(inHole){
+        this.IsGrounded = false; 
+      
+      }
+     
+    //if it's not going upwards, it can move freely 
+    if(!this.IsGoingUp){
+      this.FreeMovement();
+      //If it's not grounded, it's going to have to fall, I'm afraid 
+      if(!this.IsGrounded){
+             this.Owner.Transform.Translation += Real3(0, -this.YSpeed, 0);         
+        }
+    
+    } 
+    else{
+      //if it has yeto reach it's position
+      if(this.YPos < this.IntendedY){
+           this.Owner.Transform.Translation += Real3(0, this.YSpeed, 0); 
+           this.IsGrounded = false; 
+           this.IsGoingUp = true; 
+        }
+        //if it's already reached it's posiitono
+      else{
+        //Say it's no longer going up 
+        this.IsGrounded = true; 
+        this.IsGoingUp = false; 
+        this.GoUpTimer = 0; 
+        this.Owner.Transform.Translation = Real3(this.XPos, this.YPos, 0);
+        }
+      
+      }
     //Sets tracking player to true or false based on randomization
     
     //if tracking player
@@ -44,13 +143,44 @@ class TEP_TECH_JD_EnemyMovement : ZilchComponent
     //Jump
     //Go Up a Layer
     
+    
     function FreeMovement(){
-      Console.WriteLine("Nous avons reussi"); 
+      
+      var randomized = Math.Round(this.Random.Range(0, 10));
       //Move Randomly Left or Right
       //Every once in a while have it go up
       //this will determine if it moves left or right 
-      var movingLeft : Real = this.Speed; 
-      this.Owner.Transform.Translation += Real3(this.XPos + this.Speed, this.YPos, 0); 
+     //Console.WriteLine("Is Grounded: `this.IsGrounded`\nIs Going Up: `this.IsGoingUp`");
+      //if it's on the ground, move
+      var inHole : Boolean = this.XPos > this.FirstHole.X - 1 && this.XPos < this.FirstHole.Y + 1 || this.XPos > this.SecondHole.X - 1 && this.XPos < this.SecondHole.Y + 1;
+      Console.WriteLine("`inHole`");  
+      if(this.IsGrounded){
+        this.Owner.Transform.Translation += Real3(this.Speed, 0, 0); 
+        if(this.GoUpTimer > 120){
+          //if the random number works, and this is just inHole but withotu the Y barrier 
+            if((this.YPos < 2) && randomized == 5 && !inHole){
+              
+              Console.WriteLine("Uhh");
+              //Off the ground
+              this.Owner.Transform.Translation = Real3(this.XPos, this.YPos, 3);              
+              this.IsGrounded = false; 
+              this.IsGoingUp = true; 
+              this.OriginalY = this.YPos; 
+              this.IntendedY = this.YPos + this.YDistance;
+              
+            }
+          }
+        
+       
+       }
+      //Time to add it randomly going up 
+      //First, make a random time seed
+      //Then, if it's at the time it needs to be
+      //Make it change it's Y by a number
+      //once it's y is added 5 to what it was before, then it can go down
+      //The box collider will be disabled
+      //if touching wall, go multiply movingLeft by -1
+      //if not touching ground, set speed to 0
       
       
       
