@@ -4,7 +4,7 @@ ImageContent
 	SpriteSourceBuilder 
 	{
 		var Name = "TEP_ART_TGB_PlayerWalk"
-		var ResourceId = 0x5c47c1e7e6894e42
+		var ResourceId = 0x5c47db75d82f43ea
 		var FrameSizeX = 32
 		var FrameSizeY = 32
 		var FrameCount = 1

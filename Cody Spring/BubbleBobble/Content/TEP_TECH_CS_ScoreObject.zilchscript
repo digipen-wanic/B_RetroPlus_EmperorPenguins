@@ -13,7 +13,7 @@ class TEP_TECH_CS_ScoreObject : ZilchComponent
   
   function Initialize(init : CogInitializer)
   {
-    Zero.Connect(this.Space,Events.CollisionStarted, this.OnCollisionStarted);
+    Zero.Connect(this.Space, Events.CollisionStarted, this.OnCollisionStarted);
   }
 
   function OnCollisionStarted(event : CollisionEvent)
@@ -21,6 +21,7 @@ class TEP_TECH_CS_ScoreObject : ZilchComponent
     //if the object has collided into the player add the score
     this.GameSession.TEP_TECH_CS_GameVars.PlayerScore += this.ScoreModifier;
     this.Owner.Destroy();
+    
   }
 
   function OnLogicUpdate(event : UpdateEvent)
