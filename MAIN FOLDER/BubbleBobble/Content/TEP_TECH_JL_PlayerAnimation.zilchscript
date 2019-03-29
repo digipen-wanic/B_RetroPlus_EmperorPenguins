@@ -1,0 +1,60 @@
+class TEP_TECH_JL_PlayerAnimation : ZilchComponent
+{
+  [Dependency]
+  var Sprite : Sprite = null;
+  [Dependency]
+  var TEP_TECH_JL_PlayerMovementController : TEP_TECH_JL_PlayerMovementController = null;
+  [Dependency]
+  var TEP_TECH_JL_PlayerMovementImput : TEP_TECH_JL_PlayerMovementImput = null; 
+  
+  [Property]
+  var PlayerIdle : SpriteSource = null;
+  [Property]
+  var PlayerJump : SpriteSource = null;
+  [Property]
+  var PlayerWalk : SpriteSource = null;
+
+  
+  function Initialize(init : CogInitializer)
+  {
+    Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+  }
+
+  function OnLogicUpdate(event : UpdateEvent)
+  {
+    var leftKeyDown = Zero.Keyboard.KeyIsDown(this.TEP_TECH_JL_PlayerMovementImput.LeftKey);
+    var rightKeyDown = Zero.Keyboard.KeyIsDown(this.TEP_TECH_JL_PlayerMovementImput.RightKey);
+   if(this.Sprite.SpriteSource == this.PlayerIdle)
+    {
+      if((leftKeyDown || rightKeyDown))
+      {
+      this.Sprite.SpriteSource = this.PlayerWalk;
+      }
+      if(!this.TEP_TECH_JL_PlayerMovementController.Grounded)
+      {
+        this.Sprite.SpriteSource = this.PlayerJump;
+      }
+    }
+    else if(this.Sprite.SpriteSource == this.PlayerJump)
+    {
+      if(this.TEP_TECH_JL_PlayerMovementController.Grounded)
+      {
+        this.Sprite.SpriteSource = this.PlayerIdle;
+      }
+    }
+    else if(this.Sprite.SpriteSource == this.PlayerWalk)
+    {
+      if( !(leftKeyDown || rightKeyDown))
+      {
+        this.Sprite.SpriteSource = this.PlayerIdle;
+      }
+      
+      if(!this.TEP_TECH_JL_PlayerMovementController.Grounded)
+      {
+        this.Sprite.SpriteSource = this.PlayerJump;
+      }
+      
+      
+  }
+}
+}
