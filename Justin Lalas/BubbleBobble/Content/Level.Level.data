@@ -307,7 +307,7 @@ Level
 			var MaxMoveSpeed = 7.5
 			var MaxFallSpeed = 10
 			var GroundAcceleration = 100
-			var AirAcceleration = 0
+			var AirAcceleration = 10
 			var GroundDeceleration = 1000000
 			var AirDeceleration = 10
 			var MaxGroundSlope = 45
