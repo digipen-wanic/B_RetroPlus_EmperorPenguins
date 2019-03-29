@@ -1,0 +1,146 @@
+///////////////////////////////////
+//Name: Ofer Krupka
+//Date - Created:  03/29/2019
+//Date - Release:  --/--/----
+//Date - Modified: 03/29/2019
+//Brife:
+// --
+//Setup:
+//1. Add component RigidBody.
+//2. Add component IgnoreSpaceEffect.
+//3. Add component BoxCollider
+//3. Adjust parameters
+//Notes:
+//The Timer is since the bubble projectile was created, make sure not to set it below the "TimeToGrow" at BubbleProjectile script.
+///////////////////////////////////
+//Version: 1.0
+//Version date:    --/--/----
+//Version notes:
+// --
+///////////////////////////////////
+class Bubble : ZilchComponent
+{
+  [Property]
+  var Player : Cog;
+  
+  [Property]
+  var GoToLocation : Real2;
+  
+  [Property]
+  var BubbleSpeed : Real;
+  
+  
+  [Property]
+  var RedSprite : SpriteSource;
+  
+  [Property]
+  var RedTimer : Real;
+  
+  [Property]
+  var BlueSprite : SpriteSource;
+  
+  [Property]
+  var BlueTimer : Real;
+  
+  [Property]
+  var PopSprite : SpriteSource;
+  
+  [Property]
+  var PopTimer : Real;
+  
+  [Property]
+  var DelayToLetPopAnimationToPlay : Real = 0.2;
+  
+  
+  var TimeSinceProjectileCreate : Real;
+  
+  
+  function Initialize(init : CogInitializer)
+  {
+    Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+    Zero.Connect(this.Space, Events.CollisionStarted, this.OnCollisionStarted);
+    
+    //Actions of the bubble
+    var seq = Action.Sequence(this.Owner.Actions);
+    //Red
+    Action.Delay(seq, this.RedTimer-this.TimeSinceProjectileCreate);
+    Action.Call(seq, this.TurnRed);
+    //Blue
+    Action.Delay(seq, this.BlueTimer-this.TimeSinceProjectileCreate);
+    Action.Call(seq, this.TurnBlue);
+    //Pop
+    Action.Delay(seq, this.PopTimer-this.TimeSinceProjectileCreate);
+    Action.Call(seq, this.PopAndDestroy);
+  }
+
+  function OnCollisionStarted(event : CollisionEvent)
+  {
+    if(event.OtherObject == this.Player)
+    {
+      //Touching bubble from top/bottom | destroy if touching the top or buttom (looks like x shape)
+      if(Math.Abs(this.Owner.Transform.Translation.X - event.OtherObject.Transform.Translation.X)
+      <
+      Math.Abs(this.Owner.Transform.Translation.Y - event.OtherObject.Transform.Translation.Y))
+      {
+        this.PopAndDestroy();
+      }
+    }
+  }
+  
+  function OnLogicUpdate(event : UpdateEvent)
+  {
+    ++this.TimeSinceProjectileCreate;
+    
+    //Move vertically
+    if(this.Owner.Transform.Translation.Y < this.GoToLocation.Y)//Move up
+    {
+      this.Owner.RigidBody.Velocity = Real3(0, this.BubbleSpeed, 0);
+    }
+    else if(this.Owner.Transform.Translation.Y > this.GoToLocation.Y)//Move down
+    {
+      this.Owner.RigidBody.Velocity = Real3(0, 0-this.BubbleSpeed, 0);
+    }
+    //Move horizontally
+    else
+    {
+      if(this.Owner.Transform.Translation.X < this.GoToLocation.X)//Move right
+      {
+        this.Owner.RigidBody.Velocity = Real3(this.BubbleSpeed, 0, 0);
+      }
+      else if(this.Owner.Transform.Translation.X > this.GoToLocation.X)
+      {
+        this.Owner.RigidBody.Velocity = Real3(0-this.BubbleSpeed, 0, 0);
+      }
+      else
+      {
+        //At the right location
+      }
+    }
+  }
+  
+  function TurnRed()
+  {
+    this.Owner.Sprite.SpriteSource = this.RedSprite;
+  }
+  
+  function TurnBlue()
+  {
+    this.Owner.Sprite.SpriteSource = this.BlueSprite;
+  }
+  
+  function PopAndDestroy()
+  {
+    this.Owner.Sprite.SpriteSource = this.PopSprite;
+    this.Owner.Collider.Ghost = true;
+    this.Owner.Collider.SendsEvents = false;
+    //TODO
+    var seq = Action.Sequence(this.Owner.Actions);
+    Action.Delay(seq, this.DelayToLetPopAnimationToPlay);
+    Action.Call(seq, this.Owner.Destroy);
+  }
+  
+  function Pop()
+  {
+    this.Owner.Sprite.SpriteSource = this.PopSprite;
+  }
+}

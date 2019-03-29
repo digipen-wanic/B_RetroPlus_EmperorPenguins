@@ -1,0 +1,104 @@
+///////////////////////////////////
+//Name: Ofer Krupka
+//Date - Created:  03/27/2019
+//Date - Release:  --/--/----
+//Date - Modified: 03/29/2019
+//Brife:
+// --
+//Setup:
+//1. Add RigidBody component.
+//2. Add IgnoreSpaceEffect component.
+//3. Add new archetype
+//4. Add to the archetype bubble component and go through the setup.
+//5. When you create this object make sure to change the direction whether: it moves left or right, its moving right by default | Type - boolean, Name - MoveRight.
+//Notes:
+//If you want to target more than one type of monsters contact me to make another version.
+///////////////////////////////////
+//Version: 1.0
+//Version date:    --/29/2019
+//Version notes:
+// --
+///////////////////////////////////
+class BubbleProjectile : ZilchComponent
+{
+  [Property]
+  var Speed : Real;
+  
+  [Property]
+  var TimeToGrow : Real;
+  
+  [Property]
+  var SpawnBigBubble : Archetype = null;
+  
+  [Property]
+  var SpawnMonsterBubble : Archetype = null;
+  
+  [Property]
+  var Target : Cog;
+  
+  var MoveRight : Boolean = true;
+  
+  var TimeSinceProjectileCreate : Real = 0;
+  
+  function Initialize(init : CogInitializer)
+  {
+    Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+    Zero.Connect(this.Owner, Events.CollisionStarted, this.OnCollisionStarted);
+    
+    if(this.MoveRight)
+      this.Owner.RigidBody.Velocity = Real3(this.Speed,0,0);//TODO
+    else
+      this.Owner.RigidBody.Velocity = Real3(-this.Speed,0,0);//TODO
+    
+    this.BubbleAnimationAndDestroy();
+  }
+  
+  function OnCollisionStarted(event : CollisionEvent)
+  {
+    //Destroys the target & changing the sprite
+    if(event.OtherObject == this.Target)
+    {
+      event.OtherObject.Destroy();
+      
+      //Version 1.1: creating bubble with monster inside
+      
+      //Destroy current bubble archetype
+      this.Owner.Destroy();
+    }
+  }
+  
+  function OnLogicUpdate(event : UpdateEvent)
+  {
+    ++this.TimeSinceProjectileCreate;
+  }
+  
+  function BubbleAnimationAndDestroy()
+  {
+    //Update animation
+    var seq = Action.Sequence(this.Owner.Actions);
+    var frameCount = this.Owner.Sprite.SpriteSource.FrameCount;
+    for(var i = 0; i < frameCount; ++i)
+    {
+      Action.Delay(seq, this.TimeToGrow/(frameCount+1));
+      Action.Call(seq, this.IncrementFrame);
+    }
+    
+    Action.Delay(seq, this.TimeToGrow/(frameCount+1));
+    //Change to bubble
+    Action.Call(seq, this.SwitchToBubble);
+  }
+  function IncrementFrame()
+  {
+    ++this.Owner.Sprite.CurrentFrame;
+  }
+  
+  function SwitchToBubble()
+  {
+    //Create new bubble archetype
+    var newBubble = this.Space.CreateAtPosition(this.SpawnBigBubble, this.Owner.Transform.Translation);
+    newBubble.Bubble.TimeSinceProjectileCreate = this.TimeSinceProjectileCreate;
+    
+    //Destroy current bubble archetype
+    this.Owner.Destroy();
+  }
+}
