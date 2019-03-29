@@ -20,7 +20,7 @@ Cog
 		var Material = "582c575af53d18c9:AlphaSprite"
 		var VertexColor = Real4{1, 1, 1, 1}
 		var GeometryMode = SpriteGeometryMode.ZPlane
-		var SpriteSource = "5c47d7fb44a846b2:TEP_ART_CL_EnvironmentNumbers3000"
+		var SpriteSource = "5c449388fd9d4775:TEP_ART_CL_EnvironmentNumbers3000"
 		var FlipX = false
 		var FlipY = false
 		var AnimationActive = true
@@ -63,5 +63,20 @@ Cog
 	TEP_TECH_CJ_DestroyAfterTimer 
 	{
 		var DestructionTimer = 1
+	}
+	SoundEmitter 
+	{
+		var Volume = 1
+		var Pitch = 0
+		var Attenuator = "57ca8a6ad262efe5:DefaultNoAttenuation"
+		var Directional = false
+		var EmitAngle = 90
+		var RearVolume = 0.200000003
+	}
+	SimpleSound 
+	{
+		var StartPlaying = false
+		var Positional = false
+		var Cue = "4e1bd44008b4dc2a:DefaultSoundCue"
 	}
 }

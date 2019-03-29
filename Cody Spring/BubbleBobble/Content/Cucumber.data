@@ -53,5 +53,21 @@ Cog
 		var Score1000 = "null"
 		var Score2000 = "null"
 		var Score3000 = "null"
+		var PickupSound = "5c4463ecb2a2cbf8:tep_sound_justin_collectitem_1"
+	}
+	SoundEmitter 
+	{
+		var Volume = 1
+		var Pitch = 0
+		var Attenuator = "57ca8a6ad262efe5:DefaultNoAttenuation"
+		var Directional = false
+		var EmitAngle = 90
+		var RearVolume = 0.200000003
+	}
+	SimpleSound 
+	{
+		var StartPlaying = false
+		var Positional = false
+		var Cue = "4e1bd44008b4dc2a:DefaultSoundCue"
 	}
 }

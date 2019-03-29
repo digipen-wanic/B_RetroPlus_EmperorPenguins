@@ -195,6 +195,7 @@ class TEP_TECH_JL_PlayerMovementController : ZilchComponent
       this.ControllerVelocity += this.WorldUp * this.JumpSpeed;
       this.Grounded = false;
       this.Jumping = true;
+      this.Owner.SimpleSound.Play();
     }
   }
 

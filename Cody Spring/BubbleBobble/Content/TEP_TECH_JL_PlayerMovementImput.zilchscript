@@ -7,7 +7,8 @@ class TEP_TECH_JL_PlayerMovementImput : ZilchComponent
   [Property] var JumpKey : Keys = Keys.Space;
   [Property] var Shoot : Keys = Keys.E;
   [Property] var PowerShot : Keys = Keys.W;
-  
+  [Property]
+  var JumpSound : SoundCue = null;
   function Initialize(init : CogInitializer)
   {
     Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
@@ -31,6 +32,8 @@ class TEP_TECH_JL_PlayerMovementImput : ZilchComponent
     if (Zero.Keyboard.KeyIsPressed(this.JumpKey))
     {
       this.TEP_TECH_JL_PlayerMovementController.Jump();
+      this.Owner.SimpleSound.Cue = this.JumpSound;
+      
     }
     else if (Zero.Keyboard.KeyIsPressed(this.JumpKey))
     {

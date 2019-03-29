@@ -10,11 +10,13 @@ class TEP_TECH_CS_IgnoreCollide : ZilchComponent
     if(this.Owner.TEP_TECH_JL_PlayerMovementController.ControllerVelocity.Y > 0)
     {
       this.Owner.BoxCollider.CollisionGroup = CollisionGroup.PlayerUp;
+      this.Owner.TEP_TECH_JL_PlayerMovementController.CastFilter.CollisionGroup = CollisionGroup.PlayerUp;
       Console.WriteLine("HI");
     }
     if(this.Owner.TEP_TECH_JL_PlayerMovementController.ControllerVelocity.Y  <= 0)
     {
       this.Owner.BoxCollider.CollisionGroup = CollisionGroup.TEP_TECH_CS_Player;
+      this.Owner.TEP_TECH_JL_PlayerMovementController.CastFilter.CollisionGroup = CollisionGroup.TEP_TECH_CS_Player;
       Console.WriteLine("Bye");
     }
   }

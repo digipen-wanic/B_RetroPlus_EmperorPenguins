@@ -77,7 +77,7 @@ Level
 		var Name = "EditorCamera"
 		Transform 
 		{
-			var Translation = Real3{-2.00004244, -0.49999553, 20}
+			var Translation = Real3{-0.833359003, -1.50000477, 20}
 			var Scale = Real3{1, 1, 1}
 			var Rotation = Quaternion{0, -1.09278471e-08, 0, 1}
 		}
@@ -130,7 +130,7 @@ Level
 			var FarPlane = 500
 			var PerspectiveMode = PerspectiveMode.Orthographic
 			var FieldOfView = 45
-			var Size = 29.836462
+			var Size = 26.9971428
 		}
 		EditorCameraController 
 		{
@@ -139,7 +139,7 @@ Level
 			var LookDistance = 20
 			var VerticalAngle = 0
 			var HorizontalAngle = 0
-			var LookTarget = Real3{-2.00004244, -0.49999553, 0}
+			var LookTarget = Real3{-0.833359003, -1.50000477, 0}
 			var MoveSensitivity = 1
 		}
 	}
@@ -217,6 +217,21 @@ Level
 			var Active = true
 			var AttenuationScale = 1
 		}
+		SoundEmitter 
+		{
+			var Volume = 1
+			var Pitch = 0
+			var Attenuator = "57ca8a6ad262efe5:DefaultNoAttenuation"
+			var Directional = false
+			var EmitAngle = 90
+			var RearVolume = 0.200000003
+		}
+		SimpleSound 
+		{
+			var StartPlaying = true
+			var Positional = false
+			var Cue = "5c447a14dd108983:bubblebobblemaintheme"
+		}
 	}
 	Cog [ContextId:5]
 	{
@@ -290,7 +305,7 @@ Level
 		var Name = "Player"
 		Transform 
 		{
-			var Translation = Real3{-4.0750246, -0.351601124, 0}
+			var Translation = Real3{-5.14458323, 4.77490664, 0}
 			var Scale = Real3{8, 8, 1}
 			var Rotation = Quaternion{0, 0, 0, 1}
 		}
@@ -362,6 +377,7 @@ Level
 			var JumpKey = Keys.Space
 			var Shoot = Keys.E
 			var PowerShot = Keys.W
+			var JumpSound = "5c4464a4c8ce04af:bubblebobblejump"
 		}
 		TEP_TECH_JL_PlayerAnimation 
 		{
@@ -371,6 +387,21 @@ Level
 		}
 		TEP_TECH_CS_IgnoreCollide 
 		{
+		}
+		SoundEmitter 
+		{
+			var Volume = 1
+			var Pitch = 0
+			var Attenuator = "57ca8a6ad262efe5:DefaultNoAttenuation"
+			var Directional = false
+			var EmitAngle = 90
+			var RearVolume = 0.200000003
+		}
+		SimpleSound 
+		{
+			var StartPlaying = false
+			var Positional = false
+			var Cue = "5c4464a4c8ce04af:bubblebobblejump"
 		}
 	}
 	Cog [ContextId:11]
