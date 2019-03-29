@@ -32,7 +32,7 @@ class TEP_TECH_JL_PlayerMovementImput : ZilchComponent
     {
       this.TEP_TECH_JL_PlayerMovementController.Jump();
     }
-    else if (Zero.Keyboard.KeyIsReleased(this.JumpKey))
+    else if (Zero.Keyboard.KeyIsPressed(this.JumpKey))
     {
       this.TEP_TECH_JL_PlayerMovementController.Jump();
     }
