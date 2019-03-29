@@ -4,6 +4,6 @@ TextContent
 	ZilchScriptBuilder 
 	{
 		var Name = "TEP_TECH_CJ_DestroyAfterTimer"
-		var ResourceId = 0x5c449f1d9c700aad
+		var ResourceId = 0x5c4490a2c3d55cc1
 	}
 }

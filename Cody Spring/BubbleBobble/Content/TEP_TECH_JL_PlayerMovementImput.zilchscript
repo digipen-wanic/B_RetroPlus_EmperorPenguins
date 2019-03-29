@@ -17,7 +17,6 @@ class TEP_TECH_JL_PlayerMovementImput : ZilchComponent
   {
     var movement = Real3(0, 0, 0);
     
-    // Check for left/right movment
     if (Zero.Keyboard.KeyIsDown(this.LeftKey))
       {
       movement.X += -1;
@@ -33,9 +32,9 @@ class TEP_TECH_JL_PlayerMovementImput : ZilchComponent
     {
       this.TEP_TECH_JL_PlayerMovementController.Jump();
     }
-    else if (Zero.Keyboard.KeyIsReleased(this.JumpKey))
+    else if (Zero.Keyboard.KeyIsPressed(this.JumpKey))
     {
-      this.TEP_TECH_JL_PlayerMovementController.JumpCancel();
+      this.TEP_TECH_JL_PlayerMovementController.Jump();
     }
     
     this.TEP_TECH_JL_PlayerMovementController.Update(movement, event.Dt);

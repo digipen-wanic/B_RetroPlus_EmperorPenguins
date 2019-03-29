@@ -3,8 +3,8 @@ DataContent
 {
 	DataBuilder 
 	{
-		var Name = "Score300"
-		var ResourceId = 0x5c47a9e73a6576ee
+		var Name = "Score3000"
+		var ResourceId = 0x5c44932fef8e034e
 		var LoaderType = "Cog"
 		var Version = 0
 	}

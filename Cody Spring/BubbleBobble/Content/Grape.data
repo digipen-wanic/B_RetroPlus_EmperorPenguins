@@ -43,11 +43,15 @@ Cog
 		var DynamicState = RigidBodyDynamicState.Dynamic
 		var AllowSleep = true
 		var Asleep = false
-		var RotationLocked = true
+		var RotationLocked = false
 		var Mode2D = Mode2DStates.InheritFromSpace
 	}
 	TEP_TECH_CS_ScoreObject 
 	{
 		var ScoreModifier = 3000
+		var Score300 = "null"
+		var Score1000 = "null"
+		var Score2000 = "null"
+		var Score3000 = "5c44932fef8e034e:Score3000"
 	}
 }

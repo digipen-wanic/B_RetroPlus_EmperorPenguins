@@ -77,7 +77,7 @@ Level
 		var Name = "EditorCamera"
 		Transform 
 		{
-			var Translation = Real3{1.94975781, 1.54168987, 20}
+			var Translation = Real3{-2.00004244, -0.49999553, 20}
 			var Scale = Real3{1, 1, 1}
 			var Rotation = Quaternion{0, -1.09278471e-08, 0, 1}
 		}
@@ -130,7 +130,7 @@ Level
 			var FarPlane = 500
 			var PerspectiveMode = PerspectiveMode.Orthographic
 			var FieldOfView = 45
-			var Size = 22.1034069
+			var Size = 24.4280396
 		}
 		EditorCameraController 
 		{
@@ -139,7 +139,7 @@ Level
 			var LookDistance = 20
 			var VerticalAngle = 0
 			var HorizontalAngle = 0
-			var LookTarget = Real3{1.94975781, 1.54168987, 0}
+			var LookTarget = Real3{-2.00004244, -0.49999553, 0}
 			var MoveSensitivity = 1
 		}
 	}
@@ -253,68 +253,36 @@ Level
 	{
 		Transform 
 		{
-			var Translation = Real3{5.47672796, 3.85285902, 0}
+			var Translation = Real3{5.47672796, 4.42351055, 0}
 			var Rotation = Quaternion{0, 0, 0, 1}
 			var Scale = Real3{8, 8, 1}
-		}
-		BoxCollider 
-		{
-			var CollisionGroup = "5c47d421fa9e574d:PlayerCollisionGroup"
-		}
-		TEP_TECH_CS_ScoreObject 
-		{
-			var Score2000 = "5c47a9ee383d058f:Score2000"
 		}
 	}
 	Cog [InheritId:"5c47d89b2cd91757:Orange"][ContextId:7]
 	{
 		Transform 
 		{
-			var Translation = Real3{3.07539201, 3.83115625, 0}
+			var Translation = Real3{3.07539201, 4.59202528, 0}
 			var Rotation = Quaternion{0, 0, 0, 1}
 			var Scale = Real3{8, 8, 1}
-		}
-		BoxCollider 
-		{
-			var CollisionGroup = "5c47d421fa9e574d:PlayerCollisionGroup"
-		}
-		TEP_TECH_CS_ScoreObject 
-		{
-			var Score1000 = "5c47a9f7398e2f4c:Score1000"
 		}
 	}
 	Cog [InheritId:"5c47d89b2cde7bff:Grape"][ContextId:8]
 	{
 		Transform 
 		{
-			var Translation = Real3{7.75167656, 3.86507797, 0}
+			var Translation = Real3{7.75167656, 4.38138199, 0}
 			var Rotation = Quaternion{0, 0, 0, 1}
 			var Scale = Real3{8, 8, 1}
-		}
-		BoxCollider 
-		{
-			var CollisionGroup = "5c47d421fa9e574d:PlayerCollisionGroup"
-		}
-		TEP_TECH_CS_ScoreObject 
-		{
-			var Score3000 = "5c47a9e025612396:Score3000"
 		}
 	}
 	Cog [InheritId:"5c47d89b2cdfdcec:Cucumber"][ContextId:9]
 	{
 		Transform 
 		{
-			var Translation = Real3{0.3902812, 4.03864241, 0}
+			var Translation = Real3{0.3902812, 4.5077672, 0}
 			var Rotation = Quaternion{0, 0, 0, 1}
 			var Scale = Real3{8, 8, 1}
-		}
-		BoxCollider 
-		{
-			var CollisionGroup = "5c47d421fa9e574d:PlayerCollisionGroup"
-		}
-		TEP_TECH_CS_ScoreObject 
-		{
-			var Score300 = "5c47a9e73a6576ee:Score300"
 		}
 	}
 	Cog [ContextId:10]
@@ -360,7 +328,7 @@ Level
 			var Ghost = false
 			var SendsEvents = true
 			var Material = "4de020863e872da8:DefaultPhysicsMaterial"
-			var CollisionGroup = "5c47d421fa9e574d:PlayerCollisionGroup"
+			var CollisionGroup = "4e740859314e5515:DefaultGroup"
 			var Offset = Real3{0, 0, 0}
 			var HalfSize = Real3{0.125, 0.125, 0.5}
 		}
@@ -369,14 +337,14 @@ Level
 			var WorldUp = Real3{0, 1, 0}
 			var LockZAxis = false
 			var ForwardEvents = false
-			var Gravity = 10
-			var JumpSpeed = 5
+			var Gravity = 40
+			var JumpSpeed = 21
 			var JumpCancelFactor = 0.5
-			var MaxMoveSpeed = 10
-			var MaxFallSpeed = 50
-			var GroundAcceleration = 50
+			var MaxMoveSpeed = 7.5
+			var MaxFallSpeed = 10
+			var GroundAcceleration = 100
 			var AirAcceleration = 10
-			var GroundDeceleration = 50
+			var GroundDeceleration = 1000000
 			var AirDeceleration = 10
 			var MaxGroundSlope = 45
 			var MaxCeilingSlope = 45
@@ -394,6 +362,41 @@ Level
 			var JumpKey = Keys.Space
 			var Shoot = Keys.E
 			var PowerShot = Keys.W
+		}
+		TEP_TECH_JL_PlayerAnimation 
+		{
+			var PlayerIdle = "5c47de2dc81512d4:TEP_ART_TGB_PlayerIdle_0"
+			var PlayerJump = "5c446967ab84f81f:TEP_ART_TGB_Playerjump_0"
+			var PlayerWalk = "5c4496dc8c6b2223:TEP_ART_TGB_PlayerWalk_0"
+		}
+	}
+	Cog [ContextId:11]
+	{
+		var Name = "Sprite"
+		Transform 
+		{
+			var Translation = Real3{45.2563591, 20.3897667, 0}
+			var Scale = Real3{8.19353008, 7.14958763, 1}
+			var Rotation = Quaternion{0, 0, 0, 1}
+		}
+		Sprite 
+		{
+			var Visible = true
+			var ViewCulling = true
+			var VisibilityEvents = true
+			var OverrideBoundingBox = false
+			var LocalAabbCenter = Real3{0, 0, 0}
+			var LocalAabbHalfExtents = Real3{1, 1, 1}
+			var GroupSortValue = 0
+			var Material = "582c575af53d18c9:AlphaSprite"
+			var VertexColor = Real4{1, 1, 1, 1}
+			var GeometryMode = SpriteGeometryMode.ZPlane
+			var SpriteSource = "5c4494f72fa2af27:level1"
+			var FlipX = false
+			var FlipY = false
+			var AnimationActive = true
+			var AnimationSpeed = 1
+			var StartFrame = 0
 		}
 	}
 }
