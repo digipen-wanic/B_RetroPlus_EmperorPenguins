@@ -49,5 +49,9 @@ Cog
 	TEP_TECH_CS_ScoreObject 
 	{
 		var ScoreModifier = 1000
+		var Score300 = "null"
+		var Score1000 = "5c44932fef8cb350:Score1000"
+		var Score2000 = "null"
+		var Score3000 = "null"
 	}
 }

@@ -1,11 +1,11 @@
 [Version:1]
 Cog 
 {
-	var Name = "Sprite"
+	var Name = "TEP_ART_CL_EnvironmentNumbers1000"
 	Transform 
 	{
-		var Translation = Real3{7.75167656, 4.38138199, 0}
-		var Scale = Real3{8, 8, 1}
+		var Translation = Real3{0, 0, 0}
+		var Scale = Real3{1, 1, 1}
 		var Rotation = Quaternion{0, 0, 0, 1}
 	}
 	Sprite 
@@ -20,21 +20,12 @@ Cog
 		var Material = "582c575af53d18c9:AlphaSprite"
 		var VertexColor = Real4{1, 1, 1, 1}
 		var GeometryMode = SpriteGeometryMode.ZPlane
-		var SpriteSource = "5c47db75d829d3d8:TEP_ART_CL_EnvironmentGrape"
+		var SpriteSource = "5c47d7fb44a934e3:TEP_ART_CL_EnvironmentNumbers1000"
 		var FlipX = false
 		var FlipY = false
 		var AnimationActive = true
 		var AnimationSpeed = 1
 		var StartFrame = 0
-	}
-	BoxCollider 
-	{
-		var Ghost = false
-		var SendsEvents = true
-		var Material = "4de020863e872da8:DefaultPhysicsMaterial"
-		var CollisionGroup = "4e740859314e5515:DefaultGroup"
-		var Offset = Real3{0, 0, 0}
-		var HalfSize = Real3{0.100000001, 0.100000001, 0.5}
 	}
 	RigidBody 
 	{
@@ -46,12 +37,31 @@ Cog
 		var RotationLocked = false
 		var Mode2D = Mode2DStates.InheritFromSpace
 	}
-	TEP_TECH_CS_ScoreObject 
+	MassOverride 
 	{
-		var ScoreModifier = 3000
-		var Score300 = "null"
-		var Score1000 = "null"
-		var Score2000 = "null"
-		var Score3000 = "5c44932fef8e034e:Score3000"
+		var Active = true
+		var InverseMass = 1e+09
+		var Mass = 9.99999972e-10
+		var LocalInverseInertiaTensor = Real3x3{0, 0, 0, 0, 0, 0, 0, 0, 0}
+		var LocalCenterOfMass = Real3{0, 0, 0}
+	}
+	IgnoreSpaceEffects 
+	{
+		var IgnoreDrag = true
+		var IgnoreFlow = true
+		var IgnoreForce = true
+		var IgnoreGravity = true
+		var IgnorePointForce = true
+		var IgnorePointGravity = true
+		var IgnoreThrust = true
+		var IgnoreVortex = true
+		var IgnoreWind = true
+		var IgnoreTorque = true
+		var IgnoreBuoyancy = true
+		var IgnoreCustom = true
+	}
+	TEP_TECH_CJ_DestroyAfterTimer 
+	{
+		var DestructionTimer = 1
 	}
 }
