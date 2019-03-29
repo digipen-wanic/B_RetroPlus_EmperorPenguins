@@ -130,7 +130,7 @@ Level
 			var FarPlane = 500
 			var PerspectiveMode = PerspectiveMode.Orthographic
 			var FieldOfView = 45
-			var Size = 22.1034069
+			var Size = 99.0605011
 		}
 		EditorCameraController 
 		{
@@ -362,6 +362,35 @@ Level
 			var JumpKey = Keys.Space
 			var Shoot = Keys.E
 			var PowerShot = Keys.W
+		}
+	}
+	Cog [ContextId:11]
+	{
+		var Name = "Sprite"
+		Transform 
+		{
+			var Translation = Real3{45.2563591, 20.3897667, 0}
+			var Scale = Real3{8.19353008, 7.14958763, 1}
+			var Rotation = Quaternion{0, 0, 0, 1}
+		}
+		Sprite 
+		{
+			var Visible = true
+			var ViewCulling = true
+			var VisibilityEvents = true
+			var OverrideBoundingBox = false
+			var LocalAabbCenter = Real3{0, 0, 0}
+			var LocalAabbHalfExtents = Real3{1, 1, 1}
+			var GroupSortValue = 0
+			var Material = "582c575af53d18c9:AlphaSprite"
+			var VertexColor = Real4{1, 1, 1, 1}
+			var GeometryMode = SpriteGeometryMode.ZPlane
+			var SpriteSource = "5c4494f72fa2af27:level1"
+			var FlipX = false
+			var FlipY = false
+			var AnimationActive = true
+			var AnimationSpeed = 1
+			var StartFrame = 0
 		}
 	}
 }
