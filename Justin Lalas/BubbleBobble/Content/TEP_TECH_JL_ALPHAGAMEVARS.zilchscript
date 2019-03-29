@@ -1,0 +1,13 @@
+class TEP_TECH_JL_ALPHAGAMEVARS : ZilchComponent
+{
+  [Property]
+  var StartingLives = 3;
+  var CurrentLives = 3;
+  
+  
+  function Initialize(init : CogInitializer)
+  {
+    this.CurrentLives = this.StartingLives;
+  }
+
+}
