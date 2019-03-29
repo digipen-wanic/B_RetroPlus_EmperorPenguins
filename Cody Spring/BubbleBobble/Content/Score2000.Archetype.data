@@ -45,4 +45,23 @@ Cog
 		var LocalInverseInertiaTensor = Real3x3{0, 0, 0, 0, 0, 0, 0, 0, 0}
 		var LocalCenterOfMass = Real3{0, 0, 0}
 	}
+	IgnoreSpaceEffects 
+	{
+		var IgnoreDrag = true
+		var IgnoreFlow = true
+		var IgnoreForce = true
+		var IgnoreGravity = true
+		var IgnorePointForce = true
+		var IgnorePointGravity = true
+		var IgnoreThrust = true
+		var IgnoreVortex = true
+		var IgnoreWind = true
+		var IgnoreTorque = true
+		var IgnoreBuoyancy = true
+		var IgnoreCustom = true
+	}
+	TEP_TECH_CJ_DestroyAfterTimer 
+	{
+		var DestructionTimer = 1
+	}
 }

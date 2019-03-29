@@ -33,23 +33,23 @@ class TEP_TECH_CS_ScoreObject : ZilchComponent
     Console.WriteLine("It collided");
     if(this.ScoreModifier == 300)
     {
-      var scoreText = this.Space.CreateAtPosition(this.Score300, Real3(this.Owner.Transform.Translation.X,this.Owner.Transform.Translation.Y,0));
-      scoreText.RigidBody.Velocity = Real3(0,5,0);
+      var scoreText = this.Space.CreateAtPosition(this.Score300, Real3(this.Owner.Transform.Translation.X,this.Owner.Transform.Translation.Y,0.1));
+      scoreText.RigidBody.Velocity = Real3(0,2,0);
     }
     else if(this.ScoreModifier == 1000)
     {
-      var scoreText = this.Space.CreateAtPosition(this.Score1000, Real3(this.Owner.Transform.Translation.X,this.Owner.Transform.Translation.Y,0));
-      scoreText.RigidBody.Velocity = Real3(0,5,0);
+      var scoreText = this.Space.CreateAtPosition(this.Score1000, Real3(this.Owner.Transform.Translation.X,this.Owner.Transform.Translation.Y,0.1));
+      scoreText.RigidBody.Velocity = Real3(0,2,0);
     }
     else if(this.ScoreModifier == 2000)
     {
-      var scoreText = this.Space.CreateAtPosition(this.Score2000, Real3(this.Owner.Transform.Translation.X,this.Owner.Transform.Translation.Y,0));
-      scoreText.RigidBody.Velocity = Real3(0,5,0);
+      var scoreText = this.Space.CreateAtPosition(this.Score2000, Real3(this.Owner.Transform.Translation.X,this.Owner.Transform.Translation.Y,0.1));
+      scoreText.RigidBody.Velocity = Real3(0,2,0);
     }
     else if(this.ScoreModifier == 3000)
     {
-      var scoreText = this.Space.CreateAtPosition(this.Score3000, Real3(this.Owner.Transform.Translation.X,this.Owner.Transform.Translation.Y,0));
-      scoreText.RigidBody.Velocity = Real3(0,5,0);
+      var scoreText = this.Space.CreateAtPosition(this.Score3000, Real3(this.Owner.Transform.Translation.X,this.Owner.Transform.Translation.Y,0.1));
+      scoreText.RigidBody.Velocity = Real3(0,2,0);
     }
   }
   }
