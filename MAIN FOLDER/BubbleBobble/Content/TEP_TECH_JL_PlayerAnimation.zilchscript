@@ -67,6 +67,10 @@ class TEP_TECH_JL_PlayerAnimation : ZilchComponent
     this.Owner.SimpleSound.Play();
     if(this.LevelSettings.TEP_TECH_CS_GameVars.DeathTimer <= 0)
     {
+      this.LevelSettings.TEP_TECH_CS_GameVars.PlayerLives -= 1;
+      //add a lose level when the player goes below 0 lives
+      
+      
       this.Owner.Transform.Translation = this.LevelSettings.TEP_TECH_CS_GameVars.RespawnLocation;
       this.LevelSettings.TEP_TECH_CS_GameVars.DeathTimer = 1.2;
       this.Owner.Sprite.SpriteSource = this.PlayerIdle;
