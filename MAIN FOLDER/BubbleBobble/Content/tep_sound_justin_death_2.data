@@ -2,7 +2,7 @@
 SoundCue 
 {
 	var PlayMode = SoundPlayMode.Single
-	var Volume = 1
+	var Volume = 0.269999981
 	var UseDecibelVariation = false
 	var VolumeVariation = 0
 	var DecibelVariation = 0
@@ -18,7 +18,7 @@ SoundCue
 	{
 		Object
 		{
-			var Sound = "5c4463ecb2a5e773:tep_sound_justin_death_2"
+			var Sound = "5c447afe8f96e289:tep_sound_justin_death_2"
 			var Weight = 1
 			var StartTime = 0
 			var EndTime = 1.95087492

@@ -1,11 +1,11 @@
 [Version:1]
 Cog 
 {
-	var Name = "Sprite"
+	var Name = "Enemy"
 	Transform 
 	{
-		var Translation = Real3{0.3902812, 4.5077672, 0}
-		var Scale = Real3{8, 8, 1}
+		var Translation = Real3{-9.69903755, 4.06811523, 0}
+		var Scale = Real3{1, 1, 1}
 		var Rotation = Quaternion{0, 0, 0, 1}
 	}
 	Sprite 
@@ -20,21 +20,24 @@ Cog
 		var Material = "582c575af53d18c9:AlphaSprite"
 		var VertexColor = Real4{1, 1, 1, 1}
 		var GeometryMode = SpriteGeometryMode.ZPlane
-		var SpriteSource = "5c47d89b2cd89e51:TEP_ART_CL_EnviromentCucumber"
+		var SpriteSource = "5c3c3532e3cf6c58:TEP_ART_onm_EnemyWalking_0"
 		var FlipX = false
 		var FlipY = false
 		var AnimationActive = true
 		var AnimationSpeed = 1
 		var StartFrame = 0
 	}
+	TEP_TECH_CS_DeathZone 
+	{
+	}
 	BoxCollider 
 	{
 		var Ghost = false
 		var SendsEvents = true
 		var Material = "4de020863e872da8:DefaultPhysicsMaterial"
-		var CollisionGroup = "5c447afe8f94d94b:PlayerUp"
+		var CollisionGroup = "5c447d3d9bb6e200:TEP_TECH_CS_Player"
 		var Offset = Real3{0, 0, 0}
-		var HalfSize = Real3{0.100000001, 0.100000001, 0.5}
+		var HalfSize = Real3{1, 1, 0.5}
 	}
 	RigidBody 
 	{
@@ -45,14 +48,5 @@ Cog
 		var Asleep = false
 		var RotationLocked = true
 		var Mode2D = Mode2DStates.InheritFromSpace
-	}
-	TEP_TECH_CS_ScoreObject 
-	{
-		var ScoreModifier = 300
-		var Score300 = "5c44932fef8c0e2a:Score300"
-		var Score1000 = "null"
-		var Score2000 = "null"
-		var Score3000 = "null"
-		var PickupSound = "null"
 	}
 }

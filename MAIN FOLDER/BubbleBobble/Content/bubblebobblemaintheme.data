@@ -1,8 +1,8 @@
 [Version:1]
 SoundCue 
 {
-	var PlayMode = SoundPlayMode.Single
-	var Volume = 1
+	var PlayMode = SoundPlayMode.Looping
+	var Volume = 0.099999994
 	var UseDecibelVariation = false
 	var VolumeVariation = 0
 	var DecibelVariation = 0
@@ -18,7 +18,7 @@ SoundCue
 	{
 		Object
 		{
-			var Sound = "5c447a15dcfe00b9:bubblebobblemaintheme"
+			var Sound = "5c447afe8f95744a:bubblebobblemaintheme"
 			var Weight = 1
 			var StartTime = 0
 			var EndTime = 46.4398956

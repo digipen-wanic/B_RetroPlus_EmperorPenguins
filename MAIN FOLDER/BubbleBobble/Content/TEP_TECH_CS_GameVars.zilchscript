@@ -14,4 +14,10 @@ class TEP_TECH_CS_GameVars : ZilchComponent
   
   // used for baron von bubble
   var HurryTimer = 0;
+  
+  var DeathTimer = 1.2;
+  
+  var Dead = false;
+  
+  var RespawnLocation = Real3(-5.14, 4.77, 0);
 }

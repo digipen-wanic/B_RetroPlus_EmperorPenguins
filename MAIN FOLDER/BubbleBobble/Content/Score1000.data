@@ -77,6 +77,6 @@ Cog
 	{
 		var StartPlaying = false
 		var Positional = false
-		var Cue = "4e1bd44008b4dc2a:DefaultSoundCue"
+		var Cue = "5c447afe8f976f6b:tep_sound_justin_collectitem_1"
 	}
 }

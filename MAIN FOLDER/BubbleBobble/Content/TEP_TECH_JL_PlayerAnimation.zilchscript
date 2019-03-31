@@ -5,7 +5,7 @@ class TEP_TECH_JL_PlayerAnimation : ZilchComponent
   [Dependency]
   var TEP_TECH_JL_PlayerMovementController : TEP_TECH_JL_PlayerMovementController = null;
   [Dependency]
-  var TEP_TECH_JL_PlayerMovementImput : TEP_TECH_JL_PlayerMovementImput = null; 
+  var TEP_TECH_JL_PlayerMovementInput : TEP_TECH_JL_PlayerMovementInput = null; 
   
   [Property]
   var PlayerIdle : SpriteSource = null;
@@ -13,18 +13,22 @@ class TEP_TECH_JL_PlayerAnimation : ZilchComponent
   var PlayerJump : SpriteSource = null;
   [Property]
   var PlayerWalk : SpriteSource = null;
-
+  [Property]
+  var DeathAnim : SpriteSource = null;
+  [Property]
+  var DeathSound : SoundCue = null;
   
   function Initialize(init : CogInitializer)
   {
     Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+    Zero.Connect(this.Owner ,Events.CollisionStarted, this.OnCollisionStarted);
   }
 
   function OnLogicUpdate(event : UpdateEvent)
   {
-    var leftKeyDown = Zero.Keyboard.KeyIsDown(this.TEP_TECH_JL_PlayerMovementImput.LeftKey);
-    var rightKeyDown = Zero.Keyboard.KeyIsDown(this.TEP_TECH_JL_PlayerMovementImput.RightKey);
-   if(this.Sprite.SpriteSource == this.PlayerIdle)
+    var leftKeyDown = Zero.Keyboard.KeyIsDown(this.TEP_TECH_JL_PlayerMovementInput.LeftKey);
+    var rightKeyDown = Zero.Keyboard.KeyIsDown(this.TEP_TECH_JL_PlayerMovementInput.RightKey);
+   if(this.Sprite.SpriteSource == this.PlayerIdle && this.Sprite.SpriteSource != this.DeathAnim)
     {
       if((leftKeyDown || rightKeyDown))
       {
@@ -35,14 +39,14 @@ class TEP_TECH_JL_PlayerAnimation : ZilchComponent
         this.Sprite.SpriteSource = this.PlayerJump;
       }
     }
-    else if(this.Sprite.SpriteSource == this.PlayerJump)
+    else if(this.Sprite.SpriteSource == this.PlayerJump && this.Sprite.SpriteSource != this.DeathAnim)
     {
       if(this.TEP_TECH_JL_PlayerMovementController.Grounded)
       {
         this.Sprite.SpriteSource = this.PlayerIdle;
       }
     }
-    else if(this.Sprite.SpriteSource == this.PlayerWalk)
+    else if(this.Sprite.SpriteSource == this.PlayerWalk && this.Sprite.SpriteSource != this.DeathAnim)
     {
       if( !(leftKeyDown || rightKeyDown))
       {
@@ -53,8 +57,37 @@ class TEP_TECH_JL_PlayerAnimation : ZilchComponent
       {
         this.Sprite.SpriteSource = this.PlayerJump;
       }
-      
-      
+  }
+  
+  if(this.LevelSettings.TEP_TECH_CS_GameVars.Dead == true) 
+  {
+    this.LevelSettings.TEP_TECH_CS_GameVars.DeathTimer -= event.Dt;
+    this.Owner.SimpleSound.Cue = this.DeathSound;
+    if(!this.Owner.SimpleSound.IsPlaying)
+    this.Owner.SimpleSound.Play();
+    if(this.LevelSettings.TEP_TECH_CS_GameVars.DeathTimer <= 0)
+    {
+      this.Owner.Transform.Translation = this.LevelSettings.TEP_TECH_CS_GameVars.RespawnLocation;
+      this.LevelSettings.TEP_TECH_CS_GameVars.DeathTimer = 1.2;
+      this.Owner.Sprite.SpriteSource = this.PlayerIdle;
+      this.LevelSettings.TEP_TECH_CS_GameVars.Dead = false;
+      this.Owner.SimpleSound.Cue = this.TEP_TECH_JL_PlayerMovementInput.JumpSound;
+    }
   }
 }
+function OnCollisionStarted(event : CollisionEvent)
+  {
+    //check if we ran into a hazard that kills
+    if(event.OtherObject.TEP_TECH_CS_DeathZone != null)
+    {
+      this.OnDeath();
+      Console.WriteLine("HIT");
+    }
+  }
+  
+  function OnDeath()
+  {
+    this.Sprite.SpriteSource = this.DeathAnim;
+    this.LevelSettings.TEP_TECH_CS_GameVars.Dead = true;
+  }
 }

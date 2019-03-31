@@ -2,7 +2,7 @@
 SoundCue 
 {
 	var PlayMode = SoundPlayMode.Single
-	var Volume = 0.25999999
+	var Volume = 0.119999997
 	var UseDecibelVariation = false
 	var VolumeVariation = 0
 	var DecibelVariation = 0
@@ -18,7 +18,7 @@ SoundCue
 	{
 		Object
 		{
-			var Sound = "5c44649bca923b47:bubblebobblejump"
+			var Sound = "5c447afe8f9a3c86:bubblebobblejump"
 			var Weight = 1
 			var StartTime = 0
 			var EndTime = 0.409604162

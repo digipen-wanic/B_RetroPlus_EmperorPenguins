@@ -188,7 +188,7 @@ class TEP_TECH_JL_PlayerMovementController : ZilchComponent
   // User does not need to check for grounded or anything else before calling.
   function Jump()
   {
-    if (this.Grounded)
+    if (this.Grounded && this.LevelSettings.TEP_TECH_CS_GameVars.Dead != true)
     {
       // ControllerVelocity will not already have any velocity on the
       // WorldUp axis when grounded, can simply add jump velocity.
