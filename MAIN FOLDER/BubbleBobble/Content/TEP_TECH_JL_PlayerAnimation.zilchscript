@@ -7,7 +7,7 @@ class TEP_TECH_JL_PlayerAnimation : ZilchComponent
   [Dependency]
   var TEP_TECH_JL_PlayerMovementInput : TEP_TECH_JL_PlayerMovementInput = null; 
   
-  [Property]
+  [Property] 
   var PlayerIdle : SpriteSource = null;
   [Property]
   var PlayerJump : SpriteSource = null;

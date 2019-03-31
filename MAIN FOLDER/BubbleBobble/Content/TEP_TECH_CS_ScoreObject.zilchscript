@@ -31,7 +31,7 @@ class TEP_TECH_CS_ScoreObject : ZilchComponent
     //if the object has collided into the player add the score
     if(event.OtherObject.Name == "Player")
     {
-    this.GameSession.TEP_TECH_CS_GameVars.PlayerScore += this.ScoreModifier;
+    this.LevelSettings.TEP_TECH_CS_GameVars.PlayerScore += this.ScoreModifier;
     this.Owner.Destroy();
     Console.WriteLine("It collided");
     

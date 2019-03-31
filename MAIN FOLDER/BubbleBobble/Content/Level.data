@@ -40,6 +40,7 @@ Level
 		}
 		TEP_TECH_CS_GameVars 
 		{
+			var RespawnLocation = Real3{-5.13999987, 4.76999998, 0}
 		}
 	}
 	Cog [ContextId:2]
@@ -324,7 +325,7 @@ Level
 		var Name = "Player"
 		Transform 
 		{
-			var Translation = Real3{-5.26619816, 4.57221365, 0}
+			var Translation = Real3{-5.26619816, 4.57221365, 0.00999999978}
 			var Scale = Real3{8, 8, 1}
 			var Rotation = Quaternion{0, 0, 0, 1}
 		}

@@ -31,7 +31,7 @@ class TEP_TECH_JL_PlayerMovementInput : ZilchComponent
       movement.X += 1;
       this.Owner.Sprite.FlipX = false;
     }
-    
+     
     if (Zero.Keyboard.KeyIsPressed(this.JumpKey) )
     {
       this.TEP_TECH_JL_PlayerMovementController.Jump();
