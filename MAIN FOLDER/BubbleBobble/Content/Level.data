@@ -81,7 +81,7 @@ Level
 		var Name = "EditorCamera"
 		Transform 
 		{
-			var Translation = Real3{-10.3376293, 3.00133324, 20}
+			var Translation = Real3{-0.834668458, -1.52814841, 20}
 			var Scale = Real3{1, 1, 1}
 			var Rotation = Quaternion{0, -1.09278471e-08, 0, 1}
 		}
@@ -134,7 +134,7 @@ Level
 			var FarPlane = 500
 			var PerspectiveMode = PerspectiveMode.Orthographic
 			var FieldOfView = 45
-			var Size = 18.0967197
+			var Size = 40.2749596
 		}
 		EditorCameraController 
 		{
@@ -143,7 +143,7 @@ Level
 			var LookDistance = 20
 			var VerticalAngle = 0
 			var HorizontalAngle = 0
-			var LookTarget = Real3{-10.3376293, 3.00133324, 0}
+			var LookTarget = Real3{-0.834668458, -1.52814841, 4.15387547e-07}
 			var MoveSensitivity = 1
 		}
 	}
@@ -325,7 +325,7 @@ Level
 		var Name = "Player"
 		Transform 
 		{
-			var Translation = Real3{-5.26619816, 4.57221365, 0.00999999978}
+			var Translation = Real3{-5.26619816, 4.43424654, 0.00999999978}
 			var Scale = Real3{8, 8, 1}
 			var Rotation = Quaternion{0, 0, 0, 1}
 		}
@@ -397,6 +397,7 @@ Level
 			var PlayerWalk = "5c4496dc8c6b2223:TEP_ART_TGB_PlayerWalk_0"
 			var DeathAnim = "5c44693d934c6ed4:TEP_ART_TGB_PlayerDeath_0"
 			var DeathSound = "5c447afe8f966024:tep_sound_justin_death_2"
+			var DeathLevel = "5c789bbd18cdc41a:DeathLevel"
 		}
 		TEP_TECH_CS_IgnoreCollide 
 		{
@@ -455,22 +456,72 @@ Level
 			var StartFrame = 0
 		}
 	}
-	Cog [InheritId:"5c3c2414a633717b:DeathTile"][ContextId:12]
-	{
-		Transform 
-		{
-			var Translation = Real3{0.836894751, -3.16585112, 0}
-			var Rotation = Quaternion{0, 0, 0, 1}
-			var Scale = Real3{1, 1, 1}
-		}
-	}
-	Cog [InheritId:"5c3c2c78230c0e36:Enemy"][ContextId:13]
+	Cog [InheritId:"5c3c2c78230c0e36:Enemy"][ContextId:12]
 	{
 		Transform 
 		{
 			var Translation = Real3{-9.69903755, 4.06811523, 0}
 			var Rotation = Quaternion{0, 0, 0, 1}
 			var Scale = Real3{1, 1, 1}
+		}
+	}
+	Cog [ContextId:13]
+	{
+		var Name = "LivesText"
+		Transform 
+		{
+			var Translation = Real3{-16.3796654, -12.5837812, 4.43367327e-07}
+			var Scale = Real3{1, 1, 1}
+			var Rotation = Quaternion{0, 0, 0, 1}
+		}
+		SpriteText 
+		{
+			var Visible = true
+			var ViewCulling = true
+			var VisibilityEvents = true
+			var OverrideBoundingBox = false
+			var LocalAabbCenter = Real3{0, 0, 0}
+			var LocalAabbHalfExtents = Real3{1, 1, 1}
+			var GroupSortValue = 0
+			var Material = "582c575af53d18c9:AlphaSprite"
+			var VertexColor = Real4{0.996078491, 0.737254918, 0.984313667, 1}
+			var GeometryMode = SpriteGeometryMode.ZPlane
+			var Text = "2"
+			var Font = "5c78857259567c4d:bubb"
+			var FontSize = 100
+			var PixelsPerUnit = 128
+			var TextAlign = TextAlign.Center
+		}
+		TEP_TECH_CS_LivesText 
+		{
+		}
+	}
+	Cog [ContextId:14]
+	{
+		var Name = "LevelText"
+		Transform 
+		{
+			var Translation = Real3{0.142007589, 10.4913721, 4.43367327e-07}
+			var Scale = Real3{1, 1, 1}
+			var Rotation = Quaternion{0, 0, 0, 1}
+		}
+		SpriteText 
+		{
+			var Visible = true
+			var ViewCulling = true
+			var VisibilityEvents = true
+			var OverrideBoundingBox = false
+			var LocalAabbCenter = Real3{0, 0, 0}
+			var LocalAabbHalfExtents = Real3{1, 1, 1}
+			var GroupSortValue = 0
+			var Material = "582c575af53d18c9:AlphaSprite"
+			var VertexColor = Real4{0.996078491, 0.737254918, 0.984313667, 1}
+			var GeometryMode = SpriteGeometryMode.ZPlane
+			var Text = "01"
+			var Font = "5c78857259567c4d:bubb"
+			var FontSize = 100
+			var PixelsPerUnit = 128
+			var TextAlign = TextAlign.Center
 		}
 	}
 }

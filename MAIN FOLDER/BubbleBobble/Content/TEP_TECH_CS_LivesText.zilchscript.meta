@@ -1,0 +1,9 @@
+[Version:1]
+TextContent 
+{
+	ZilchScriptBuilder 
+	{
+		var Name = "TEP_TECH_CS_LivesText"
+		var ResourceId = 0x5c78877633be1f34
+	}
+}
