@@ -1,0 +1,26 @@
+[Version:1]
+Cog 
+{
+	var Name = "DeathTile"
+	Transform 
+	{
+		var Translation = Real3{0, 0, 0}
+		var Scale = Real3{1, 1, 1}
+		var Rotation = Quaternion{0, 0, 0, 1}
+	}
+	TEP_TECH_CS_DeathZone 
+	{
+	}
+	MeshCollider 
+	{
+		var Ghost = false
+		var SendsEvents = true
+		var Material = "4de020863e872da8:DefaultPhysicsMaterial"
+		var CollisionGroup = "5c447d3d9bb6e200:TEP_TECH_CS_Player"
+		var Offset = Real3{0, 0, 0}
+		var PhysicsMesh = "5198bea43a477360:Box"
+		var DrawEdges = true
+		var DrawFaces = false
+		var DrawFaceNormals = false
+	}
+}

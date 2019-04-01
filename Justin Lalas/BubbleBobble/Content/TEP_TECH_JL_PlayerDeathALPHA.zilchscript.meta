@@ -1,9 +1,0 @@
-[Version:1]
-TextContent 
-{
-	ZilchScriptBuilder 
-	{
-		var Name = "TEP_TECH_JL_PlayerDeathALPHA"
-		var ResourceId = 0x5c447b262a4dbc29
-	}
-}

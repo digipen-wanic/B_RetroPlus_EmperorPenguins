@@ -4,11 +4,11 @@ ImageContent
 	SpriteSourceBuilder 
 	{
 		var Name = "TEP_ART_onm_EnemyWalking_0"
-		var ResourceId = 0x5c44665c9c7ec2ac
+		var ResourceId = 0x5c3c3532e3cf6c58
 		var FrameSizeX = 128
 		var FrameSizeY = 128
 		var FrameCount = 2
-		var FrameDelay = 0.125
+		var FrameDelay = 0.166666672
 		var OriginX = 64
 		var OriginY = 64
 		var PixelsPerUnit = 64
