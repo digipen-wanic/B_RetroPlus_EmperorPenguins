@@ -217,21 +217,6 @@ Level
 			var Active = true
 			var AttenuationScale = 1
 		}
-		SoundEmitter 
-		{
-			var Volume = 1
-			var Pitch = 0
-			var Attenuator = "57ca8a6ad262efe5:DefaultNoAttenuation"
-			var Directional = false
-			var EmitAngle = 90
-			var RearVolume = 0.200000003
-		}
-		SimpleSound 
-		{
-			var StartPlaying = true
-			var Positional = false
-			var Cue = "5c789ca84dfd6913:BubbleBobbleTitleScreen"
-		}
 	}
 	Cog [ContextId:5]
 	{
@@ -300,7 +285,7 @@ Level
 			var Material = "582c575af53d18c9:AlphaSprite"
 			var VertexColor = Real4{1, 1, 1, 1}
 			var GeometryMode = SpriteGeometryMode.ZPlane
-			var SpriteSource = "5c789dc49f1410b3:TEP_ART_SM_TextTitle"
+			var SpriteSource = "5c78985461d066e9:TEP_ART_SM_TextTitle"
 			var FlipX = false
 			var FlipY = false
 			var AnimationActive = true
