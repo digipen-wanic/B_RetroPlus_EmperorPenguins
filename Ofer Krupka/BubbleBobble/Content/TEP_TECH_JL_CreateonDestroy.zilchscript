@@ -1,0 +1,15 @@
+class TEP_TECH_JL_CreateonDestroy : ZilchComponent
+{
+  [Property]
+  var ArchToSpawn : Archetype = null;
+  function Initialize(init : CogInitializer)
+  {
+  }
+  function Destroyed()
+  {
+    if(this.ArchToSpawn != null && !this.Space.MarkedForDestruction)
+   {
+    this.Space.CreateAtPosition(this.ArchToSpawn, this.Owner.Transform.Translation);
+   }
+  }
+}

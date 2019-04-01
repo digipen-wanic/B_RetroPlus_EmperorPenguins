@@ -1,0 +1,15 @@
+class TEP_TECH_CS_LivesText : ZilchComponent
+{
+  [Dependency]
+  var SpriteText : SpriteText = null;
+  function Initialize(init : CogInitializer)
+  {
+    Zero.Connect(this.Space, "LivesUpdate", this.OnLivesUpdate);
+    this.SpriteText.Text = "`this.LevelSettings.TEP_TECH_CS_GameVars.PlayerLives`";
+  }
+
+  function OnLivesUpdate(event : Event)
+  {
+    this.SpriteText.Text = "`this.LevelSettings.TEP_TECH_CS_GameVars.PlayerLives`";
+  }
+}

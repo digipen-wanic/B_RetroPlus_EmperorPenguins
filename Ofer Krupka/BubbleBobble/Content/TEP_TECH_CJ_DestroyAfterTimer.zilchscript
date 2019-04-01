@@ -1,0 +1,18 @@
+class TEP_TECH_CJ_DestroyAfterTimer : ZilchComponent
+{
+  [Property]
+  var DestructionTimer : Real = 3;
+  function Initialize(init : CogInitializer)
+  {
+    Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+  }
+
+  function OnLogicUpdate(event : UpdateEvent)
+  {
+    this.DestructionTimer -= event.Dt;
+    if(this.DestructionTimer <= 0)
+    {
+      this.Owner.Destroy();
+    }
+  }
+}

@@ -1,0 +1,31 @@
+class TEP_TECH_JL_StartButton : ZilchComponent
+{
+  var ClickedOn : Boolean = false;
+  [Property]
+  var NextLevel : Level = null;
+  function Initialize(init : CogInitializer)
+  {
+    Zero.Connect( this.Owner, Events.LeftMouseUp, this.OnLeftMouseUp);
+    Zero.Connect( this.Owner, Events.MouseExit, this.OnMouseExit);
+    Zero.Connect( this.Owner, Events.LeftMouseDown, this.OnLeftMouseDown);
+  }
+
+  function OnMouseExit(event : ViewportMouseEvent)
+  {
+    this.ClickedOn = false;
+  }
+
+  function OnLeftMouseDown(event : ViewportMouseEvent)
+  {
+    this.ClickedOn = true;
+  }
+    
+  
+  function OnLeftMouseUp(event :MouseEvent)
+  {
+    if(this.ClickedOn)
+    {
+      this.Space.LoadLevel(this.NextLevel);
+    }
+  }
+}
