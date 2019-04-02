@@ -59,6 +59,21 @@ class TEP_TECH_JL_PlayerAnimation : ZilchComponent
         this.Sprite.SpriteSource = this.PlayerJump;
       }
   }
+  else if(this.Sprite.SpriteSource == this.TEP_TECH_JL_PlayerMovementInput.ShootFrame && this.Sprite.SpriteSource != this.DeathAnim && this.LevelSettings.TEP_TECH_CS_GameVars.ShootTimer <= 0)
+    {
+      if( !(leftKeyDown || rightKeyDown))
+      {
+        this.Sprite.SpriteSource = this.PlayerIdle;
+      }
+      
+      if(!this.TEP_TECH_JL_PlayerMovementController.Grounded)
+      {
+        this.Sprite.SpriteSource = this.PlayerJump;
+      }
+      //change 0.5 to starting of shoot timer if changed in gamevars
+       this.LevelSettings.TEP_TECH_CS_GameVars.ShootTimer = 0.25;
+       this.LevelSettings.TEP_TECH_CS_GameVars.IsShooting = false;
+  }
   
   if(this.LevelSettings.TEP_TECH_CS_GameVars.Dead == true) 
   {
@@ -83,6 +98,11 @@ class TEP_TECH_JL_PlayerAnimation : ZilchComponent
       this.Owner.SimpleSound.Cue = this.TEP_TECH_JL_PlayerMovementInput.JumpSound;
     }
   }
+  if(this.LevelSettings.TEP_TECH_CS_GameVars.IsShooting)
+  {
+  this.LevelSettings.TEP_TECH_CS_GameVars.ShootTimer -= event.Dt;
+  }
+  Console.WriteLine(this.LevelSettings.TEP_TECH_CS_GameVars.ShootTimer);
 }
 function OnCollisionStarted(event : CollisionEvent)
   {

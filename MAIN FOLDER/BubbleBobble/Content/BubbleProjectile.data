@@ -4,7 +4,7 @@ Cog
 	var Name = "Sprite"
 	Transform 
 	{
-		var Translation = Real3{0, 0, 0}
+		var Translation = Real3{-2.63213682, 4.00065279, 0.00999999978}
 		var Scale = Real3{1, 1, 1}
 		var Rotation = Quaternion{0, 0, 0, 1}
 	}
@@ -20,31 +20,30 @@ Cog
 		var Material = "582c575af53d18c9:AlphaSprite"
 		var VertexColor = Real4{1, 1, 1, 1}
 		var GeometryMode = SpriteGeometryMode.ZPlane
-		var SpriteSource = "5586f579ca73ecc2:SquareBordered"
+		var SpriteSource = "5c3ec6977c5b64a9:TEP_ART_SM_BubbleGrowing_0"
 		var FlipX = false
 		var FlipY = false
 		var AnimationActive = true
 		var AnimationSpeed = 1
 		var StartFrame = 0
 	}
+	BubbleProjectile 
+	{
+		var Speed = 10
+		var TimeToGrow = 0.5
+		var BubbleBig = "5c3ec30f2d97a8af:BubbleBig"
+		var BubbleBigMonster = "5c3ec30f2d97a8af:BubbleBig"
+		var Target = "5c3c2c78230c0e36:Enemy"
+	}
 	RigidBody 
 	{
-		var Velocity = Real3{0, 0, 0}
+		var Velocity = Real3{7, 0, 0}
 		var AngularVelocity = Real3{0, 0, 0}
 		var DynamicState = RigidBodyDynamicState.Dynamic
 		var AllowSleep = true
 		var Asleep = false
 		var RotationLocked = true
 		var Mode2D = Mode2DStates.InheritFromSpace
-	}
-	BoxCollider 
-	{
-		var Ghost = false
-		var SendsEvents = true
-		var Material = "4de020863e872da8:DefaultPhysicsMaterial"
-		var CollisionGroup = "5c447afe8f94d94b:PlayerUp"
-		var Offset = Real3{0, 0, 0}
-		var HalfSize = Real3{0.5, 0.5, 0.5}
 	}
 	IgnoreSpaceEffects 
 	{
@@ -61,17 +60,13 @@ Cog
 		var IgnoreBuoyancy = true
 		var IgnoreCustom = true
 	}
-	BubbleBig 
+	BoxCollider 
 	{
-		var Destination = Real2{0, 5}
-		var BubbleSpeed = 1
-		var RedSprite = "5274db4c2e7c11f9:Circle"
-		var RedTimer = 14
-		var BlueSprite = "5275aa4d802dd6dc:Square"
-		var BlueTimer = 5
-		var PopSprite = "59a4f6f4a01bac09:SoftCircle"
-		var PopTimer = 3
-		var DelayToLetPopAnimationToPlay = 0.200000003
-		var SmallDistanceAntiFlicker = 0.5
+		var Ghost = false
+		var SendsEvents = true
+		var Material = "4de020863e872da8:DefaultPhysicsMaterial"
+		var CollisionGroup = "5c447d3d9bb6e200:TEP_TECH_CS_Player"
+		var Offset = Real3{0, 0, 0}
+		var HalfSize = Real3{0.5, 0.5, 0.5}
 	}
 }

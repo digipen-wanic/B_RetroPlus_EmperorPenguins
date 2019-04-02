@@ -134,7 +134,7 @@ Level
 			var FarPlane = 500
 			var PerspectiveMode = PerspectiveMode.Orthographic
 			var FieldOfView = 45
-			var Size = 40.2749596
+			var Size = 36.4423141
 		}
 		EditorCameraController 
 		{
@@ -384,6 +384,7 @@ Level
 			var MaxGroundSlope = 45
 			var MaxCeilingSlope = 45
 			var GroundSnapDistance = 0.100000001
+			var BubbleProjectile = "5c3ec30f2d97e069:BubbleProjectile"
 			var ControllerVelocity = Real3{0, 0, 0}
 			var Grounded = true
 			var Jumping = false
@@ -425,6 +426,7 @@ Level
 			var Shoot = Keys.E
 			var PowerShot = Keys.W
 			var JumpSound = "5c447afe8f98b1c2:bubblebobblejump"
+			var ShootFrame = "5c47db59c683c436:TEP_ART_TGB_PlayerShoot_0"
 		}
 	}
 	Cog [ContextId:11]

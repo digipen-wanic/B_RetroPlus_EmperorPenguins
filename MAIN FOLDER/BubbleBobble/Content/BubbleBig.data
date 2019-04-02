@@ -20,7 +20,7 @@ Cog
 		var Material = "582c575af53d18c9:AlphaSprite"
 		var VertexColor = Real4{1, 1, 1, 1}
 		var GeometryMode = SpriteGeometryMode.ZPlane
-		var SpriteSource = "5586f579ca73ecc2:SquareBordered"
+		var SpriteSource = "5c3ec1fae44b63f2:TEP_ART_CL_BubbleNormal"
 		var FlipX = false
 		var FlipY = false
 		var AnimationActive = true
@@ -65,11 +65,11 @@ Cog
 	{
 		var Destination = Real2{0, 5}
 		var BubbleSpeed = 1
-		var RedSprite = "5274db4c2e7c11f9:Circle"
+		var RedSprite = "5c3ec135f8ef4150:TEP_ART_CL_BubbleFlashing000"
 		var RedTimer = 14
-		var BlueSprite = "5275aa4d802dd6dc:Square"
+		var BlueSprite = "5c3ec135f8efef3d:TEP_ART_CL_BubbleFlashing001"
 		var BlueTimer = 5
-		var PopSprite = "59a4f6f4a01bac09:SoftCircle"
+		var PopSprite = "5c3ec11ff1ceead9:TEP_ART_CL_BubblePopping_0"
 		var PopTimer = 3
 		var DelayToLetPopAnimationToPlay = 0.200000003
 		var SmallDistanceAntiFlicker = 0.5
