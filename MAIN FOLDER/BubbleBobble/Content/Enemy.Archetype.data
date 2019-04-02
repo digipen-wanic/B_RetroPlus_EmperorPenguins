@@ -49,4 +49,36 @@ Cog
 		var RotationLocked = true
 		var Mode2D = Mode2DStates.InheritFromSpace
 	}
+	TEP_TECH_JD_EnemyMovement 
+	{
+		var RandomGoUpNumber = 30
+		var TopLevelY = 0
+		var FirstHole = Real2{-13.4799995, -11.54}
+		var SecondHole = Real2{11.5, 13.5}
+		var YDistance = 4.80000019
+		var YSpeed = 0.100000001
+		var RandomizedGoUp = false
+		var WaitToGoUp = 50
+		var MaxRightXPos = 15.5
+		var MaxLeftXPos = -15.5
+		var OriginalSpeed = 0.100000001
+		var IsGrounded = false
+		var XJumpMovement = 0.0500000007
+		var IsJumping = false
+	}
+	IgnoreSpaceEffects 
+	{
+		var IgnoreDrag = true
+		var IgnoreFlow = true
+		var IgnoreForce = true
+		var IgnoreGravity = true
+		var IgnorePointForce = true
+		var IgnorePointGravity = true
+		var IgnoreThrust = true
+		var IgnoreVortex = true
+		var IgnoreWind = true
+		var IgnoreTorque = true
+		var IgnoreBuoyancy = true
+		var IgnoreCustom = true
+	}
 }

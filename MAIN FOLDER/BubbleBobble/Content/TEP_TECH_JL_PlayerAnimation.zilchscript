@@ -65,7 +65,10 @@ class TEP_TECH_JL_PlayerAnimation : ZilchComponent
       {
         this.Sprite.SpriteSource = this.PlayerIdle;
       }
-      
+      if( (leftKeyDown || rightKeyDown))
+      {
+        this.Sprite.SpriteSource = this.PlayerWalk;
+      }
       if(!this.TEP_TECH_JL_PlayerMovementController.Grounded)
       {
         this.Sprite.SpriteSource = this.PlayerJump;
