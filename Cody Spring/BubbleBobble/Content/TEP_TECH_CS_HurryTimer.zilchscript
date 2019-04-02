@@ -1,0 +1,20 @@
+class TEP_TECH_CS_HurryTimer : ZilchComponent
+{
+  [Property]
+  var HurryText : CogPath = null;
+  function Initialize(init : CogInitializer)
+  {
+    Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+  }
+
+  function OnLogicUpdate(event : UpdateEvent)
+  {
+    this.LevelSettings.TEP_TECH_CS_GameVars.HurryTimer -= event.Dt;
+    if(this.LevelSettings.TEP_TECH_CS_GameVars.HurryTimer <= 100)
+    {
+      this.HurryText.SpriteText.VertexColor = Real4(255, 0, 0, 1);
+      this.HurryText.Transform.Translation += Real3(0, 0.5, 0); 
+      
+    }
+  }
+}

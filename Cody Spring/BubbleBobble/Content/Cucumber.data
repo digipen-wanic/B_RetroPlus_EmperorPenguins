@@ -32,7 +32,7 @@ Cog
 		var Ghost = false
 		var SendsEvents = true
 		var Material = "4de020863e872da8:DefaultPhysicsMaterial"
-		var CollisionGroup = "4e740859314e5515:DefaultGroup"
+		var CollisionGroup = "5c447afe8f94d94b:PlayerUp"
 		var Offset = Real3{0, 0, 0}
 		var HalfSize = Real3{0.100000001, 0.100000001, 0.5}
 	}
@@ -43,7 +43,7 @@ Cog
 		var DynamicState = RigidBodyDynamicState.Dynamic
 		var AllowSleep = true
 		var Asleep = false
-		var RotationLocked = false
+		var RotationLocked = true
 		var Mode2D = Mode2DStates.InheritFromSpace
 	}
 	TEP_TECH_CS_ScoreObject 
@@ -53,21 +53,6 @@ Cog
 		var Score1000 = "null"
 		var Score2000 = "null"
 		var Score3000 = "null"
-		var PickupSound = "5c4463ecb2a2cbf8:tep_sound_justin_collectitem_1"
-	}
-	SoundEmitter 
-	{
-		var Volume = 1
-		var Pitch = 0
-		var Attenuator = "57ca8a6ad262efe5:DefaultNoAttenuation"
-		var Directional = false
-		var EmitAngle = 90
-		var RearVolume = 0.200000003
-	}
-	SimpleSound 
-	{
-		var StartPlaying = false
-		var Positional = false
-		var Cue = "4e1bd44008b4dc2a:DefaultSoundCue"
+		var PickupSound = "null"
 	}
 }

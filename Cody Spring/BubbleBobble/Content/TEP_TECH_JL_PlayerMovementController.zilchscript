@@ -96,6 +96,10 @@ class TEP_TECH_JL_PlayerMovementController : ZilchComponent
   // causing the character to become ungrounded.
   [Property]
   var GroundSnapDistance : Real = 0.1;
+  
+  //ADDED BY ME
+  [Property]
+  var BubbleProjectile : Archetype = null;
 
   // These values are serialized in order to preserve the state of the
   // character controller between levels if desired.
@@ -182,13 +186,21 @@ class TEP_TECH_JL_PlayerMovementController : ZilchComponent
     this.WorldUp = Math.Normalize(direction);
   }
 
+  //ADDED BY ME
+  function Shot()
+  {
+    var bubble = this.Space.CreateAtPosition(this.BubbleProjectile, this.Owner.Transform.Translation);
+    if(this.Owner.Sprite.FlipX == true)
+      bubble.BubbleProjectile.MoveRight = false;
+  }
+
   // Jump actions should be called before calling Update for that frame.
 
   // Will only cause the character to jump when grounded.
   // User does not need to check for grounded or anything else before calling.
   function Jump()
   {
-    if (this.Grounded)
+    if (this.Grounded && this.LevelSettings.TEP_TECH_CS_GameVars.Dead != true)
     {
       // ControllerVelocity will not already have any velocity on the
       // WorldUp axis when grounded, can simply add jump velocity.
