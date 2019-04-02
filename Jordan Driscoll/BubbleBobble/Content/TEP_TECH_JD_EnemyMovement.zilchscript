@@ -9,12 +9,17 @@ class TEP_TECH_JD_EnemyMovement : ZilchComponent
   [Property]
   var RandomGoUpNumber : Integer = 30; 
   
-  [Property]
+
   var TopLevelY : Real; 
-  [Property]
+  //The positions that the first hole are within
+
   var FirstHole : Real2;
+  //The positions that the second hole are within 
   [Property]
-  var SecondHole : Real2;   //Random seed
+  var SecondHole : Real2;   
+  
+  
+  //Random seed
   var Random : Random = Random();
   //These next like, 5 or so variables are ALL based on going up 
   //The Timer to make it randomly go up 
@@ -31,7 +36,7 @@ class TEP_TECH_JD_EnemyMovement : ZilchComponent
   //How Quickly it goes up 
   [Property]
   var YSpeed : Real = 0.5; 
-  
+  //This is for debugging purposes
   [Property]
   var RandomizedGoUp = false; 
   //How long he waits to go up
@@ -61,16 +66,20 @@ class TEP_TECH_JD_EnemyMovement : ZilchComponent
  //if it's grounded 
  [Property]
  var IsGrounded : Boolean = false; 
- 
+ //How quickly the dude moves when he jumps
  [Property]
  var XJumpMovement : Real = 0.05; 
  [Property]
  var IsJumping : Boolean = false; 
- //This is the X that the equation uses when he jumps 
- var JumpX : Real; 
-
+ //How long you have to wait to jump
+var JumpTimer : Integer = 0; 
+//How long the enemy must wait to jump
+var MaxJumpWait : Integer = 300; 
  //When he first jumps, this is going to be the posiiton that he collects 
    var OriginalJumpY : Real;
+   
+   //This determiens if he'll jump or wait
+   var JumporWait : Real = 0; 
    
    var GroundTwice : Integer = 0; 
   //An array that tracks the four points that determine the holes 
@@ -80,6 +89,7 @@ class TEP_TECH_JD_EnemyMovement : ZilchComponent
   var I : Integer = 0; 
   function Initialize(init : CogInitializer)
   {
+   this.JumpTimer = this.MaxJumpWait; 
    this.Speed = this.OriginalSpeed; 
    this.EnemyLocation = this.Owner.Transform.Translation;
     this.HoleLocations.Add(this.FirstHole.X); 
@@ -100,7 +110,10 @@ class TEP_TECH_JD_EnemyMovement : ZilchComponent
  function OnCollisionStarted(event : CollisionEvent)
   {
     
-  
+    if(this.IsJumping){
+        this.IsJumping = false; 
+      
+      }
     this.IsGrounded = true; 
     //when it hits the ground
     
@@ -113,7 +126,8 @@ class TEP_TECH_JD_EnemyMovement : ZilchComponent
   function OnLogicUpdate(event : UpdateEvent)
   {
    
-    Console.WriteLine("Is it grounded: `this.IsGrounded`");
+    
+    ++this.JumpTimer; 
     ++this.GoUpTimer; 
     this.XPos = this.Owner.Transform.Translation.X;
     this.YPos = this.Owner.Transform.Translation.Y; 
@@ -124,28 +138,38 @@ class TEP_TECH_JD_EnemyMovement : ZilchComponent
     if(this.XPos < this.MaxLeftXPos || this.XPos > this.MaxRightXPos){
         this.Speed *= -1; 
       }
-      
-     
-   
+    var edgyDecision = 1; 
+     //When it reaches the edge, it has the option to set itself to true or false 
+  
     //If it's falling in the hole, grounded will be set to false 
     
-    if(inHole || this.IsJumping){
+    /*
+    This IS ALL THE CODE THE DETERMINES WHAT TO DO WHEN IT JUMPS
+    
+    */
+ 
+      if(inHole || this.IsJumping){
         
-        //This is where the jumping script begins 
+       //This is where the jumping script begins 
           
-    //at the end of GoUp() function
+      //at the end of GoUp() function
       //randomized variable 1 or 2
       // if it's 2, multiply speed by -1 
-          var left : Integer = 1; 
-          if(this.Speed < 0){
-              left = -1; 
-            }
-          else{
-            left = 1; 
-            }
-          //the purpose of thsi for loop, is to make it so that it figures out which location it's at, and it's location is stored as the array 
+      var left : Integer = 1; 
+      if(this.Speed < 0){
+        left = -1; 
+      }
+      else{
+         left = 1; 
+      }
+      //essentially, wait a second before you jump 
+      
+     
+      if(this.JumpTimer > this.MaxJumpWait){
+      //the purpose of thsi for loop, is to make it so that it figures out which location it's at, and it's location is stored as the array 
+        
           var i = 0; 
-         //This is where we set is Jumping
+          //This is where we set is Jumping
           
           for(i = 0; i <= 3; i+= 1){
             
@@ -162,17 +186,34 @@ class TEP_TECH_JD_EnemyMovement : ZilchComponent
               } 
             }
           }
+         if(this.IsGrounded){
+            this.JumporWait = Math.Round(this.Random.Range(0, 1));
+           
+           }
+         
+         
          this.IsGrounded = false;
-           this.IsJumping = true; 
-         this.Jump(this.I); 
+         
+         if(this.JumporWait == 0){ 
+          this.IsJumping = true; 
+         
+          this.Jump(this.I); 
+        }
+        }
+      
         
-       
+        
+        
       }
-     Console.WriteLine("In Hole: `inHole`");
+    
+      
+    
+     
     //if it's not going upwards, it can move freely 
     if(!this.IsGoingUp){
       this.FreeMovement();
       //If it's not grounded, it's going to have to fall, I'm afraid 
+      
       if(!this.IsGrounded && !this.IsJumping){
             
              this.Owner.Transform.Translation += Real3(0, -this.YSpeed, 0);         
@@ -220,7 +261,7 @@ class TEP_TECH_JD_EnemyMovement : ZilchComponent
         //Constatnly be moving the direction of speed
         this.Owner.Transform.Translation += Real3(this.Speed, 0, 0); 
         // if it's reached it's max waiting capacity, it'll be able to decide to change
-        if(this.GoUpTimer > this.WaitToGoUp){
+       // if(this.GoUpTimer > this.WaitToGoUp){
           //if the random number works, and this is just inHole but withotu the Y barrier 
             if((this.YPos < 2) && randomized == 5 && !inHole){
               
@@ -234,7 +275,7 @@ class TEP_TECH_JD_EnemyMovement : ZilchComponent
             }
               
             }
-          }
+          //}
       }
     }
         
@@ -261,7 +302,7 @@ class TEP_TECH_JD_EnemyMovement : ZilchComponent
       
       function Jump(i : Integer){ 
          
-
+        
         
         //if I is 0
         /*
@@ -293,23 +334,19 @@ class TEP_TECH_JD_EnemyMovement : ZilchComponent
         }
         else{
 
-            this.GroundTwice = 0; 
-            this.IsJumping = false; 
-            this.IsGrounded = true; 
+            this.FinishedJump();
           }
       }
         //if it is on the first jump to the left 
         if(this.I == 0 ){
         
            this.XPos += this.XJumpMovement;
-           if(this.XPos <= this.FirstHole.Y + 0.7){
+           if(this.XPos <= this.FirstHole.Y + 0.5){
               this.Owner.Transform.Translation = Real3(this.XPos, (( (this.XPos - x - this.FirstHole.X) * (this.XPos - x - this.FirstHole.Y)) / 50) + this.YPos, 0);
             }
             else{
             
-            this.GroundTwice = 0; 
-            this.IsJumping = false; 
-            this.IsGrounded = true; 
+             this.FinishedJump();
           }
         }
         //For the far right
@@ -330,9 +367,7 @@ class TEP_TECH_JD_EnemyMovement : ZilchComponent
         //If it's reached it's destination
         else{
             
-            this.GroundTwice = 0; 
-            this.IsJumping = false; 
-            this.IsGrounded = true; 
+           this.FinishedJump();
           }
       }
       //The Second Option
@@ -348,9 +383,7 @@ class TEP_TECH_JD_EnemyMovement : ZilchComponent
         //If it's reached it's destination
         else{
             
-            this.GroundTwice = 0; 
-            this.IsJumping = false; 
-            this.IsGrounded = true; 
+            this.FinishedJump();
           }
       }
       
@@ -361,6 +394,15 @@ class TEP_TECH_JD_EnemyMovement : ZilchComponent
         
           
       }
+      //The very few, simple things that happen when the jump ends s
+     function FinishedJump(){
+            
+            this.JumpTimer = 260; 
+            this.GroundTwice = 0; 
+            this.IsJumping = false; 
+            this.IsGrounded = true; 
+        
+        }
           
       }
       

@@ -254,7 +254,7 @@ Level
 		var Name = "Sprite"
 		Transform 
 		{
-			var Translation = Real3{-1.3027606, 5.22978687, 0}
+			var Translation = Real3{-1.3027606, -5.04102325, 0}
 			var Scale = Real3{1, 1, 1}
 			var Rotation = Quaternion{0, 0, 0, 1}
 		}
@@ -298,13 +298,13 @@ Level
 		}
 		TEP_TECH_JD_EnemyMovement 
 		{
-			var RandomGoUpNumber = 30
+			var RandomGoUpNumber = 500
 			var TopLevelY = 2
 			var FirstHole = Real2{-13.4889002, -11.5487003}
 			var SecondHole = Real2{11.5, 13.5}
 			var YDistance = 4.80000019
 			var YSpeed = 0.100000001
-			var RandomizedGoUp = false
+			var RandomizedGoUp = true
 			var WaitToGoUp = 50
 			var MaxRightXPos = 15.5
 			var MaxLeftXPos = -15.5
