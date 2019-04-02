@@ -81,7 +81,7 @@ Level
 		var Name = "EditorCamera"
 		Transform 
 		{
-			var Translation = Real3{-0.834668458, -1.52814841, 20}
+			var Translation = Real3{3.16536164, -1.52814841, 20}
 			var Scale = Real3{1, 1, 1}
 			var Rotation = Quaternion{0, -1.09278471e-08, 0, 1}
 		}
@@ -134,7 +134,7 @@ Level
 			var FarPlane = 500
 			var PerspectiveMode = PerspectiveMode.Orthographic
 			var FieldOfView = 45
-			var Size = 40.2749596
+			var Size = 26.9971428
 		}
 		EditorCameraController 
 		{
@@ -143,7 +143,7 @@ Level
 			var LookDistance = 20
 			var VerticalAngle = 0
 			var HorizontalAngle = 0
-			var LookTarget = Real3{-0.834668458, -1.52814841, 4.15387547e-07}
+			var LookTarget = Real3{3.16536164, -1.52814841, 4.15387547e-07}
 			var MoveSensitivity = 1
 		}
 	}
@@ -273,7 +273,7 @@ Level
 		var Name = "Player"
 		Transform 
 		{
-			var Translation = Real3{-5.26619816, 4.43424654, 0.00999999978}
+			var Translation = Real3{-14.1099396, -10.7754631, 0.00999999978}
 			var Scale = Real3{8, 8, 1}
 			var Rotation = Quaternion{0, 0, 0, 1}
 		}
@@ -319,7 +319,7 @@ Level
 		{
 			var WorldUp = Real3{0, 1, 0}
 			var LockZAxis = false
-			var ForwardEvents = false
+			var ForwardEvents = true
 			var Gravity = 40
 			var JumpSpeed = 21
 			var JumpCancelFactor = 0.5
@@ -332,12 +332,21 @@ Level
 			var MaxGroundSlope = 45
 			var MaxCeilingSlope = 45
 			var GroundSnapDistance = 0.100000001
-			var BubbleProjectile = "5c786c34538c5e1c:BubbleProjectile"
+			var BubbleProjectile = "5c3ec30f2d97e069:BubbleProjectile"
 			var ControllerVelocity = Real3{0, 0, 0}
 			var Grounded = true
 			var Jumping = false
 			var GroundTraction = 1
 			var AirTraction = 1
+		}
+		TEP_TECH_JL_PlayerAnimation 
+		{
+			var PlayerIdle = "5c47de2dc81512d4:TEP_ART_TGB_PlayerIdle_0"
+			var PlayerJump = "5c446967ab84f81f:TEP_ART_TGB_Playerjump_0"
+			var PlayerWalk = "5c4496dc8c6b2223:TEP_ART_TGB_PlayerWalk_0"
+			var DeathAnim = "5c44693d934c6ed4:TEP_ART_TGB_PlayerDeath_0"
+			var DeathSound = "5c447afe8f966024:tep_sound_justin_death_2"
+			var DeathLevel = "5c789bbd18cdc41a:DeathLevel"
 		}
 		TEP_TECH_CS_IgnoreCollide 
 		{
@@ -365,15 +374,10 @@ Level
 			var Shoot = Keys.E
 			var PowerShot = Keys.W
 			var JumpSound = "5c447afe8f98b1c2:bubblebobblejump"
+			var ShootFrame = "5c47db59c683c436:TEP_ART_TGB_PlayerShoot_0"
 		}
-		TEP_TECH_JL_PlayerAnimation 
+		CustomCollisionEventTracker 
 		{
-			var PlayerIdle = "null"
-			var PlayerJump = "null"
-			var PlayerWalk = "null"
-			var DeathAnim = "null"
-			var DeathSound = "null"
-			var DeathLevel = "null"
 		}
 	}
 	Cog [ContextId:7]
@@ -405,16 +409,7 @@ Level
 			var StartFrame = 0
 		}
 	}
-	Cog [InheritId:"5c3c2c78230c0e36:Enemy"][ContextId:8]
-	{
-		Transform 
-		{
-			var Translation = Real3{-9.69903755, 4.06811523, 0}
-			var Rotation = Quaternion{0, 0, 0, 1}
-			var Scale = Real3{1, 1, 1}
-		}
-	}
-	Cog [ContextId:9]
+	Cog [ContextId:8]
 	{
 		var Name = "LivesText"
 		Transform 
@@ -445,7 +440,7 @@ Level
 		{
 		}
 	}
-	Cog [ContextId:10]
+	Cog [ContextId:9]
 	{
 		var Name = "LevelText"
 		Transform 
@@ -471,6 +466,15 @@ Level
 			var FontSize = 100
 			var PixelsPerUnit = 128
 			var TextAlign = TextAlign.Center
+		}
+	}
+	Cog [InheritId:"5c3c2c78230c0e36:Enemy"][ContextId:10]
+	{
+		Transform 
+		{
+			var Translation = Real3{6.72907019, 4.87749958, 0}
+			var Rotation = Quaternion{0, 0, 0, 1}
+			var Scale = Real3{1, 1, 1}
 		}
 	}
 }

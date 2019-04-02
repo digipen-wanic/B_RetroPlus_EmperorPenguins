@@ -1,8 +1,8 @@
 ///////////////////////////////////
 //Name: Ofer Krupka
 //Date - Created:  03/27/2019
-//Date - Release:  --/--/----
-//Date - Modified: 03/29/2019
+//Date - Release:  04/01/2019
+//Date - Modified: 04/02/2019
 //Brife:
 // --
 //Setup:
@@ -14,10 +14,12 @@
 //Notes:
 //If you want to target more than one type of monsters contact me to make another version.
 ///////////////////////////////////
-//Version: 1.0
-//Version date:    04/01/2019
+//Version: 1.1
+//Version date:    04/02/2019
 //Version notes:
-//Release :)
+//- Bug fixed: Animation played one extra frame than it should.
+//Version Setup:
+//- Please disable AnimationActive (Sprite->AnimationActive)
 ///////////////////////////////////
 class BubbleProjectile : ZilchComponent
 {
@@ -44,6 +46,7 @@ class BubbleProjectile : ZilchComponent
   {
     Zero.Connect(this.Space , Events.LogicUpdate, this.OnLogicUpdate);
     Zero.Connect(this.Owner, Events.CollisionStarted, this.OnCollisionStarted);
+    
     
     
     this.BubbleAnimationAndDestroy();
@@ -83,7 +86,7 @@ class BubbleProjectile : ZilchComponent
     
     if(frameCount != 1)
     {
-      for(var i = 0; i < frameCount; ++i)
+      for(var i = 0; i < frameCount-1; ++i)
       {
         Action.Delay(seq, this.TimeToGrow/(frameCount+1));
         Action.Call(seq, this.IncrementFrame);
@@ -100,7 +103,7 @@ class BubbleProjectile : ZilchComponent
   }
   function IncrementFrame()
   {
-    ++this.Owner.Sprite.CurrentFrame;
+   ++this.Owner.Sprite.CurrentFrame;
   }
   
   

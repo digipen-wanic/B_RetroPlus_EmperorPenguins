@@ -9,6 +9,9 @@ class TEP_TECH_JL_PlayerMovementInput : ZilchComponent
   [Property] var PowerShot : Keys = Keys.W;
   [Property]
   var JumpSound : SoundCue = null;
+  [Property]
+  var ShootFrame : SpriteSource = null;
+  
   
   function Initialize(init : CogInitializer)
   {
@@ -47,12 +50,14 @@ class TEP_TECH_JL_PlayerMovementInput : ZilchComponent
     this.TEP_TECH_JL_PlayerMovementController.Update(movement, event.Dt);
     }
     
-    //ADDED BY ME
     if(Zero.Keyboard.KeyIsPressed(Keys.C) || Zero.Keyboard.KeyIsPressed(Keys.Z))
     {
       this.TEP_TECH_JL_PlayerMovementController.Shot();
+      this.Owner.Sprite.SpriteSource = this.ShootFrame;
+      this.LevelSettings.TEP_TECH_CS_GameVars.IsShooting = true;
     }
+  }
   }
   
   
-}
+

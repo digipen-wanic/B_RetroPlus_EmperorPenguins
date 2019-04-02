@@ -1,8 +1,8 @@
 ///////////////////////////////////
 //Name: Ofer Krupka
 //Date - Created:  03/29/2019
-//Date - Release:  --/--/----
-//Date - Modified: 04/01/2019
+//Date - Release:  04/02/2019
+//Date - Modified: 04/02/2019
 //Brife:
 //
 // --
@@ -17,7 +17,7 @@
 //The Timer is since the BubbleProjectile was destroyed.
 ///////////////////////////////////
 //Version: 1.0
-//Version date:    04/01/2019
+//Version date:    04/02/2019
 //Version notes:
 //Release :)
 ///////////////////////////////////
@@ -37,19 +37,23 @@ class BubbleBigMonster : ZilchComponent
   var RedSprite : SpriteSource;
   
   [Property]
-  var RedTimer : Real;
+  var RedTimer : Real = 35;
   
-  [Property]
-  var BlueSprite : SpriteSource;
-  
-  [Property]
-  var BlueTimer : Real;
   
   [Property]
   var PopSprite : SpriteSource;
   
   [Property]
-  var PopTimer : Real;
+  var PopTimer : Real = 5;
+  
+  
+  [Property]
+  var SpawnMonster : Archetype;
+  
+  [Property]
+  var SpawnFood : Archetype;
+  
+  
   
   [Property]
   var DelayToLetPopAnimationToPlay : Real = 0.2;
@@ -69,9 +73,7 @@ class BubbleBigMonster : ZilchComponent
     //Red
     Action.Delay(seq, this.RedTimer);
     Action.Call(seq, this.TurnRed);
-    //Blue
-    Action.Delay(seq, this.BlueTimer);
-    Action.Call(seq, this.TurnBlue);
+    
     //Pop
     Action.Delay(seq, this.PopTimer);
     Action.Call(seq, this.PopAndDestroyedByItself);
@@ -131,17 +133,11 @@ class BubbleBigMonster : ZilchComponent
   }
   
   
-  //Turn to blue
-  function TurnBlue()
-  {
-    this.Owner.Sprite.SpriteSource = this.BlueSprite;
-  }
-  
-  
   //Pop bubble (player)
   function PopAndDestroyedByPlayer()
   {
     this.Owner.Destroy();
+    this.Space.CreateAtPosition(this.SpawnFood, this.Owner.Transform.Translation);
   }
   
   //Pop bubble (itself)
@@ -151,12 +147,14 @@ class BubbleBigMonster : ZilchComponent
     this.Owner.Collider.SendsEvents = false;
     
     this.Owner.Sprite.SpriteSource = this.PopSprite;
+    this.Owner.Sprite.AnimationActive = false;
+    
     var seq = Action.Sequence(this.Owner.Actions);
     var frameCount = this.Owner.Sprite.SpriteSource.FrameCount;
     
     if(frameCount != 1)
     {
-      for(var i = 0; i < frameCount; ++i)
+      for(var i = 0; i < frameCount-1; ++i)
       {
         Action.Delay(seq, this.DelayToLetPopAnimationToPlay/(frameCount+1));
         Action.Call(seq, this.IncrementFrame);
@@ -168,11 +166,15 @@ class BubbleBigMonster : ZilchComponent
       Action.Delay(seq, this.DelayToLetPopAnimationToPlay);
     }
     
+    Action.Call(seq, this.RespawnMonster);
     Action.Call(seq, this.Owner.Destroy);
   }
-  
   function IncrementFrame()
   {
     ++this.Owner.Sprite.CurrentFrame;
+  }
+  function RespawnMonster()
+  {
+    this.Space.CreateAtPosition(this.SpawnMonster, this.Owner.Transform.Translation);
   }
 }

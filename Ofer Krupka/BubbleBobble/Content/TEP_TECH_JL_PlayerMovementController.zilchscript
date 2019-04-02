@@ -185,8 +185,9 @@ class TEP_TECH_JL_PlayerMovementController : ZilchComponent
     // the character will just float around.
     this.WorldUp = Math.Normalize(direction);
   }
-
-  //ADDED BY ME
+  
+  //Writen by: Ofer Krupka
+  //Version: 1.0
   function Shot()
   {
     var bubble = this.Space.CreateAtPosition(this.BubbleProjectile, this.Owner.Transform.Translation);
