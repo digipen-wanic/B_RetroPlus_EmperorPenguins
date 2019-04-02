@@ -3,12 +3,12 @@ ImageContent
 {
 	SpriteSourceBuilder 
 	{
-		var Name = "TEP_ART_TGB_PlayerWalk_1"
-		var ResourceId = 0x5c47de84d9a1b166
+		var Name = "TEP_ART_CL_BubbleNormal"
+		var ResourceId = 0x5c3ec1fae44b63f2
 		var FrameSizeX = 16
 		var FrameSizeY = 16
-		var FrameCount = 4
-		var FrameDelay = 0.100000001
+		var FrameCount = 1
+		var FrameDelay = 0.0833333358
 		var OriginX = 8
 		var OriginY = 8
 		var PixelsPerUnit = 8

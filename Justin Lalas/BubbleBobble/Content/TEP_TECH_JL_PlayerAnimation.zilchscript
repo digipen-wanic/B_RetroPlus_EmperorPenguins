@@ -17,7 +17,8 @@ class TEP_TECH_JL_PlayerAnimation : ZilchComponent
   var DeathAnim : SpriteSource = null;
   [Property]
   var DeathSound : SoundCue = null;
-  
+  [Property]
+  var DeathLevel : Level = null;
   function Initialize(init : CogInitializer)
   {
     Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
@@ -58,6 +59,24 @@ class TEP_TECH_JL_PlayerAnimation : ZilchComponent
         this.Sprite.SpriteSource = this.PlayerJump;
       }
   }
+  else if(this.Sprite.SpriteSource == this.TEP_TECH_JL_PlayerMovementInput.ShootFrame && this.Sprite.SpriteSource != this.DeathAnim && this.LevelSettings.TEP_TECH_CS_GameVars.ShootTimer <= 0)
+    {
+      if( !(leftKeyDown || rightKeyDown))
+      {
+        this.Sprite.SpriteSource = this.PlayerIdle;
+      }
+      if( (leftKeyDown || rightKeyDown))
+      {
+        this.Sprite.SpriteSource = this.PlayerWalk;
+      }
+      if(!this.TEP_TECH_JL_PlayerMovementController.Grounded)
+      {
+        this.Sprite.SpriteSource = this.PlayerJump;
+      }
+      //change 0.5 to starting of shoot timer if changed in gamevars
+       this.LevelSettings.TEP_TECH_CS_GameVars.ShootTimer = 0.25;
+       this.LevelSettings.TEP_TECH_CS_GameVars.IsShooting = false;
+  }
   
   if(this.LevelSettings.TEP_TECH_CS_GameVars.Dead == true) 
   {
@@ -67,10 +86,14 @@ class TEP_TECH_JL_PlayerAnimation : ZilchComponent
     this.Owner.SimpleSound.Play();
     if(this.LevelSettings.TEP_TECH_CS_GameVars.DeathTimer <= 0)
     {
+      var newEvent = ZilchEvent();
       this.LevelSettings.TEP_TECH_CS_GameVars.PlayerLives -= 1;
       //add a lose level when the player goes below 0 lives
-      
-      
+      this.LevelSettings.Space.DispatchEvent("LivesUpdate", newEvent);
+      if(this.LevelSettings.TEP_TECH_CS_GameVars.PlayerLives < 0)
+      {
+        this.Space.LoadLevel(this.DeathLevel);
+      }
       this.Owner.Transform.Translation = this.LevelSettings.TEP_TECH_CS_GameVars.RespawnLocation;
       this.LevelSettings.TEP_TECH_CS_GameVars.DeathTimer = 1.2;
       this.Owner.Sprite.SpriteSource = this.PlayerIdle;
@@ -78,6 +101,11 @@ class TEP_TECH_JL_PlayerAnimation : ZilchComponent
       this.Owner.SimpleSound.Cue = this.TEP_TECH_JL_PlayerMovementInput.JumpSound;
     }
   }
+  if(this.LevelSettings.TEP_TECH_CS_GameVars.IsShooting)
+  {
+  this.LevelSettings.TEP_TECH_CS_GameVars.ShootTimer -= event.Dt;
+  }
+  Console.WriteLine(this.LevelSettings.TEP_TECH_CS_GameVars.ShootTimer);
 }
 function OnCollisionStarted(event : CollisionEvent)
   {

@@ -77,7 +77,7 @@ Level
 		var Name = "EditorCamera"
 		Transform 
 		{
-			var Translation = Real3{-0.308515489, -0.645077884, 20}
+			var Translation = Real3{0, 0, 20}
 			var Scale = Real3{1, 1, 1}
 			var Rotation = Quaternion{0, -1.09278471e-08, 0, 1}
 		}
@@ -130,7 +130,7 @@ Level
 			var FarPlane = 500
 			var PerspectiveMode = PerspectiveMode.Orthographic
 			var FieldOfView = 45
-			var Size = 40.2750282
+			var Size = 18.0967369
 		}
 		EditorCameraController 
 		{
@@ -139,7 +139,7 @@ Level
 			var LookDistance = 20
 			var VerticalAngle = 0
 			var HorizontalAngle = 0
-			var LookTarget = Real3{-0.308515489, -0.645077884, -1.3485641e-08}
+			var LookTarget = Real3{0, 0, 0}
 			var MoveSensitivity = 1
 		}
 	}
@@ -220,86 +220,11 @@ Level
 	}
 	Cog [ContextId:5]
 	{
-		var Name = "StartButton"
-		Transform 
-		{
-			var Translation = Real3{2.35920906, -9.00242615, 0}
-			var Scale = Real3{10, 2, 1}
-			var Rotation = Quaternion{0, 0, 0, 1}
-		}
-		Sprite 
-		{
-			var Visible = true
-			var ViewCulling = true
-			var VisibilityEvents = true
-			var OverrideBoundingBox = false
-			var LocalAabbCenter = Real3{0, 0, 0}
-			var LocalAabbHalfExtents = Real3{1, 1, 1}
-			var GroupSortValue = 0
-			var Material = "582c575af53d18c9:AlphaSprite"
-			var VertexColor = Real4{1, 0.431372583, 0.800000072, 1}
-			var GeometryMode = SpriteGeometryMode.ZPlane
-			var SpriteSource = "5275aa4d802dd6dc:Square"
-			var FlipX = false
-			var FlipY = false
-			var AnimationActive = true
-			var AnimationSpeed = 1
-			var StartFrame = 0
-		}
-		TEP_TECH_JL_StartButton 
-		{
-			var NextLevel = "5c447dbda129ea7d:Level"
-		}
-		BoxCollider 
-		{
-			var Ghost = false
-			var SendsEvents = true
-			var Material = "4de020863e872da8:DefaultPhysicsMaterial"
-			var CollisionGroup = "4e740859314e5515:DefaultGroup"
-			var Offset = Real3{0, 0, 0}
-			var HalfSize = Real3{0.5, 0.5, 0.5}
-		}
-		Reactive 
-		{
-			var Active = true
-		}
-	}
-	Cog [ContextId:6]
-	{
-		var Name = "Sprite"
-		Transform 
-		{
-			var Translation = Real3{0, 1.83834887, -1.3485641e-08}
-			var Scale = Real3{9, 9, 1}
-			var Rotation = Quaternion{0, 0, 0, 1}
-		}
-		Sprite 
-		{
-			var Visible = true
-			var ViewCulling = true
-			var VisibilityEvents = true
-			var OverrideBoundingBox = false
-			var LocalAabbCenter = Real3{0, 0, 0}
-			var LocalAabbHalfExtents = Real3{1, 1, 1}
-			var GroupSortValue = 0
-			var Material = "582c575af53d18c9:AlphaSprite"
-			var VertexColor = Real4{1, 1, 1, 1}
-			var GeometryMode = SpriteGeometryMode.ZPlane
-			var SpriteSource = "5c78985461d066e9:TEP_ART_SM_TextTitle"
-			var FlipX = false
-			var FlipY = false
-			var AnimationActive = true
-			var AnimationSpeed = 1
-			var StartFrame = 0
-		}
-	}
-	Cog [ContextId:7]
-	{
 		var Name = "SpriteText"
 		Transform 
 		{
-			var Translation = Real3{2.09282207, -9.1129446, 1}
-			var Scale = Real3{5.37311363, 4.10754633, 1}
+			var Translation = Real3{0, 2.36620474, 0}
+			var Scale = Real3{1, 1, 1}
 			var Rotation = Quaternion{0, 0, 0, 1}
 		}
 		SpriteText 
@@ -312,42 +237,13 @@ Level
 			var LocalAabbHalfExtents = Real3{1, 1, 1}
 			var GroupSortValue = 0
 			var Material = "582c575af53d18c9:AlphaSprite"
-			var VertexColor = Real4{0.917647123, 0.619607866, 0.13333334, 1}
+			var VertexColor = Real4{0.972549081, 0.721568644, 0.972549081, 1}
 			var GeometryMode = SpriteGeometryMode.ZPlane
-			var Text = "Press to start"
-			var Font = "57343753bb4eaaec:NotoSans-Regular"
-			var FontSize = 32
+			var Text = "YOU DIED"
+			var Font = "5c78857259567c4d:bubb"
+			var FontSize = 128
 			var PixelsPerUnit = 128
 			var TextAlign = TextAlign.Center
-		}
-	}
-	Cog [ContextId:8]
-	{
-		var Name = "Sprite"
-		Transform 
-		{
-			var Translation = Real3{-4.26861143, -8.98655796, -1.3485641e-08}
-			var Scale = Real3{7, 7, 1}
-			var Rotation = Quaternion{0, 0, 0, 1}
-		}
-		Sprite 
-		{
-			var Visible = true
-			var ViewCulling = true
-			var VisibilityEvents = true
-			var OverrideBoundingBox = false
-			var LocalAabbCenter = Real3{0, 0, 0}
-			var LocalAabbHalfExtents = Real3{1, 1, 1}
-			var GroupSortValue = 0
-			var Material = "582c575af53d18c9:AlphaSprite"
-			var VertexColor = Real4{1, 1, 1, 1}
-			var GeometryMode = SpriteGeometryMode.ZPlane
-			var SpriteSource = "5c4496dc8c6b2223:TEP_ART_TGB_PlayerWalk_0"
-			var FlipX = false
-			var FlipY = false
-			var AnimationActive = true
-			var AnimationSpeed = 1
-			var StartFrame = 0
 		}
 	}
 }

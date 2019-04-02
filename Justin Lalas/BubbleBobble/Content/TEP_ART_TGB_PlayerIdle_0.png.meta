@@ -11,7 +11,7 @@ ImageContent
 		var FrameDelay = 0.25
 		var OriginX = 8
 		var OriginY = 8
-		var PixelsPerUnit = 64
+		var PixelsPerUnit = 8
 		var Sampling = SpriteSampling.Nearest
 		var Looping = true
 		var Slices = Real4{0, 0, 0, 0}

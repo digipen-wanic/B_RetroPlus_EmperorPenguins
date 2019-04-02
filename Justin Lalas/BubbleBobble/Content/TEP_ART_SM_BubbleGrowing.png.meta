@@ -3,16 +3,16 @@ ImageContent
 {
 	SpriteSourceBuilder 
 	{
-		var Name = "TEP_ART_SM_TextTitle"
-		var ResourceId = 0x5c789dc49f1410b3
-		var FrameSizeX = 142
-		var FrameSizeY = 112
+		var Name = "TEP_ART_SM_BubbleGrowing"
+		var ResourceId = 0x5c3ec722972f3bef
+		var FrameSizeX = 42
+		var FrameSizeY = 32
 		var FrameCount = 1
 		var FrameDelay = 0.0833333358
-		var OriginX = 71
-		var OriginY = 56
+		var OriginX = 21
+		var OriginY = 16
 		var PixelsPerUnit = 64
-		var Sampling = SpriteSampling.Nearest
+		var Sampling = SpriteSampling.Linear
 		var Looping = true
 		var Slices = Real4{0, 0, 0, 0}
 		var Fill = SpriteFill.Stretch

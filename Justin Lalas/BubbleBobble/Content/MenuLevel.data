@@ -38,10 +38,6 @@ Level
 			var HighlightInterval = 10
 			var FollowEditorCamera = false
 		}
-		TEP_TECH_CS_GameVars 
-		{
-			var RespawnLocation = Real3{-5.13999987, 4.76999998, 0}
-		}
 	}
 	Cog [ContextId:2]
 	{
@@ -81,7 +77,7 @@ Level
 		var Name = "EditorCamera"
 		Transform 
 		{
-			var Translation = Real3{-14.0528517, -9.71584988, 20}
+			var Translation = Real3{-1.51284051, 1.16512275, 20}
 			var Scale = Real3{1, 1, 1}
 			var Rotation = Quaternion{0, -1.09278471e-08, 0, 1}
 		}
@@ -134,7 +130,7 @@ Level
 			var FarPlane = 500
 			var PerspectiveMode = PerspectiveMode.Orthographic
 			var FieldOfView = 45
-			var Size = 7.35759163
+			var Size = 24.4280624
 		}
 		EditorCameraController 
 		{
@@ -143,7 +139,7 @@ Level
 			var LookDistance = 20
 			var VerticalAngle = 0
 			var HorizontalAngle = 0
-			var LookTarget = Real3{-14.0528517, -9.71584988, -1.98824239e-07}
+			var LookTarget = Real3{-1.51284051, 1.16512275, -6.61283579e-08}
 			var MoveSensitivity = 1
 		}
 	}
@@ -152,7 +148,7 @@ Level
 		var Name = "GameCamera"
 		Transform 
 		{
-			var Translation = Real3{0, -0.631930351, 10}
+			var Translation = Real3{0, 0, 10}
 			var Scale = Real3{1, 1, 1}
 			var Rotation = Quaternion{0, 0, 0, 1}
 		}
@@ -214,7 +210,7 @@ Level
 			var FarPlane = 200
 			var PerspectiveMode = PerspectiveMode.Orthographic
 			var FieldOfView = 60
-			var Size = 25
+			var Size = 20
 		}
 		SoundListener 
 		{
@@ -234,47 +230,16 @@ Level
 		{
 			var StartPlaying = true
 			var Positional = false
-			var Cue = "5c447afe8f9ab30d:bubblebobblemaintheme"
+			var Cue = "5c789ca84dfd6913:BubbleBobbleTitleScreen"
 		}
 	}
 	Cog [ContextId:5]
 	{
-		var Name = "TileMap"
+		var Name = "StartButton"
 		Transform 
 		{
-			var Translation = Real3{0, 0, 0}
-			var Scale = Real3{1, 1, 1}
-			var Rotation = Quaternion{0, 0, 0, 1}
-		}
-		MultiSprite 
-		{
-			var Visible = true
-			var ViewCulling = true
-			var VisibilityEvents = true
-			var OverrideBoundingBox = false
-			var LocalAabbCenter = Real3{0, 0, 0}
-			var LocalAabbHalfExtents = Real3{1, 1, 1}
-			var GroupSortValue = 0
-			var Material = "582c575af53d18c9:AlphaSprite"
-			var VertexColor = Real4{1, 1, 1, 1}
-			var GeometryMode = SpriteGeometryMode.ZPlane
-			var AnimationActive = true
-			var AnimationSpeed = 1
-		}
-		TileMap 
-		{
-			var Source = "5c447dc1a6094e3f:Level_TileMap01"
-			var PaletteName = "5c41036425e4e324:LevelPallete"
-			var MeshThickness = 1.20000005
-		}
-	}
-	Cog [ContextId:6]
-	{
-		var Name = "Player"
-		Transform 
-		{
-			var Translation = Real3{-14.1099396, -10.7754631, 0.00999999978}
-			var Scale = Real3{1, 1, 1}
+			var Translation = Real3{-1.6814611, 1.92097092, 0}
+			var Scale = Real3{6.92369461, 1.10311973, 1}
 			var Rotation = Quaternion{0, 0, 0, 1}
 		}
 		Sprite 
@@ -287,103 +252,40 @@ Level
 			var LocalAabbHalfExtents = Real3{1, 1, 1}
 			var GroupSortValue = 0
 			var Material = "582c575af53d18c9:AlphaSprite"
-			var VertexColor = Real4{1, 1, 1, 1}
+			var VertexColor = Real4{1, 0.430000007, 0.806199908, 0}
 			var GeometryMode = SpriteGeometryMode.ZPlane
-			var SpriteSource = "5c47de2dc81512d4:TEP_ART_TGB_PlayerIdle_0"
+			var SpriteSource = "5275aa4d802dd6dc:Square"
 			var FlipX = false
 			var FlipY = false
 			var AnimationActive = true
 			var AnimationSpeed = 1
 			var StartFrame = 0
 		}
-		RigidBody 
+		TEP_TECH_JL_StartButton 
 		{
-			var Velocity = Real3{0, 0, 0}
-			var AngularVelocity = Real3{0, 0, 0}
-			var DynamicState = RigidBodyDynamicState.Dynamic
-			var AllowSleep = true
-			var Asleep = false
-			var RotationLocked = true
-			var Mode2D = Mode2DStates.InheritFromSpace
+			var NextLevel = "5c447dbda129ea7d:Level"
 		}
 		BoxCollider 
 		{
 			var Ghost = false
 			var SendsEvents = true
 			var Material = "4de020863e872da8:DefaultPhysicsMaterial"
-			var CollisionGroup = "5c447d3d9bb6e200:TEP_TECH_CS_Player"
+			var CollisionGroup = "4e740859314e5515:DefaultGroup"
 			var Offset = Real3{0, 0, 0}
-			var HalfSize = Real3{1, 1, 0.5}
+			var HalfSize = Real3{0.5, 0.5, 0.5}
 		}
-		TEP_TECH_JL_PlayerMovementController 
+		Reactive 
 		{
-			var WorldUp = Real3{0, 1, 0}
-			var LockZAxis = false
-			var ForwardEvents = false
-			var Gravity = 40
-			var JumpSpeed = 20.5
-			var JumpCancelFactor = 0.5
-			var MaxMoveSpeed = 7.5
-			var MaxFallSpeed = 10
-			var GroundAcceleration = 100
-			var AirAcceleration = 9.5
-			var GroundDeceleration = 1000000
-			var AirDeceleration = 10
-			var MaxGroundSlope = 45
-			var MaxCeilingSlope = 45
-			var GroundSnapDistance = 0.100000001
-			var BubbleProjectile = "5c3ec30f2d97e069:BubbleProjectile"
-			var ControllerVelocity = Real3{0, 0, 0}
-			var Grounded = true
-			var Jumping = false
-			var GroundTraction = 1
-			var AirTraction = 1
-		}
-		TEP_TECH_JL_PlayerAnimation 
-		{
-			var PlayerIdle = "5c47de2dc81512d4:TEP_ART_TGB_PlayerIdle_0"
-			var PlayerJump = "5c446967ab84f81f:TEP_ART_TGB_Playerjump_0"
-			var PlayerWalk = "5c47de84d9a1b166:TEP_ART_TGB_PlayerWalk_1"
-			var DeathAnim = "5c44693d934c6ed4:TEP_ART_TGB_PlayerDeath_0"
-			var DeathSound = "5c447afe8f966024:tep_sound_justin_death_2"
-			var DeathLevel = "5c789bbd18cdc41a:DeathLevel"
-		}
-		TEP_TECH_CS_IgnoreCollide 
-		{
-		}
-		SoundEmitter 
-		{
-			var Volume = 1
-			var Pitch = 0
-			var Attenuator = "57ca8a6ad262efe5:DefaultNoAttenuation"
-			var Directional = false
-			var EmitAngle = 90
-			var RearVolume = 0.200000003
-		}
-		SimpleSound 
-		{
-			var StartPlaying = false
-			var Positional = false
-			var Cue = "5c447afe8f98b1c2:bubblebobblejump"
-		}
-		TEP_TECH_JL_PlayerMovementInput 
-		{
-			var LeftKey = Keys.A
-			var RightKey = Keys.D
-			var JumpKey = Keys.Space
-			var Shoot = Keys.E
-			var PowerShot = Keys.W
-			var JumpSound = "5c447afe8f98b1c2:bubblebobblejump"
-			var ShootFrame = "5c47db59c683c436:TEP_ART_TGB_PlayerShoot_0"
+			var Active = true
 		}
 	}
-	Cog [ContextId:7]
+	Cog [ContextId:6]
 	{
-		var Name = "Sprite"
+		var Name = "StartButton"
 		Transform 
 		{
-			var Translation = Real3{45.2563591, 20.3897667, 0}
-			var Scale = Real3{8.19353008, 7.14958763, 1}
+			var Translation = Real3{-2.15793562, -2.32456088, 0}
+			var Scale = Real3{6.29943657, 1.13271451, 1.03811896}
 			var Rotation = Quaternion{0, 0, 0, 1}
 		}
 		Sprite 
@@ -396,31 +298,39 @@ Level
 			var LocalAabbHalfExtents = Real3{1, 1, 1}
 			var GroupSortValue = 0
 			var Material = "582c575af53d18c9:AlphaSprite"
-			var VertexColor = Real4{1, 1, 1, 1}
+			var VertexColor = Real4{0, 0, 0, 0}
 			var GeometryMode = SpriteGeometryMode.ZPlane
-			var SpriteSource = "5c4494f72fa2af27:level1"
+			var SpriteSource = "5275aa4d802dd6dc:Square"
 			var FlipX = false
 			var FlipY = false
 			var AnimationActive = true
 			var AnimationSpeed = 1
 			var StartFrame = 0
 		}
-	}
-	Cog [InheritId:"5c3c2c78230c0e36:Enemy"][ContextId:8]
-	{
-		Transform 
+		TEP_TECH_JL_StartButton 
 		{
-			var Translation = Real3{-9.69903755, 4.06811523, 0}
-			var Rotation = Quaternion{0, 0, 0, 1}
-			var Scale = Real3{1, 1, 1}
+			var NextLevel = "5c793a1f21cd3715:Plus"
+		}
+		BoxCollider 
+		{
+			var Ghost = false
+			var SendsEvents = true
+			var Material = "4de020863e872da8:DefaultPhysicsMaterial"
+			var CollisionGroup = "4e740859314e5515:DefaultGroup"
+			var Offset = Real3{0, 0, 0}
+			var HalfSize = Real3{0.5, 0.5, 0.5}
+		}
+		Reactive 
+		{
+			var Active = true
 		}
 	}
-	Cog [ContextId:9]
+	Cog [ContextId:7]
 	{
-		var Name = "LivesText"
+		var Name = "SpriteText"
 		Transform 
 		{
-			var Translation = Real3{-16.3796654, -12.5837812, 4.43367327e-07}
+			var Translation = Real3{1.13353944, 4.21364594, -1.3485641e-08}
 			var Scale = Real3{1, 1, 1}
 			var Rotation = Quaternion{0, 0, 0, 1}
 		}
@@ -434,24 +344,21 @@ Level
 			var LocalAabbHalfExtents = Real3{1, 1, 1}
 			var GroupSortValue = 0
 			var Material = "582c575af53d18c9:AlphaSprite"
-			var VertexColor = Real4{0.996078491, 0.737254918, 0.984313667, 1}
+			var VertexColor = Real4{1, 1, 1, 1}
 			var GeometryMode = SpriteGeometryMode.ZPlane
-			var Text = "2"
+			var Text = "BUBBLE BOBBLE"
 			var Font = "5c78857259567c4d:bubb"
 			var FontSize = 100
 			var PixelsPerUnit = 128
 			var TextAlign = TextAlign.Center
 		}
-		TEP_TECH_CS_LivesText 
-		{
-		}
 	}
-	Cog [ContextId:10]
+	Cog [ContextId:8]
 	{
-		var Name = "LevelText"
+		var Name = "SpriteText"
 		Transform 
 		{
-			var Translation = Real3{0.142007589, 10.4913721, 4.43367327e-07}
+			var Translation = Real3{-1.59470606, 1.90756702, 1.8854811e-08}
 			var Scale = Real3{1, 1, 1}
 			var Rotation = Quaternion{0, 0, 0, 1}
 		}
@@ -465,9 +372,65 @@ Level
 			var LocalAabbHalfExtents = Real3{1, 1, 1}
 			var GroupSortValue = 0
 			var Material = "582c575af53d18c9:AlphaSprite"
-			var VertexColor = Real4{0.996078491, 0.737254918, 0.984313667, 1}
+			var VertexColor = Real4{1, 1, 1, 1}
 			var GeometryMode = SpriteGeometryMode.ZPlane
-			var Text = "01"
+			var Text = "1P START"
+			var Font = "5c78857259567c4d:bubb"
+			var FontSize = 100
+			var PixelsPerUnit = 128
+			var TextAlign = TextAlign.Center
+		}
+	}
+	Cog [ContextId:9]
+	{
+		var Name = "SpriteText"
+		Transform 
+		{
+			var Translation = Real3{-1.61782622, -0.265780449, 1.8854811e-08}
+			var Scale = Real3{1, 1, 1}
+			var Rotation = Quaternion{0, 0, 0, 1}
+		}
+		SpriteText 
+		{
+			var Visible = true
+			var ViewCulling = true
+			var VisibilityEvents = true
+			var OverrideBoundingBox = false
+			var LocalAabbCenter = Real3{0, 0, 0}
+			var LocalAabbHalfExtents = Real3{1, 1, 1}
+			var GroupSortValue = 0
+			var Material = "582c575af53d18c9:AlphaSprite"
+			var VertexColor = Real4{1, 1, 1, 1}
+			var GeometryMode = SpriteGeometryMode.ZPlane
+			var Text = "2P START"
+			var Font = "5c78857259567c4d:bubb"
+			var FontSize = 100
+			var PixelsPerUnit = 128
+			var TextAlign = TextAlign.Center
+		}
+	}
+	Cog [ContextId:10]
+	{
+		var Name = "SpriteText"
+		Transform 
+		{
+			var Translation = Real3{-2.01087832, -2.41600895, 1.8854811e-08}
+			var Scale = Real3{1, 1, 1}
+			var Rotation = Quaternion{0, 0, 0, 1}
+		}
+		SpriteText 
+		{
+			var Visible = true
+			var ViewCulling = true
+			var VisibilityEvents = true
+			var OverrideBoundingBox = false
+			var LocalAabbCenter = Real3{0, 0, 0}
+			var LocalAabbHalfExtents = Real3{1, 1, 1}
+			var GroupSortValue = 0
+			var Material = "582c575af53d18c9:AlphaSprite"
+			var VertexColor = Real4{1, 1, 1, 1}
+			var GeometryMode = SpriteGeometryMode.ZPlane
+			var Text = "P1 PLUS"
 			var Font = "5c78857259567c4d:bubb"
 			var FontSize = 100
 			var PixelsPerUnit = 128

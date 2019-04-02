@@ -1,10 +1,10 @@
 [Version:1]
 Cog 
 {
-	var Name = "Enemy"
+	var Name = "Sprite"
 	Transform 
 	{
-		var Translation = Real3{-9.69903755, 4.06811523, 0}
+		var Translation = Real3{0, 0, 0}
 		var Scale = Real3{1, 1, 1}
 		var Rotation = Quaternion{0, 0, 0, 1}
 	}
@@ -20,24 +20,12 @@ Cog
 		var Material = "582c575af53d18c9:AlphaSprite"
 		var VertexColor = Real4{1, 1, 1, 1}
 		var GeometryMode = SpriteGeometryMode.ZPlane
-		var SpriteSource = "5c3c3532e3cf6c58:TEP_ART_onm_EnemyWalking_0"
+		var SpriteSource = "5c3ec1fae44b63f2:TEP_ART_CL_BubbleNormal"
 		var FlipX = false
 		var FlipY = false
 		var AnimationActive = true
 		var AnimationSpeed = 1
 		var StartFrame = 0
-	}
-	TEP_TECH_CS_DeathZone 
-	{
-	}
-	BoxCollider 
-	{
-		var Ghost = false
-		var SendsEvents = true
-		var Material = "4de020863e872da8:DefaultPhysicsMaterial"
-		var CollisionGroup = "5c447d3d9bb6e200:TEP_TECH_CS_Player"
-		var Offset = Real3{0, 0, 0}
-		var HalfSize = Real3{1, 1, 0.5}
 	}
 	RigidBody 
 	{
@@ -48,23 +36,6 @@ Cog
 		var Asleep = false
 		var RotationLocked = true
 		var Mode2D = Mode2DStates.InheritFromSpace
-	}
-	TEP_TECH_JD_EnemyMovement 
-	{
-		var RandomGoUpNumber = 30
-		var TopLevelY = 0
-		var FirstHole = Real2{-13.4799995, -11.54}
-		var SecondHole = Real2{11.5, 13.5}
-		var YDistance = 4.80000019
-		var YSpeed = 0.100000001
-		var RandomizedGoUp = false
-		var WaitToGoUp = 50
-		var MaxRightXPos = 15.5
-		var MaxLeftXPos = -15.5
-		var OriginalSpeed = 0.100000001
-		var IsGrounded = false
-		var XJumpMovement = 0.0500000007
-		var IsJumping = false
 	}
 	IgnoreSpaceEffects 
 	{
@@ -80,5 +51,27 @@ Cog
 		var IgnoreTorque = true
 		var IgnoreBuoyancy = true
 		var IgnoreCustom = true
+	}
+	BubbleBig 
+	{
+		var Destination = Real2{0, 7}
+		var BubbleSpeed = 1
+		var RedSprite = "5c3ec135f8ef4150:TEP_ART_CL_BubbleFlashing000"
+		var RedTimer = 15
+		var BlueSprite = "5c7929acf7699102:TEP_ART_CL_BubbleFlashing_0"
+		var BlueTimer = 5
+		var PopSprite = "5c3ec11ff1ceead9:TEP_ART_CL_BubblePopping_0"
+		var PopTimer = 3
+		var DelayToLetPopAnimationToPlay = 0.200000003
+		var SmallDistanceAntiFlicker = 0.5
+	}
+	BoxCollider 
+	{
+		var Ghost = false
+		var SendsEvents = true
+		var Material = "4de020863e872da8:DefaultPhysicsMaterial"
+		var CollisionGroup = "5c447afe8f94d94b:PlayerUp"
+		var Offset = Real3{0, 0, 0}
+		var HalfSize = Real3{0.5, 0.5, 0.5}
 	}
 }

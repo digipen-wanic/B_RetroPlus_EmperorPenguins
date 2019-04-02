@@ -18,6 +18,11 @@ class TEP_TECH_CS_GameVars : ZilchComponent
   var DeathTimer = 1.2;
   
   var Dead = false;
+  
+  var ShootTimer = 0.25;
+  
+  var IsShooting = false;
+  
   [Property]
   var RespawnLocation = Real3(-5.14, 4.77, 0);
 }
