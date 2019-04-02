@@ -44,6 +44,7 @@ class TEP_TECH_JD_EnemyMovement : ZilchComponent
   [Property]
   var MaxLeftXPos : Real = -5; 
   
+  var FirstJump : Boolean = true; 
   //This is the speed it starts with, and will get set back to after changes (for example, rush)
   [Property]
   var OriginalSpeed : Real = 0.05; 
@@ -111,8 +112,8 @@ class TEP_TECH_JD_EnemyMovement : ZilchComponent
 
   function OnLogicUpdate(event : UpdateEvent)
   {
-    
-    
+   
+    Console.WriteLine("Is it grounded: `this.IsGrounded`");
     ++this.GoUpTimer; 
     this.XPos = this.Owner.Transform.Translation.X;
     this.YPos = this.Owner.Transform.Translation.Y; 
@@ -135,26 +136,39 @@ class TEP_TECH_JD_EnemyMovement : ZilchComponent
     //at the end of GoUp() function
       //randomized variable 1 or 2
       // if it's 2, multiply speed by -1 
-          
+          var left : Integer = 1; 
+          if(this.Speed < 0){
+              left = -1; 
+            }
+          else{
+            left = 1; 
+            }
           //the purpose of thsi for loop, is to make it so that it figures out which location it's at, and it's location is stored as the array 
           var i = 0; 
          //This is where we set is Jumping
-          for(i = 1; i <= 3; i+= 1){
+          
+          for(i = 0; i <= 3; i+= 1){
             
             
-            if(this.XPos >= this.HoleLocations[i] - 0.5 && this.XPos <= this.HoleLocations[i] + 0.5){
+            if(this.XPos <= this.HoleLocations[i] + 0.5){
               //i.e. only happens the first time
               if(this.IsGrounded){
-               
-                this.I = i;  
-                } 
-              }
+                
+                //Making it so the this.I can only change if it's so far further than the ground
+                if(this.XPos >= this.HoleLocations[i] - 0.5 || this.FirstJump){
+                  this.FirstJump = false; 
+                  this.I = i;  
+                }
+              } 
             }
-          this.IsGrounded = false;
-          this.Jump(this.I); 
-         // this.IsJumping = true; 
+          }
+         this.IsGrounded = false;
+           this.IsJumping = true; 
+         this.Jump(this.I); 
+        
+       
       }
-     
+     Console.WriteLine("In Hole: `inHole`");
     //if it's not going upwards, it can move freely 
     if(!this.IsGoingUp){
       this.FreeMovement();
@@ -191,14 +205,7 @@ class TEP_TECH_JD_EnemyMovement : ZilchComponent
       //FreeMovement(); 
   }
   
-  //There has to be 2 functions:
-    //Follow player
-    
-    //Free Movement
-    //Jump
-    //Go Up a Layer
-    
-    
+ 
     function FreeMovement(){
       
       var randomized = Math.Round(this.Random.Range(0, this.RandomGoUpNumber));
@@ -253,7 +260,7 @@ class TEP_TECH_JD_EnemyMovement : ZilchComponent
       //if not touching ground, set speed to 0
       
       function Jump(i : Integer){ 
-        
+         
 
         
         //if I is 0
@@ -276,24 +283,22 @@ class TEP_TECH_JD_EnemyMovement : ZilchComponent
           //So, I guess we just throw in an equation
        
          
-        //if the position hasn't yet reached teh ground, it'll keep jumping
+
+      //If it's on the 3rd to the left, it'll make the jump which is considered to be third to the left
       if(this.I == 2){
-        Console.WriteLine("Emmmm");
-                 this.XPos += this.XJumpMovement;
+        this.XPos += this.XJumpMovement;
         if(this.XPos <= this.SecondHole.Y + 0.5){
-          
-      
-          this.Owner.Transform.Translation = Real3(this.XPos, (( (this.XPos - x - this.SecondHole.X) * (this.XPos - x - this.SecondHole.Y)) / 50) + this.YPos, 0);
-      
+          //This is the actual jump which it attempts to pursue 
+          this.Owner.Transform.Translation = Real3(this.XPos, ((this.XPos - x - this.SecondHole.X) * (this.XPos - x - this.SecondHole.Y) / 50) + this.YPos, 0);
         }
         else{
-            
+
             this.GroundTwice = 0; 
             this.IsJumping = false; 
             this.IsGrounded = true; 
           }
       }
-        
+        //if it is on the first jump to the left 
         if(this.I == 0 ){
         
            this.XPos += this.XJumpMovement;
@@ -309,15 +314,38 @@ class TEP_TECH_JD_EnemyMovement : ZilchComponent
         }
         //For the far right
           //if I is equal to 3
-          if(this.I == 3 && !this.IsJumping){
+         
+       
+         
+       //if they're furthest to the right   
+          if(this.I == 3){
         
          this.XPos -= this.XJumpMovement;
         if(this.XPos >= this.SecondHole.X - 0.5){
-          Console.WriteLine("It is `this.IsGrounded` that it is Grounded");
+         
       
-          this.Owner.Transform.Translation = Real3(this.XPos, (( -(this.XPos - x - this.SecondHole.X) * (this.XPos - x - this.SecondHole.Y)) / 50) + this.YPos, 0);
+          this.Owner.Transform.Translation = Real3(this.XPos, (( -(this.XPos - x - this.SecondHole.X + 0.3) * (this.XPos - x - this.SecondHole.Y)) / 50) + this.YPos, 0);
       
         }
+        //If it's reached it's destination
+        else{
+            
+            this.GroundTwice = 0; 
+            this.IsJumping = false; 
+            this.IsGrounded = true; 
+          }
+      }
+      //The Second Option
+       if(this.I == 1){
+        
+         this.XPos -= this.XJumpMovement;
+        if(this.XPos >= this.FirstHole.X - 0.5){
+         
+      
+          this.Owner.Transform.Translation = Real3(this.XPos, (( -(this.XPos - x - this.FirstHole.X + 0.5) * (this.XPos - x - this.FirstHole.Y)) / 50) + this.YPos, 0);
+      
+        }
+        //If it's reached it's destination
         else{
             
             this.GroundTwice = 0; 
