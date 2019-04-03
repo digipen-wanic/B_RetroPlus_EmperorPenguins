@@ -4,7 +4,7 @@ Cog
 	var Name = "Sprite"
 	Transform 
 	{
-		var Translation = Real3{7.75167656, 4.38138199, 0}
+		var Translation = Real3{-5.41056252, -10.3693485, 0}
 		var Scale = Real3{8, 8, 1}
 		var Rotation = Quaternion{0, 0, 0, 1}
 	}
@@ -32,7 +32,7 @@ Cog
 		var Ghost = false
 		var SendsEvents = true
 		var Material = "4de020863e872da8:DefaultPhysicsMaterial"
-		var CollisionGroup = "5c447afe8f94d94b:PlayerUp"
+		var CollisionGroup = "5c7ffa58d114cabd:TEP_TECH_CS_ScoreObject"
 		var Offset = Real3{0, 0, 0}
 		var HalfSize = Real3{0.100000001, 0.100000001, 0.5}
 	}

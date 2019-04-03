@@ -1,0 +1,11 @@
+[Version:1]
+DataContent 
+{
+	DataBuilder 
+	{
+		var Name = "Wall"
+		var ResourceId = 0x5c7fc009a33f5b3c
+		var LoaderType = "CollisionGroup"
+		var Version = 0
+	}
+}

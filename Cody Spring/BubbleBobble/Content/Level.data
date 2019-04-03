@@ -40,7 +40,7 @@ Level
 		}
 		TEP_TECH_CS_GameVars 
 		{
-			var HurryTimer = 1
+			var HurryTimer = 53
 			var RespawnLocation = Real3{-5.13999987, 4.76999998, 0}
 		}
 	}
@@ -82,7 +82,7 @@ Level
 		var Name = "EditorCamera"
 		Transform 
 		{
-			var Translation = Real3{-0.00519314408, -1.46040714, 30}
+			var Translation = Real3{0.418961018, 0.320108175, 30}
 			var Scale = Real3{1, 1, 1}
 			var Rotation = Quaternion{0, -1.09278471e-08, 0, 1}
 		}
@@ -135,7 +135,7 @@ Level
 			var FarPlane = 500
 			var PerspectiveMode = PerspectiveMode.Orthographic
 			var FieldOfView = 45
-			var Size = 40.2750092
+			var Size = 89.6336136
 		}
 		EditorCameraController 
 		{
@@ -144,7 +144,7 @@ Level
 			var LookDistance = 20
 			var VerticalAngle = 0
 			var HorizontalAngle = 0
-			var LookTarget = Real3{-0.00519314408, -1.46040714, 10}
+			var LookTarget = Real3{0.418961018, 0.320108175, 10}
 			var MoveSensitivity = 1
 		}
 	}
@@ -411,9 +411,13 @@ Level
 	{
 		Transform 
 		{
-			var Translation = Real3{-25.9938545, 2.9706521, 0}
+			var Translation = Real3{-0.0481290817, 9.02011681, 0}
 			var Rotation = Quaternion{0, 0, 0, 1}
 			var Scale = Real3{1, 1, 1}
+		}
+		BoxCollider 
+		{
+			var Ghost = true
 		}
 	}
 	Cog [ContextId:9]

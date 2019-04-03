@@ -13,7 +13,7 @@ Cog
 		var Ghost = false
 		var SendsEvents = true
 		var Material = "4de020863e872da8:DefaultPhysicsMaterial"
-		var CollisionGroup = "5c447afe8f94d94b:PlayerUp"
+		var CollisionGroup = "5c7fc009a33f5b3c:Wall"
 		var Offset = Real3{0, 0, 0}
 		var PhysicsMesh = "5198bea43a477360:Box"
 		var DrawEdges = true
