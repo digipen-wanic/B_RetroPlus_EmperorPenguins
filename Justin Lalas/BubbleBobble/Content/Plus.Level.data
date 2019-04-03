@@ -285,6 +285,7 @@ Level
 			var PowerShot = Keys.W
 			var JumpSound = "5c447afe8f98b1c2:bubblebobblejump"
 			var ShootFrame = "5c793043e9d11675:TEP_ART_TGB_PlayerShoot41"
+			var ShootSound = "5c7fcc4ccd211eff:Tep_sound_max_shoot"
 		}
 	}
 	Cog [ContextId:6]
@@ -363,7 +364,7 @@ Level
 		}
 		SoundEmitter 
 		{
-			var Volume = 1
+			var Volume = 0.98999995
 			var Pitch = 0
 			var Attenuator = "57ca8a6ad262efe5:DefaultNoAttenuation"
 			var Directional = false

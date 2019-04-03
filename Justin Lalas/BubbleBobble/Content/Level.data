@@ -134,7 +134,7 @@ Level
 			var FarPlane = 500
 			var PerspectiveMode = PerspectiveMode.Orthographic
 			var FieldOfView = 45
-			var Size = 40.2750397
+			var Size = 36.4423637
 		}
 		EditorCameraController 
 		{
@@ -375,6 +375,7 @@ Level
 			var PowerShot = Keys.W
 			var JumpSound = "5c447afe8f98b1c2:bubblebobblejump"
 			var ShootFrame = "5c47db59c683c436:TEP_ART_TGB_PlayerShoot_0"
+			var ShootSound = "5c7fcc4ccd211eff:Tep_sound_max_shoot"
 		}
 	}
 	Cog [ContextId:7]

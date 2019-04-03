@@ -1,8 +1,8 @@
 [Version:1]
 SoundCue 
 {
-	var PlayMode = SoundPlayMode.Looping
-	var Volume = 0.280000001
+	var PlayMode = SoundPlayMode.Single
+	var Volume = 1
 	var UseDecibelVariation = false
 	var VolumeVariation = 0
 	var DecibelVariation = 0
@@ -18,11 +18,11 @@ SoundCue
 	{
 		Object
 		{
-			var Sound = "5c447afe8f900d8e:tep_sound_justin_gamethemeplus_1"
+			var Sound = "5c7fcf65f58830ec:tep_sound_justin_hurryup_4"
 			var Weight = 1
 			var StartTime = 0
-			var EndTime = 44.3076668
-			var LoopEndTime = 44.3076668
+			var EndTime = 1.71427083
+			var LoopEndTime = 1.71427083
 			var LoopStartTime = 0
 			var LoopTailLength = 0
 			var CrossFadeLoopTail = false
