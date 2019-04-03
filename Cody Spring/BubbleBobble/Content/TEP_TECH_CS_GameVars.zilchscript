@@ -14,7 +14,7 @@ class TEP_TECH_CS_GameVars : ZilchComponent
   
   // used for baron von bubble
   [Property]
-  var HurryTimer = Real(53);
+  var HurryTimer = Real(1);
   
   var DeathTimer = 1.2;
   

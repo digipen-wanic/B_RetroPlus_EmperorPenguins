@@ -40,7 +40,7 @@ Level
 		}
 		TEP_TECH_CS_GameVars 
 		{
-			var HurryTimer = 53
+			var HurryTimer = 1
 			var RespawnLocation = Real3{-5.13999987, 4.76999998, 0}
 		}
 	}
@@ -547,7 +547,7 @@ Level
 		var Name = "SpriteText"
 		Transform 
 		{
-			var Translation = Real3{-0.00519314408, -6.05243111, 10}
+			var Translation = Real3{-0.00519314408, -6.05243111, 0}
 			var Scale = Real3{1, 1, 1}
 			var Rotation = Quaternion{0, 0, 0, 1}
 		}
@@ -571,21 +571,6 @@ Level
 		}
 		TEP_TECH_CS_HurryTimer 
 		{
-			var HurryText = CogPath
-			{
-				var Path = ""
-				var ErrorOnResolveToNull = false
-				var ErrorOnPathCantCompute = false
-				var ErrorOnDirectLinkFail = false
-				var UpdateCogOnPathChange = true
-				var UpdatePathOnCogChange = true
-				var UpdateCogOnInitialize = true
-				var ResolvedNullErrorOccurred = false
-				var Cog = 4294967293
-				var PathPreference0 = CogPathPreference.CogRelative
-				var PathPreference1 = CogPathPreference.SpaceRelative
-				var PathPreference2 = CogPathPreference.Absolute
-			}
 		}
 	}
 }
