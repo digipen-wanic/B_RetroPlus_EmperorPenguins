@@ -281,10 +281,10 @@ Level
 	}
 	Cog [ContextId:6]
 	{
-		var Name = "StartButton"
+		var Name = "StartButtonPlus"
 		Transform 
 		{
-			var Translation = Real3{-2.15793562, -2.32456088, 0}
+			var Translation = Real3{-2.15793562, -0.254820108, 0}
 			var Scale = Real3{6.29943657, 1.13271451, 1.03811896}
 			var Rotation = Quaternion{0, 0, 0, 1}
 		}
@@ -386,35 +386,7 @@ Level
 		var Name = "SpriteText"
 		Transform 
 		{
-			var Translation = Real3{-1.61782622, -0.265780449, 1.8854811e-08}
-			var Scale = Real3{1, 1, 1}
-			var Rotation = Quaternion{0, 0, 0, 1}
-		}
-		SpriteText 
-		{
-			var Visible = true
-			var ViewCulling = true
-			var VisibilityEvents = true
-			var OverrideBoundingBox = false
-			var LocalAabbCenter = Real3{0, 0, 0}
-			var LocalAabbHalfExtents = Real3{1, 1, 1}
-			var GroupSortValue = 0
-			var Material = "582c575af53d18c9:AlphaSprite"
-			var VertexColor = Real4{1, 1, 1, 1}
-			var GeometryMode = SpriteGeometryMode.ZPlane
-			var Text = "2P START"
-			var Font = "5c78857259567c4d:bubb"
-			var FontSize = 100
-			var PixelsPerUnit = 128
-			var TextAlign = TextAlign.Center
-		}
-	}
-	Cog [ContextId:10]
-	{
-		var Name = "SpriteText"
-		Transform 
-		{
-			var Translation = Real3{-2.01087832, -2.41600895, 1.8854811e-08}
+			var Translation = Real3{-2.01087832, -0.295163035, 1.8854811e-08}
 			var Scale = Real3{1, 1, 1}
 			var Rotation = Quaternion{0, 0, 0, 1}
 		}
