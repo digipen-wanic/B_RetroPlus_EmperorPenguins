@@ -1,0 +1,8 @@
+[Version:1]
+ContentLibrary 
+{
+	var Name = "BubbleBobble"
+	var LibraryId = 0x5c410f18df980690
+	var SourceControlType = ""
+	var ReadOnly = false
+}
