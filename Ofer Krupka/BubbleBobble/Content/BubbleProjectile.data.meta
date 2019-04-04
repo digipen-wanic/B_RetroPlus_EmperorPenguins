@@ -1,0 +1,11 @@
+[Version:1]
+DataContent 
+{
+	DataBuilder 
+	{
+		var Name = "BubbleProjectile"
+		var ResourceId = 0x5c3ec30f2d97e069
+		var LoaderType = "Cog"
+		var Version = 0
+	}
+}

@@ -1,0 +1,341 @@
+/******************************
+Jordan Driscoll
+March 27th, 2019
+Goal: Make the enemy move so it's similair to the original game
+*******************************/
+
+class TEP_TECH_JD_EnemyMovement : ZilchComponent
+{
+  [Property]
+  var RandomGoUpNumber : Integer = 30; 
+  
+  [Property]
+  var TopLevelY : Real; 
+  [Property]
+  var FirstHole : Real2;
+  [Property]
+  var SecondHole : Real2;   //Random seed
+  var Random : Random = Random();
+  //These next like, 5 or so variables are ALL based on going up 
+  //The Timer to make it randomly go up 
+  var GoUpTimer : Integer = 0; 
+  //When he goes up 
+  var IsGoingUp : Boolean = false; 
+  //the Y Before it goes up 
+  var OriginalY : Real; 
+  //The Intended Y
+  var IntendedY : Real; 
+  //How high up the Inteded Y Is from the Original Y
+  [Property]
+  var YDistance : Real = 5; 
+  //How Quickly it goes up 
+  [Property]
+  var YSpeed : Real = 0.5; 
+  
+  [Property]
+  var RandomizedGoUp = false; 
+  //How long he waits to go up
+  [Property]
+  var WaitToGoUp : Real = 600; 
+  //Array of Max X Positions that have it change the direction that it's going 
+  [Property]
+  var MaxRightXPos : Real = 5; 
+  
+  [Property]
+  var MaxLeftXPos : Real = -5; 
+  
+  //This is the speed it starts with, and will get set back to after changes (for example, rush)
+  [Property]
+  var OriginalSpeed : Real = 0.05; 
+  //The Speed which the enemy is moving
+  var Speed : Real = 0.05; 
+  //Boolean that dtermines if the player is being tracked
+  //If the player is jumping, this will be set to true
+  //The original placement
+  var EnemyLocation : Real3; 
+  //The Enemy's X Position
+  var XPos : Real; 
+  //The Enemy's Y Position
+ var YPos : Real;
+ //if it's grounded 
+ [Property]
+ var IsGrounded : Boolean = false; 
+ 
+ [Property]
+ var XJumpMovement : Real = 0.05; 
+ [Property]
+ var IsJumping : Boolean = false; 
+ //This is the X that the equation uses when he jumps 
+ var JumpX : Real; 
+
+ //When he first jumps, this is going to be the posiiton that he collects 
+   var OriginalJumpY : Real;
+   
+   var GroundTwice : Integer = 0; 
+  //An array that tracks the four points that determine the holes 
+  var HoleLocations : Array[Real] = Array[Real]();
+  
+  //This is the I, so that I only gets set on the first time, otherwise it would break the program, since i would always get set to four
+  var I : Integer = 0; 
+  function Initialize(init : CogInitializer)
+  {
+   this.Speed = this.OriginalSpeed; 
+   this.EnemyLocation = this.Owner.Transform.Translation;
+    this.HoleLocations.Add(this.FirstHole.X); 
+    this.HoleLocations.Add(this.FirstHole.Y); 
+    this.HoleLocations.Add(this.SecondHole.X);
+    this.HoleLocations.Add(this.SecondHole.Y);    
+   Zero.Connect(this.Owner, Events.CollisionEnded, this.OnCollisionEnded);
+   Zero.Connect(this.Owner, Events.CollisionStarted, this.OnCollisionStarted);
+   Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+  }
+
+ function OnCollisionEnded(event : CollisionEvent)
+  {
+    
+   // this.IsGrounded =false; 
+  }
+//enemy on collision
+ function OnCollisionStarted(event : CollisionEvent)
+  {
+    
+  
+    this.IsGrounded = true; 
+    //when it hits the ground
+    
+      //set is grounded != is grounded
+    //when it hits a  wall
+      //Speed *= -1
+      //this.Speed *= -1; 
+  }
+
+  function OnLogicUpdate(event : UpdateEvent)
+  {
+    
+    
+    ++this.GoUpTimer; 
+    this.XPos = this.Owner.Transform.Translation.X;
+    this.YPos = this.Owner.Transform.Translation.Y; 
+    //looks complicated, all it is is just if it's in the holes, then it's true, otherwise it's false 
+    var inHole : Boolean = (this.XPos > this.FirstHole.X && this.XPos < this.FirstHole.Y || ((this.XPos > this.SecondHole.X) && (this.XPos < this.SecondHole.Y))) && this.YPos > -10; 
+   
+    //.When it hits the barriers, it will change direction
+    if(this.XPos < this.MaxLeftXPos || this.XPos > this.MaxRightXPos){
+        this.Speed *= -1; 
+      }
+      
+     
+   
+    //If it's falling in the hole, grounded will be set to false 
+    
+    if(inHole || this.IsJumping){
+        
+        //This is where the jumping script begins 
+          
+    //at the end of GoUp() function
+      //randomized variable 1 or 2
+      // if it's 2, multiply speed by -1 
+          
+          //the purpose of thsi for loop, is to make it so that it figures out which location it's at, and it's location is stored as the array 
+          var i = 0; 
+         //This is where we set is Jumping
+          for(i = 1; i <= 3; i+= 1){
+            
+            
+            if(this.XPos >= this.HoleLocations[i] - 0.5 && this.XPos <= this.HoleLocations[i] + 0.5){
+              //i.e. only happens the first time
+              if(this.IsGrounded){
+               
+                this.I = i;  
+                } 
+              }
+            }
+          this.IsGrounded = false;
+          this.Jump(this.I); 
+         // this.IsJumping = true; 
+      }
+     
+    //if it's not going upwards, it can move freely 
+    if(!this.IsGoingUp){
+      this.FreeMovement();
+      //If it's not grounded, it's going to have to fall, I'm afraid 
+      if(!this.IsGrounded && !this.IsJumping){
+            
+             this.Owner.Transform.Translation += Real3(0, -this.YSpeed, 0);         
+        }
+    
+    } 
+    else{
+      //if it has yeto reach it's position
+      if(this.YPos < this.IntendedY){
+           this.Owner.Transform.Translation += Real3(0, this.YSpeed, 0); 
+           this.IsGrounded = false; 
+           this.IsGoingUp = true; 
+        }
+        //if it's already reached it's posiitono
+      else{
+        //Say it's no longer going up 
+        this.IsGrounded = true; 
+        this.IsGoingUp = false; 
+        this.GoUpTimer = 0; 
+        this.Owner.Transform.Translation = Real3(this.XPos, this.YPos, 0);
+        }
+      
+      }
+   
+    //Sets tracking player to true or false based on randomization
+    
+    //if tracking player
+      //followPlayer(); 
+    //else
+      //FreeMovement(); 
+  }
+  
+  //There has to be 2 functions:
+    //Follow player
+    
+    //Free Movement
+    //Jump
+    //Go Up a Layer
+    
+    
+    function FreeMovement(){
+      
+      var randomized = Math.Round(this.Random.Range(0, this.RandomGoUpNumber));
+      //Move Randomly Left or Right
+      //Every once in a while have it go up
+      //this will determine if it moves left or right 
+     
+      //if it's on the ground, move
+      var inHole : Boolean = this.XPos > this.FirstHole.X - 1 && this.XPos < this.FirstHole.Y + 1 || this.XPos > this.SecondHole.X - 1 && this.XPos < this.SecondHole.Y + 1;
+     // if it's grounded
+      if(this.IsGrounded){
+        //Constatnly be moving the direction of speed
+        this.Owner.Transform.Translation += Real3(this.Speed, 0, 0); 
+        // if it's reached it's max waiting capacity, it'll be able to decide to change
+        if(this.GoUpTimer > this.WaitToGoUp){
+          //if the random number works, and this is just inHole but withotu the Y barrier 
+            if((this.YPos < 2) && randomized == 5 && !inHole){
+              
+              this.GoUp();
+              var changeDirection = Math.Round(this.Random.Range(0, 1));
+                  //This makes it so it randomly changes direction
+                  if(changeDirection == 1){
+                    if(this.RandomizedGoUp){
+                     this.Speed *= -1;  
+                   }
+            }
+              
+            }
+          }
+      }
+    }
+        
+       
+       
+       //This determines if he will go up 
+       function GoUp(){
+          this.Owner.Transform.Translation = Real3(this.XPos, this.YPos, 3);              
+              this.IsGrounded = false; 
+              this.IsGoingUp = true; 
+              this.OriginalY = this.YPos; 
+              this.IntendedY = this.YPos + this.YDistance;
+              
+         
+         }
+      //Time to add it randomly going up 
+      //First, make a random time seed
+      //Then, if it's at the time it needs to be
+      //Make it change it's Y by a number
+      //once it's y is added 5 to what it was before, then it can go down
+      //The box collider will be disabled
+      //if touching wall, go multiply movingLeft by -1
+      //if not touching ground, set speed to 0
+      
+      function Jump(i : Integer){ 
+        
+
+        
+        //if I is 0
+        /*
+        Visual Representation: |____________________0          1__________________________2             3____________________|
+        0 is left, 
+        */
+        //Determines whether it's going left or right
+ 
+        var x = 1; 
+        var left : Integer = 1; 
+        //essentially, if it's 1 or 3 it's going to go backwards lol 
+        if(i % 2 != 0){
+              left *= -1; 
+            
+            }
+        
+         //This essentially hardcodes their X Movement 
+           
+          //So, I guess we just throw in an equation
+       
+         
+        //if the position hasn't yet reached teh ground, it'll keep jumping
+      if(this.I == 2){
+        //Console.WriteLine("Emmmm");
+                 this.XPos += this.XJumpMovement;
+        if(this.XPos <= this.SecondHole.Y + 0.5){
+          
+      
+          this.Owner.Transform.Translation = Real3(this.XPos, (( (this.XPos - x - this.SecondHole.X) * (this.XPos - x - this.SecondHole.Y)) / 50) + this.YPos, 0);
+      
+        }
+        else{
+            
+            this.GroundTwice = 0; 
+            this.IsJumping = false; 
+            this.IsGrounded = true; 
+          }
+      }
+        
+        if(this.I == 0 ){
+        
+           this.XPos += this.XJumpMovement;
+           if(this.XPos <= this.FirstHole.Y + 0.7){
+              this.Owner.Transform.Translation = Real3(this.XPos, (( (this.XPos - x - this.FirstHole.X) * (this.XPos - x - this.FirstHole.Y)) / 50) + this.YPos, 0);
+            }
+            else{
+            
+            this.GroundTwice = 0; 
+            this.IsJumping = false; 
+            this.IsGrounded = true; 
+          }
+        }
+        //For the far right
+          //if I is equal to 3
+          if(this.I == 3 && !this.IsJumping){
+        
+         this.XPos -= this.XJumpMovement;
+        if(this.XPos >= this.SecondHole.X - 0.5){
+          //Console.WriteLine("It is `this.IsGrounded` that it is Grounded");
+      
+          this.Owner.Transform.Translation = Real3(this.XPos, (( -(this.XPos - x - this.SecondHole.X) * (this.XPos - x - this.SecondHole.Y)) / 50) + this.YPos, 0);
+      
+        }
+        else{
+            
+            this.GroundTwice = 0; 
+            this.IsJumping = false; 
+            this.IsGrounded = true; 
+          }
+      }
+      
+     
+      
+     
+        //or the jump will end
+        
+          
+      }
+          
+      }
+      
+      
+      
+
