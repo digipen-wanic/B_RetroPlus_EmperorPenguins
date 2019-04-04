@@ -2,7 +2,7 @@
 SoundCue 
 {
 	var PlayMode = SoundPlayMode.Single
-	var Volume = 0.689999998
+	var Volume = 0.649999976
 	var UseDecibelVariation = false
 	var VolumeVariation = 0
 	var DecibelVariation = 0
@@ -18,11 +18,11 @@ SoundCue
 	{
 		Object
 		{
-			var Sound = "5cc68b232767cf03:tep_sound_justin_gamethemeplus_posthurryup"
+			var Sound = "5cc694fd0c2448d6:tep_sound_max_Baron_von_blabba"
 			var Weight = 1
 			var StartTime = 0
-			var EndTime = 41.1428528
-			var LoopEndTime = 41.1428528
+			var EndTime = 3.90093756
+			var LoopEndTime = 3.90093756
 			var LoopStartTime = 0
 			var LoopTailLength = 0
 			var CrossFadeLoopTail = false

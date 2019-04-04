@@ -130,7 +130,7 @@ Level
 			var FarPlane = 500
 			var PerspectiveMode = PerspectiveMode.Orthographic
 			var FieldOfView = 45
-			var Size = 22.1034069
+			var Size = 26.9971561
 		}
 		EditorCameraController 
 		{
@@ -244,7 +244,7 @@ Level
 			var PreviewInEditor = false
 			var VertexColor = Real4{1, 1, 1, 1}
 			var GeometryMode = SpriteParticleGeometryMode.Billboarded
-			var SpriteSource = "5274db4c2e7c11f9:Circle"
+			var SpriteSource = "5cc6942c1cb227d7:TEP_ART_SM_TextBubbles_0"
 			var ParticleAnimation = SpriteParticleAnimationMode.Looping
 			var ParticleSort = SpriteParticleSortMode.None
 			var BeamBaseScale = 1
@@ -324,7 +324,7 @@ Level
 			var PreviewInEditor = false
 			var VertexColor = Real4{1, 1, 1, 1}
 			var GeometryMode = SpriteParticleGeometryMode.Billboarded
-			var SpriteSource = "5274db4c2e7c11f9:Circle"
+			var SpriteSource = "5cc6942c1cb227d7:TEP_ART_SM_TextBubbles_0"
 			var ParticleAnimation = SpriteParticleAnimationMode.Looping
 			var ParticleSort = SpriteParticleSortMode.None
 			var BeamBaseScale = 1
@@ -404,7 +404,7 @@ Level
 			var PreviewInEditor = false
 			var VertexColor = Real4{1, 1, 1, 1}
 			var GeometryMode = SpriteParticleGeometryMode.Billboarded
-			var SpriteSource = "5274db4c2e7c11f9:Circle"
+			var SpriteSource = "5cc6942c1cb227d7:TEP_ART_SM_TextBubbles_0"
 			var ParticleAnimation = SpriteParticleAnimationMode.Looping
 			var ParticleSort = SpriteParticleSortMode.None
 			var BeamBaseScale = 1

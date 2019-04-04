@@ -4,7 +4,7 @@ Cog
 	var Name = "Sprite"
 	Transform 
 	{
-		var Translation = Real3{-13.556613, 6.34696865, 0.0100002289}
+		var Translation = Real3{0, 0, 0}
 		var Scale = Real3{4, 4, 1}
 		var Rotation = Quaternion{0, 0, 0, 1}
 	}
@@ -63,5 +63,20 @@ Cog
 		var CollisionGroup = "4e740859314e5515:DefaultGroup"
 		var Offset = Real3{0, 0, 0}
 		var HalfSize = Real3{0.25, 0.25, 0.5}
+	}
+	SoundEmitter 
+	{
+		var Volume = 1
+		var Pitch = 0
+		var Attenuator = "57ca8a6ad262efe5:DefaultNoAttenuation"
+		var Directional = false
+		var EmitAngle = 90
+		var RearVolume = 0.200000003
+	}
+	SimpleSound 
+	{
+		var StartPlaying = true
+		var Positional = false
+		var Cue = "5cc694fd0c288c72:tep_sound_max_Baron_von_blabba"
 	}
 }

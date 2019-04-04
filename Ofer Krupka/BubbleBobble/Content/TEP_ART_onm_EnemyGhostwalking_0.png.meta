@@ -1,0 +1,20 @@
+[Version:1]
+ImageContent 
+{
+	SpriteSourceBuilder 
+	{
+		var Name = "TEP_ART_onm_EnemyGhostwalking_0"
+		var ResourceId = 0x5cc68d52818d18c1
+		var FrameSizeX = 64
+		var FrameSizeY = 64
+		var FrameCount = 2
+		var FrameDelay = 0.25
+		var OriginX = 32
+		var OriginY = 32
+		var PixelsPerUnit = 110
+		var Sampling = SpriteSampling.Nearest
+		var Looping = true
+		var Slices = Real4{0, 0, 0, 0}
+		var Fill = SpriteFill.Stretch
+	}
+}

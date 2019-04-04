@@ -29,7 +29,7 @@ Cog
 	}
 	BubbleProjectile 
 	{
-		var Speed = 15
+		var Speed = 20
 		var TimeToGrow = 0.5
 		var BubbleBig = "5c7c83f485bb49cb:BubbleBigPLUS"
 		var BubbleBigMonster = "5c7c82d2b1bff68f:BubbleBigMonsterPLUS"

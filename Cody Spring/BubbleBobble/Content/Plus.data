@@ -40,7 +40,7 @@ Level
 		}
 		TEP_TECH_CS_GameVars 
 		{
-			var HurryTimer = 1
+			var HurryTimer = 53
 			var RespawnLocation = Real3{-14.1099005, -11, 0}
 		}
 	}

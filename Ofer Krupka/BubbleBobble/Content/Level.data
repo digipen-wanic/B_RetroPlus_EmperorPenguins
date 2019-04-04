@@ -482,7 +482,7 @@ Level
 		var Name = "Sprite"
 		Transform 
 		{
-			var Translation = Real3{3.16536164, -1.52814841, 4.15387547e-07}
+			var Translation = Real3{3.16536164, -1.52814841, 0.100000001}
 			var Scale = Real3{4, 4, 1}
 			var Rotation = Quaternion{0, 0, 0, 1}
 		}
@@ -529,9 +529,9 @@ Level
 			var SpeedUpMovingDistance = 3
 			var SpeedUpMovingDuration = 1
 			var SpeedUpStillDuration = 1
-			var SpawnAndDeathSpeed = 2
-			var SpawnAndDeathSprite = "5c47de2dc81512d4:TEP_ART_TGB_PlayerIdle_0"
-			var GhostSprite = "59a4f6f4a01bac09:SoftCircle"
+			var SpawnAndDeathSpeed = 0.75
+			var SpawnAndDeathSprite = "5cc68cd7e93bbf5d:TEP_ART_TGB_Enemy_Appear_0"
+			var GhostSprite = "5cc68d52818d18c1:TEP_ART_onm_EnemyGhostwalking_0"
 		}
 		BoxCollider 
 		{
