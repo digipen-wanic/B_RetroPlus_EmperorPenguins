@@ -82,7 +82,7 @@ Level
 		var Name = "EditorCamera"
 		Transform 
 		{
-			var Translation = Real3{0, -0.631930351, 30}
+			var Translation = Real3{-1.3334496, -0.631836772, 30}
 			var Scale = Real3{1, 1, 1}
 			var Rotation = Quaternion{0, -1.09278471e-08, 0, 1}
 		}
@@ -135,7 +135,7 @@ Level
 			var FarPlane = 500
 			var PerspectiveMode = PerspectiveMode.Orthographic
 			var FieldOfView = 45
-			var Size = 36.4424095
+			var Size = 40.2750854
 		}
 		EditorCameraController 
 		{
@@ -144,7 +144,7 @@ Level
 			var LookDistance = 20
 			var VerticalAngle = 0
 			var HorizontalAngle = 0
-			var LookTarget = Real3{0, -0.631930351, 10}
+			var LookTarget = Real3{-1.3334496, -0.631836772, 10}
 			var MoveSensitivity = 1
 		}
 	}
@@ -186,6 +186,10 @@ Level
 			var Translation = Real3{-14.1099396, -10.7754631, 0.00999999978}
 			var Rotation = Quaternion{0, 0, 0, 1}
 			var Scale = Real3{2, 2, 1}
+		}
+		TEP_TECH_JL_PlayerMovementInput 
+		{
+			var ShootSound = "5c7c8d7ecd365e5f:tep_sound_max_shoot"
 		}
 	}
 	Cog [ContextId:6]
@@ -277,6 +281,12 @@ Level
 			var Positional = false
 			var Cue = "5c447afe8f91507e:tep_sound_justin_gamethemeplus_1"
 		}
+		TEP_TECH_CS_CameraSound 
+		{
+			var HurrySound = "5cc6897e5032fc9d:tep_sound_justin_hurryup_4"
+			var HurryMusic = "5cc68b22274d2d27:tep_sound_justin_gamethemeplus_posthurryup"
+			var Baron = "5cc68e72563389cf:Baron"
+		}
 	}
 	Cog [ContextId:7]
 	{
@@ -341,12 +351,30 @@ Level
 	{
 		Transform 
 		{
-			var Translation = Real3{-9.69903755, 4.06811523, 0}
+			var Translation = Real3{-0.0665521622, 12.7149487, 0}
 			var Rotation = Quaternion{0, 0, 0, 1}
 			var Scale = Real3{1, 1, 1}
 		}
 	}
-	Cog [ContextId:10]
+	Cog [InheritId:"5c7c80533662c3ca:EnemyPlus"][ContextId:10]
+	{
+		Transform 
+		{
+			var Translation = Real3{-0.0665521622, 10.8332539, 0}
+			var Rotation = Quaternion{0, 0, 0, 1}
+			var Scale = Real3{1, 1, 1}
+		}
+	}
+	Cog [InheritId:"5c7c80533662c3ca:EnemyPlus"][ContextId:11]
+	{
+		Transform 
+		{
+			var Translation = Real3{-0.0665521622, 8.81715298, 0}
+			var Rotation = Quaternion{0, 0, 0, 1}
+			var Scale = Real3{1, 1, 1}
+		}
+	}
+	Cog [ContextId:12]
 	{
 		var Name = "TileMap"
 		Transform 
@@ -377,7 +405,7 @@ Level
 			var MeshThickness = 1.20000005
 		}
 	}
-	Cog [ContextId:11]
+	Cog [ContextId:13]
 	{
 		var Name = "HurryText"
 		Transform 
@@ -408,7 +436,7 @@ Level
 		{
 		}
 	}
-	Cog [ContextId:12]
+	Cog [ContextId:14]
 	{
 		var Name = "ScoreText"
 		Transform 

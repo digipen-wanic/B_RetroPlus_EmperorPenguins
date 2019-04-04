@@ -18,11 +18,11 @@ SoundCue
 	{
 		Object
 		{
-			var Sound = "5c7c6dbba78991be:tep_sound_justin_hurryup_4"
+			var Sound = "5cc6897e50307a04:tep_sound_justin_hurryup_4"
 			var Weight = 1
 			var StartTime = 0
-			var EndTime = 1.71427083
-			var LoopEndTime = 1.71427083
+			var EndTime = 1.9375
+			var LoopEndTime = 1.9375
 			var LoopStartTime = 0
 			var LoopTailLength = 0
 			var CrossFadeLoopTail = false

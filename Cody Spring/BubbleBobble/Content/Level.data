@@ -135,7 +135,7 @@ Level
 			var FarPlane = 500
 			var PerspectiveMode = PerspectiveMode.Orthographic
 			var FieldOfView = 45
-			var Size = 24.4280682
+			var Size = 32.9744339
 		}
 		EditorCameraController 
 		{
@@ -239,8 +239,9 @@ Level
 		}
 		TEP_TECH_CS_CameraSound 
 		{
-			var HurrySound = "5c7c6dbba78a5307:tep_sound_justin_hurryup_4"
-			var HurryMusic = "5c7c6c04b673147c:tep_sound_justin_gamethemeplus_posthurryup_3"
+			var HurrySound = "5cc6897e5032fc9d:tep_sound_justin_hurryup_4"
+			var HurryMusic = "5cc688fabde742b5:tep_sound_justin_gametheme_posthurryup"
+			var Baron = "5cc68e72563389cf:Baron"
 		}
 	}
 	Cog [ContextId:5]

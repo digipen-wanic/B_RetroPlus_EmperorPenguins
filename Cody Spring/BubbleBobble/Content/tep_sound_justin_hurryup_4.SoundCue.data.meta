@@ -4,7 +4,7 @@ DataContent
 	DataBuilder 
 	{
 		var Name = "tep_sound_justin_hurryup_4"
-		var ResourceId = 0x5c7c6dbba78a5307
+		var ResourceId = 0x5cc6897e5032fc9d
 		var LoaderType = "SoundCue"
 		var Version = 0
 	}
