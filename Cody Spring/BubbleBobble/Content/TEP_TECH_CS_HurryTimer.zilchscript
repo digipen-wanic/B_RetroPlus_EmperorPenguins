@@ -4,6 +4,8 @@ class TEP_TECH_CS_HurryTimer : ZilchComponent
   var Visible : Boolean = false;
   var StartFlashing : Boolean = false;
   
+ 
+  
   function Initialize(init : CogInitializer)
   {
     Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
@@ -12,7 +14,7 @@ class TEP_TECH_CS_HurryTimer : ZilchComponent
   function OnLogicUpdate(event : UpdateEvent)
   {
     
-    
+
     this.LevelSettings.TEP_TECH_CS_GameVars.HurryTimer -= event.Dt;
     
     if(!(this.LevelSettings.TEP_TECH_CS_GameVars.HurryTimer < -3))
@@ -21,7 +23,7 @@ class TEP_TECH_CS_HurryTimer : ZilchComponent
       {
         
         this.FlashTimer -= event.Dt;
-        Console.WriteLine(this.FlashTimer);
+       
         
         if(this.Owner.Transform.Translation.Y <= 0)
         {

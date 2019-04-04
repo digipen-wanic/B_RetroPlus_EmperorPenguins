@@ -4,7 +4,7 @@ Cog
 	var Name = "Enemy"
 	Transform 
 	{
-		var Translation = Real3{-0.0481290817, 13.396698, 0}
+		var Translation = Real3{0, 0, 0}
 		var Scale = Real3{1, 1, 1}
 		var Rotation = Quaternion{0, 0, 0, 1}
 	}
@@ -52,16 +52,38 @@ Cog
 	TEP_TECH_JD_EnemyMovement 
 	{
 		var RandomGoUpNumber = 30
+		var IsChasing = false
+		var Player = CogPath
+		{
+			var Path = ":/Player"
+			var ErrorOnResolveToNull = false
+			var ErrorOnPathCantCompute = false
+			var ErrorOnDirectLinkFail = false
+			var UpdateCogOnPathChange = true
+			var UpdatePathOnCogChange = true
+			var UpdateCogOnInitialize = true
+			var ResolvedNullErrorOccurred = false
+			var Cog = 4294967293
+			var PathPreference0 = CogPathPreference.CogRelative
+			var PathPreference1 = CogPathPreference.SpaceRelative
+			var PathPreference2 = CogPathPreference.Absolute
+		}
 		var FirstHole = Real2{-13.4799995, -11.54}
 		var SecondHole = Real2{11.5, 13.5}
-		var YDistance = 4.80000019
+		var YDistance = 4.8499999
 		var YSpeed = 0.100000001
 		var RandomizedGoUp = true
 		var WaitToGoUp = 50
 		var MaxRightXPos = 15
+		var JumpHeight = 50
 		var MaxLeftXPos = -15
 		var OriginalSpeed = 0.100000001
+		var DebugStopChasing = false
+		var MainLevel = "5c447dbda129ea7d:Level"
 		var XJumpMovement = 0.0500000007
+		var JumporFall = 1
+		var IsFalling = false
+		var MovementTypeTimerMax = 600
 	}
 	IgnoreSpaceEffects 
 	{
@@ -80,5 +102,6 @@ Cog
 	}
 	TEP_TECH_CS_EnemyHurry 
 	{
+		var EnemyHurry = "5c7c95b31f440c24:TEP_ART_onm_EnemyAngry_0"
 	}
 }

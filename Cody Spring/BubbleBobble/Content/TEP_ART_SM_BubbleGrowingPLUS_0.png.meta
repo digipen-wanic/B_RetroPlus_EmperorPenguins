@@ -1,0 +1,20 @@
+[Version:1]
+ImageContent 
+{
+	SpriteSourceBuilder 
+	{
+		var Name = "TEP_ART_SM_BubbleGrowingPLUS_0"
+		var ResourceId = 0x5c7c83bf8ec50815
+		var FrameSizeX = 64
+		var FrameSizeY = 64
+		var FrameCount = 4
+		var FrameDelay = 0.125
+		var OriginX = 32
+		var OriginY = 32
+		var PixelsPerUnit = 32
+		var Sampling = SpriteSampling.Nearest
+		var Looping = true
+		var Slices = Real4{0, 0, 0, 0}
+		var Fill = SpriteFill.Stretch
+	}
+}

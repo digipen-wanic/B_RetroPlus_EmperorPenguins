@@ -24,6 +24,9 @@
 class BubbleBigMonster : ZilchComponent
 {
   [Property]
+  var Sound : SoundCue = null;
+  
+  [Property]
   var Player : Cog;
   
   [Property]
@@ -142,6 +145,7 @@ class BubbleBigMonster : ZilchComponent
     this.Owner.Destroy();
     var deadEnemy = this.Space.CreateAtPosition(this.DeadEnemy, this.Owner.Transform.Translation);
     deadEnemy.RigidBody.Velocity = Real3(random.Range(-10,10),random.Range(30,40), 0);
+    this.Space.SoundSpace.PlayCue(this.Sound);
   }
   
   //Pop bubble (itself)

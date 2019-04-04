@@ -1,0 +1,20 @@
+[Version:1]
+ImageContent 
+{
+	SpriteSourceBuilder 
+	{
+		var Name = "TEP_ART_SM_EnemyDyingPLUS_0"
+		var ResourceId = 0x5c7c8c1dec8f7727
+		var FrameSizeX = 120
+		var FrameSizeY = 114
+		var FrameCount = 1
+		var FrameDelay = 0.0833333358
+		var OriginX = 60
+		var OriginY = 57
+		var PixelsPerUnit = 64
+		var Sampling = SpriteSampling.Linear
+		var Looping = true
+		var Slices = Real4{0, 0, 0, 0}
+		var Fill = SpriteFill.Stretch
+	}
+}

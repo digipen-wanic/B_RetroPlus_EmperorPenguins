@@ -8,7 +8,7 @@ ImageContent
 		var FrameSizeX = 64
 		var FrameSizeY = 64
 		var FrameCount = 2
-		var FrameDelay = 1
+		var FrameDelay = 0.200000003
 		var OriginX = 32
 		var OriginY = 32
 		var PixelsPerUnit = 32

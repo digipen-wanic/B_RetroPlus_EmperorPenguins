@@ -1,0 +1,11 @@
+[Version:1]
+DataContent 
+{
+	DataBuilder 
+	{
+		var Name = "DeadEnemyPLUS"
+		var ResourceId = 0x5c7c853a5a5d71e1
+		var LoaderType = "Cog"
+		var Version = 0
+	}
+}

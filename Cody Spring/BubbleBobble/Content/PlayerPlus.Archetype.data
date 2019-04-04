@@ -1,0 +1,111 @@
+[Version:1]
+Cog 
+{
+	var Name = "Player"
+	Transform 
+	{
+		var Translation = Real3{-14.1099396, -10.7754631, 0.00999999978}
+		var Scale = Real3{2, 2, 1}
+		var Rotation = Quaternion{0, 0, 0, 1}
+	}
+	Sprite 
+	{
+		var Visible = true
+		var ViewCulling = true
+		var VisibilityEvents = true
+		var OverrideBoundingBox = false
+		var LocalAabbCenter = Real3{0, 0, 0}
+		var LocalAabbHalfExtents = Real3{1, 1, 1}
+		var GroupSortValue = 0
+		var Material = "582c575af53d18c9:AlphaSprite"
+		var VertexColor = Real4{1, 1, 1, 1}
+		var GeometryMode = SpriteGeometryMode.ZPlane
+		var SpriteSource = "5c7c8c88f62fa7ec:TEP_ART_TGB_PlayerIdle_Plus_Idle_0"
+		var FlipX = false
+		var FlipY = false
+		var AnimationActive = true
+		var AnimationSpeed = 1
+		var StartFrame = 0
+	}
+	RigidBody 
+	{
+		var Velocity = Real3{0, 0, 0}
+		var AngularVelocity = Real3{0, 0, 0}
+		var DynamicState = RigidBodyDynamicState.Dynamic
+		var AllowSleep = true
+		var Asleep = false
+		var RotationLocked = true
+		var Mode2D = Mode2DStates.InheritFromSpace
+	}
+	BoxCollider 
+	{
+		var Ghost = false
+		var SendsEvents = true
+		var Material = "4de020863e872da8:DefaultPhysicsMaterial"
+		var CollisionGroup = "5c447d3d9bb6e200:TEP_TECH_CS_Player"
+		var Offset = Real3{0, 0, 0}
+		var HalfSize = Real3{0.5, 0.5, 0.5}
+	}
+	TEP_TECH_JL_PlayerMovementController 
+	{
+		var WorldUp = Real3{0, 1, 0}
+		var LockZAxis = false
+		var ForwardEvents = false
+		var Gravity = 40
+		var JumpSpeed = 20.5
+		var JumpCancelFactor = 0.5
+		var MaxMoveSpeed = 7.5
+		var MaxFallSpeed = 10
+		var GroundAcceleration = 100
+		var AirAcceleration = 9.5
+		var GroundDeceleration = 1000000
+		var AirDeceleration = 10
+		var MaxGroundSlope = 45
+		var MaxCeilingSlope = 45
+		var GroundSnapDistance = 0.100000001
+		var BubbleProjectile = "5c7c8358fab48cc9:BubbleProjectilePLUS"
+		var ControllerVelocity = Real3{0, 0, 0}
+		var Grounded = true
+		var Jumping = false
+		var GroundTraction = 1
+		var AirTraction = 1
+	}
+	TEP_TECH_JL_PlayerAnimation 
+	{
+		var PlayerIdle = "5c7c8c88f62fa7ec:TEP_ART_TGB_PlayerIdle_Plus_Idle_0"
+		var PlayerJump = "5c7c8edf788196a2:TEP_ART_TGB_Playerjump2_0"
+		var PlayerWalk = "5c7c813509a2d605:TEP_ART_TGB_PlayerWalk2_0"
+		var DeathAnim = "5c7c81610677e34c:TEP_ART_TGB_PlayerDeath2_0"
+		var DeathSound = "5c447afe8f966024:tep_sound_justin_death_2"
+		var DeathLevel = "5c789bbd18cdc41a:DeathLevel"
+	}
+	TEP_TECH_CS_IgnoreCollide 
+	{
+	}
+	SoundEmitter 
+	{
+		var Volume = 1
+		var Pitch = 0
+		var Attenuator = "57ca8a6ad262efe5:DefaultNoAttenuation"
+		var Directional = false
+		var EmitAngle = 90
+		var RearVolume = 0.200000003
+	}
+	SimpleSound 
+	{
+		var StartPlaying = false
+		var Positional = false
+		var Cue = "5c447afe8f98b1c2:bubblebobblejump"
+	}
+	TEP_TECH_JL_PlayerMovementInput 
+	{
+		var LeftKey = Keys.A
+		var RightKey = Keys.D
+		var JumpKey = Keys.Space
+		var Shoot = Keys.E
+		var PowerShot = Keys.W
+		var JumpSound = "5c447afe8f98b1c2:bubblebobblejump"
+		var ShootFrame = "5c7c8e3c58a9d35f:TEP_ART_TGB_PlayerShoot41"
+		var ShootSound = "4e1bd44008b4dc2a:DefaultSoundCue"
+	}
+}

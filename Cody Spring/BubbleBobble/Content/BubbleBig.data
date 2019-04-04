@@ -63,6 +63,7 @@ Cog
 	}
 	BubbleBig 
 	{
+		var BubblePopSound = "5c447afe8f907685:tep_sound_justin_hitenemy_2"
 		var Destination = Real2{0, 5}
 		var BubbleSpeed = 1
 		var Player = CogPath

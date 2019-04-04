@@ -1,0 +1,11 @@
+[Version:1]
+DataContent 
+{
+	DataBuilder 
+	{
+		var Name = "GrapePLUS"
+		var ResourceId = 0x5c7c84007dbf59a6
+		var LoaderType = "Cog"
+		var Version = 0
+	}
+}

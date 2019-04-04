@@ -113,7 +113,7 @@ function OnCollisionStarted(event : CollisionEvent)
     if(event.OtherObject.TEP_TECH_CS_DeathZone != null)
     {
       this.OnDeath();
-      Console.WriteLine("HIT");
+  
     }
   }
   

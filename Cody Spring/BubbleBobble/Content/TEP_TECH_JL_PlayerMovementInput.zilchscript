@@ -11,7 +11,8 @@ class TEP_TECH_JL_PlayerMovementInput : ZilchComponent
   var JumpSound : SoundCue = null;
   [Property]
   var ShootFrame : SpriteSource = null;
-  
+  [Property]
+  var ShootSound : SoundCue = null;
   
   function Initialize(init : CogInitializer)
   {
@@ -49,12 +50,15 @@ class TEP_TECH_JL_PlayerMovementInput : ZilchComponent
     {
     this.TEP_TECH_JL_PlayerMovementController.Update(movement, event.Dt);
     }
-    
-    if(Zero.Keyboard.KeyIsPressed(Keys.C) || Zero.Keyboard.KeyIsPressed(Keys.Z))
+    this.LevelSettings.TEP_TECH_CS_GameVars.ShootTimer2 += event.Dt;
+    Console.WriteLine(this.LevelSettings.TEP_TECH_CS_GameVars.ShootTimer2);
+    if((Zero.Keyboard.KeyIsPressed(Keys.C) || Zero.Keyboard.KeyIsPressed(Keys.Z)) && this.LevelSettings.TEP_TECH_CS_GameVars.ShootTimer2 >= 0.5)
     {
       this.TEP_TECH_JL_PlayerMovementController.Shot();
       this.Owner.Sprite.SpriteSource = this.ShootFrame;
       this.LevelSettings.TEP_TECH_CS_GameVars.IsShooting = true;
+      this.Space.SoundSpace.PlayCue(this.ShootSound);
+      this.LevelSettings.TEP_TECH_CS_GameVars.ShootTimer2 = 0;
     }
   }
   }

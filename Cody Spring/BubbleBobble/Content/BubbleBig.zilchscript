@@ -25,6 +25,9 @@
 class BubbleBig : ZilchComponent
 {
   [Property]
+  var BubblePopSound : SoundCue = null;
+  
+  [Property]
   var Destination : Real2;
   
   [Property]
@@ -159,7 +162,7 @@ class BubbleBig : ZilchComponent
     if(this.LevelSettings.TEP_TECH_CS_GameVars.BubbleCollsion == true)
     {
       this.PopTimer2 -= event.Dt;
-      Console.WriteLine(this.PopTimer2);
+      //Console.WriteLine(this.PopTimer2);
     }
     if(this.PopTimer2 <= -0.4)
       {
@@ -212,7 +215,7 @@ class BubbleBig : ZilchComponent
   function PopAndDestroy()
   {
     this.Owner.Collider.Ghost = true;
-    this.Owner.Collider.SendsEvents = false;
+    this.Owner.Collider.SendsEvents = false; 
     
     this.Owner.Sprite.SpriteSource = this.PopSprite;
     var seq = Action.Sequence(this.Owner.Actions);

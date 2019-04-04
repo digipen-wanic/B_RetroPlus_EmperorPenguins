@@ -22,10 +22,13 @@ class TEP_TECH_CS_GameVars : ZilchComponent
   
   var ShootTimer = 0.25;
   
+  var ShootTimer2 = 0.0;
+  
   var IsShooting = false;
   
   [Property]
   var RespawnLocation = Real3(-5.14, 4.77, 0);
   
   var BubbleCollsion = false;
+  
 }
