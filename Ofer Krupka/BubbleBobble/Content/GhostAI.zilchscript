@@ -1,0 +1,189 @@
+class GhostAI : ZilchComponent
+{
+  [Property]
+  var Target : CogPath;
+  
+  
+  [Property]
+  var MovingDistance : Real;
+  [Property]
+  var MovingDuration : Real = 1;
+  [Property]
+  var StillDuration : Real = 1;
+  
+  
+  [Property]
+  var SpeedUpTimer : Real;
+  [Property]
+  var SpeedUpMovingDistance : Real;
+  [Property]
+  var SpeedUpMovingDuration : Real;
+  [Property]
+  var SpeedUpStillDuration : Real;
+  
+  [Property]
+  var SpawnAndDeathSpeed : Real;
+  [Property]
+  var SpawnAndDeathSprite : SpriteSource;
+  [Property]
+  var GhostSprite : SpriteSource;
+  
+  var MoveNow : Boolean;
+  var OnLogicUpdateEnabled : Boolean = true;
+  var MoveNowHorizontally : Boolean;
+  
+  
+  function Initialize(init : CogInitializer)
+  {
+    Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+    Zero.Connect(this.Owner, Events.CollisionStarted, this.OnCollisionStarted);
+    
+    this.Owner.Sprite.AnimationActive = false;
+    this.Owner.Sprite.SpriteSource = this.SpawnAndDeathSprite;
+    
+    var seq = Action.Sequence(this.Owner.Actions);
+    if(this.Owner.Sprite.SpriteSource.FrameCount != 1)
+    {
+      for(var i = 0; i < this.Owner.Sprite.SpriteSource.FrameCount-1; ++i)
+      {
+        Action.Delay(seq, this.SpawnAndDeathSpeed/(this.Owner.Sprite.SpriteSource.FrameCount+1));
+        Action.Call(seq, this.IncreaseFrame);
+      }
+      Action.Delay(seq, this.SpawnAndDeathSpeed/(this.Owner.Sprite.SpriteSource.FrameCount+1));
+    }
+    else
+    {
+      Action.Delay(seq, this.SpawnAndDeathSpeed);
+    }
+    Action.Call(seq, this.SwitchToGhostSprite);
+    Action.Call(seq, this.Still);
+    
+    Action.Delay(seq, this.SpeedUpTimer);
+    Action.Call(seq, this.SpeedUp);
+  }
+  
+  function OnLogicUpdate(event : UpdateEvent)
+  {
+    //Move
+    if(this.MoveNow && this.OnLogicUpdateEnabled)
+    {
+      //TODO
+      var movement = (event.Dt/this.MovingDuration)*(this.MovingDistance/1);
+      
+      //Horizontal
+      if(this.MoveNowHorizontally)
+      {
+        if(this.Owner.Transform.Translation.X < this.Target.Transform.Translation.X)
+        {
+          this.Owner.Transform.Translation += Real3(movement , 0, 0);
+        }
+        else
+        {
+          this.Owner.Transform.Translation -= Real3(movement, 0, 0);
+        }
+      }
+      //Vertical
+      else
+      {
+        if(this.Owner.Transform.Translation.Y < this.Target.Transform.Translation.Y)
+        {
+          this.Owner.Transform.Translation += Real3(0, movement, 0);
+        }
+        else
+        {
+          this.Owner.Transform.Translation -= Real3(0, movement, 0);
+        }
+      }
+    }
+  }
+  
+  function OnCollisionStarted(event : CollisionEvent)
+  {
+    if(event.OtherObject == this.Target.Cog)
+    {
+      //TODO: Kill player
+      this.LevelSettings.TEP_TECH_CS_GameVars.Dead = true;
+      //TODO: Disappear animation
+      this.Death();
+    }
+  }
+  
+  function Move()
+  {
+    this.MoveNow = true;
+    
+    if(Math.Abs(this.Target.Transform.Translation.X - this.Owner.Transform.Translation.X) > Math.Abs(this.Target.Transform.Translation.Y - this.Owner.Transform.Translation.Y))
+      this.MoveNowHorizontally = true;
+    else
+      this.MoveNowHorizontally = false;
+    
+    var seq = Action.Sequence(this.Owner.Actions);
+    Action.Delay(seq, this.MovingDuration);
+    Action.Call(seq, this.Still);
+    
+  }
+  
+  function Still()
+  {
+    this.MoveNow = false;
+    
+    var seq = Action.Sequence(this.Owner.Actions);
+    Action.Delay(seq, this.StillDuration);
+    Action.Call(seq, this.Move);
+  }
+  
+  function SpeedUp()
+  {
+    this.MovingDistance = this.SpeedUpMovingDistance;
+    Console.WriteLine(this.MovingDistance);
+    this.MovingDuration = this.SpeedUpMovingDuration;
+    Console.WriteLine(this.MovingDuration);
+    this.StillDuration = this.SpeedUpStillDuration;
+    Console.WriteLine(this.StillDuration);
+  }
+  
+  function Death()
+  {
+    //Disable on logic update
+    this.OnLogicUpdateEnabled = false;
+    
+    this.Owner.Sprite.AnimationActive = false;
+    this.Owner.Sprite.SpriteSource = this.SpawnAndDeathSprite;
+    this.Owner.Sprite.CurrentFrame = this.Owner.Sprite.SpriteSource.FrameCount-1;
+    
+    
+    var seq = Action.Sequence(this.Owner.Actions);
+    if(this.Owner.Sprite.SpriteSource.FrameCount != 1)
+    {
+      for(var i = 0; i < this.Owner.Sprite.SpriteSource.FrameCount-1; ++i)
+      {
+        Action.Delay(seq, this.SpawnAndDeathSpeed/(this.Owner.Sprite.SpriteSource.FrameCount+1));
+        Action.Call(seq, this.DecreaseFrame);
+      }
+      Action.Delay(seq, this.SpawnAndDeathSpeed/(this.Owner.Sprite.SpriteSource.FrameCount+1));
+    }
+    else
+    {
+      Action.Delay(seq, this.SpawnAndDeathSpeed);
+    }
+    Action.Call(seq, this.Owner.Destroy);
+  }
+  
+  /////
+  
+  function SwitchToGhostSprite()
+  {
+    this.Owner.Sprite.AnimationActive = true;
+    this.Owner.Sprite.SpriteSource = this.GhostSprite;
+  }
+  
+  function IncreaseFrame()
+  {
+    ++this.Owner.Sprite.CurrentFrame;
+  }
+  
+  function DecreaseFrame()
+  {
+    ++this.Owner.Sprite.CurrentFrame;
+  }
+}
