@@ -42,7 +42,7 @@ Cog
 		var Ghost = false
 		var SendsEvents = true
 		var Material = "4de020863e872da8:DefaultPhysicsMaterial"
-		var CollisionGroup = "5c447afe8f94d94b:PlayerUp"
+		var CollisionGroup = "5cb1619882794a50:BigBubble"
 		var Offset = Real3{0, 0, 0}
 		var HalfSize = Real3{0.5, 0.5, 0.5}
 	}

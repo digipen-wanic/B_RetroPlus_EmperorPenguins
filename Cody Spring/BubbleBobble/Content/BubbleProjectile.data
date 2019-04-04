@@ -62,10 +62,10 @@ Cog
 	}
 	BoxCollider 
 	{
-		var Ghost = true
+		var Ghost = false
 		var SendsEvents = true
 		var Material = "4de020863e872da8:DefaultPhysicsMaterial"
-		var CollisionGroup = "5c447d3d9bb6e200:TEP_TECH_CS_Player"
+		var CollisionGroup = "5cb160f3a7376fd1:BubbleProjectile"
 		var Offset = Real3{0, 0, 0}
 		var HalfSize = Real3{0.5, 0.5, 0.5}
 	}

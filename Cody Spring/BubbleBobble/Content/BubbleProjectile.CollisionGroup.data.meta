@@ -1,0 +1,11 @@
+[Version:1]
+DataContent 
+{
+	DataBuilder 
+	{
+		var Name = "BubbleProjectile"
+		var ResourceId = 0x5cb160f3a7376fd1
+		var LoaderType = "CollisionGroup"
+		var Version = 0
+	}
+}

@@ -4,7 +4,7 @@ Cog
 	var Name = "Sprite"
 	Transform 
 	{
-		var Translation = Real3{1.20588923, -10.6190271, 0}
+		var Translation = Real3{12.6075182, 6.37026215, 0.0100002289}
 		var Scale = Real3{8, 8, 1}
 		var Rotation = Quaternion{0, 0, 0, 1}
 	}

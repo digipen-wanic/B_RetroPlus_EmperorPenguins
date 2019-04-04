@@ -177,8 +177,9 @@ class BubbleBig : ZilchComponent
       if(Math.Abs(this.Owner.Transform.Translation.X - event.OtherObject.Transform.Translation.X)
       <
       Math.Abs(this.Owner.Transform.Translation.Y - event.OtherObject.Transform.Translation.Y))
-      this.LevelSettings.TEP_TECH_CS_GameVars.BubbleCollsion = true;
- 
+      {
+        this.LevelSettings.TEP_TECH_CS_GameVars.BubbleCollsion = true;
+      }
       //Touching bubble from top/bottom | destroy if touching the top or buttom (looks like x shape)
       /*if(Math.Abs(this.Owner.Transform.Translation.X - event.OtherObject.Transform.Translation.X)
       <

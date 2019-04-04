@@ -3,6 +3,7 @@ class TEP_TECH_CS_HurryTimer : ZilchComponent
   var FlashTimer : Real = 0.5;
   var Visible : Boolean = false;
   var StartFlashing : Boolean = false;
+  
   function Initialize(init : CogInitializer)
   {
     Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);

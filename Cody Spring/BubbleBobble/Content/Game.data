@@ -5,7 +5,7 @@ GameSession
 	DefaultGameSetup 
 	{
 		var StartingSpace = "576f215c0825de61:Space"
-		var StartingLevel = "5c447dbda129ea7d:Level"
+		var StartingLevel = "5c789db59a4058cc:MenuLevel"
 		var LoadEditingLevel = true
 	}
 	NetPeer 
