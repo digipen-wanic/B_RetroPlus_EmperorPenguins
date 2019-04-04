@@ -10,10 +10,11 @@ class TEP_TECH_CS_GameVars : ZilchComponent
   var PlayerLives = 2;
   
   //used to add score and update HUD
-  var PlayerScore = Real();
+  var PlayerScore = Real(00);
   
   // used for baron von bubble
-  var HurryTimer = 0;
+  [Property]
+  var HurryTimer = Real(1);
   
   var DeathTimer = 1.2;
   
@@ -25,4 +26,6 @@ class TEP_TECH_CS_GameVars : ZilchComponent
   
   [Property]
   var RespawnLocation = Real3(-5.14, 4.77, 0);
+  
+  var BubbleCollsion = false;
 }

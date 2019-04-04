@@ -34,7 +34,7 @@ class TEP_TECH_CS_ScoreObject : ZilchComponent
     this.LevelSettings.TEP_TECH_CS_GameVars.PlayerScore += this.ScoreModifier;
     this.Owner.Destroy();
     Console.WriteLine("It collided");
-    
+    var newEvent = ZilchEvent();
     
     if(this.ScoreModifier == 300)
     {
@@ -42,6 +42,7 @@ class TEP_TECH_CS_ScoreObject : ZilchComponent
       scoreText.RigidBody.Velocity = Real3(0,2,0);
       scoreText.SimpleSound.Cue = this.PickupSound;
       scoreText.SimpleSound.Play();
+      this.LevelSettings.Space.DispatchEvent("ScoreUpdate", newEvent);
     }
     else if(this.ScoreModifier == 1000)
     {
@@ -49,6 +50,7 @@ class TEP_TECH_CS_ScoreObject : ZilchComponent
       scoreText.RigidBody.Velocity = Real3(0,2,0);
       scoreText.SimpleSound.Cue = this.PickupSound;
       scoreText.SimpleSound.Play();
+      this.LevelSettings.Space.DispatchEvent("ScoreUpdate", newEvent);
     }
     else if(this.ScoreModifier == 2000)
     {
@@ -56,6 +58,7 @@ class TEP_TECH_CS_ScoreObject : ZilchComponent
       scoreText.RigidBody.Velocity = Real3(0,2,0);
       scoreText.SimpleSound.Cue = this.PickupSound;
       scoreText.SimpleSound.Play();
+      this.LevelSettings.Space.DispatchEvent("ScoreUpdate", newEvent);
     }
     else if(this.ScoreModifier == 3000)
     {
@@ -63,6 +66,7 @@ class TEP_TECH_CS_ScoreObject : ZilchComponent
       scoreText.RigidBody.Velocity = Real3(0,2,0);
       scoreText.SimpleSound.Cue = this.PickupSound;
       scoreText.SimpleSound.Play();
+      this.LevelSettings.Space.DispatchEvent("ScoreUpdate", newEvent);
     }
     }
   }

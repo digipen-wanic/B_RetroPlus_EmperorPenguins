@@ -4,15 +4,341 @@ CollisionTable
 	var RegisteredGroups = Array
 	{
 		"4e740859314e5515:DefaultGroup"
-		"5c4461342454db38:PlayerUp"
-		"5c44612921e7d637:TEP_TECH_CS_Player"
+		"5cb1619882794a50:BigBubble"
+		"5c7ffa58d114cabd:TEP_TECH_CS_ScoreObject"
+		"5c447d3d9bb6e200:TEP_TECH_CS_Player"
+		"5c447afe8f94d94b:PlayerUp"
+		"5c7ffa25da7a7ba4:TEP_TECH_CS_Enemy"
+		"5c7ff5a53955cdb2:TEP_TECH_CS_DeadEnemy"
+		"5c7fc19598062650:PassthroughDeadEnemy"
+		"5cb160f3a7376fd1:BubbleProjectile"
+		"5c7fc009a33f5b3c:Wall"
 	}
 	var CollisionFilters = Array
 	{
 		Object
 		{
 			var TypeA = "4e740859314e5515:DefaultGroup"
-			var TypeB = "5c4461342454db38:PlayerUp"
+			var TypeB = "5c447afe8f94d94b:PlayerUp"
+			var SkipResolution = false
+			var SkipDetectingCollision = true
+			var StartEvent = false
+			var EndEvent = false
+			var PersistedEvent = false
+			var PreSolveEvent = false
+		}
+		Object
+		{
+			var TypeA = "5c7ffa25da7a7ba4:TEP_TECH_CS_Enemy"
+			var TypeB = "5c7ffa25da7a7ba4:TEP_TECH_CS_Enemy"
+			var SkipResolution = false
+			var SkipDetectingCollision = true
+			var StartEvent = false
+			var EndEvent = false
+			var PersistedEvent = false
+			var PreSolveEvent = false
+		}
+		Object
+		{
+			var TypeA = "5c7ffa25da7a7ba4:TEP_TECH_CS_Enemy"
+			var TypeB = "5c7ffa58d114cabd:TEP_TECH_CS_ScoreObject"
+			var SkipResolution = false
+			var SkipDetectingCollision = true
+			var StartEvent = false
+			var EndEvent = false
+			var PersistedEvent = false
+			var PreSolveEvent = false
+		}
+		Object
+		{
+			var TypeA = "5c7ffa58d114cabd:TEP_TECH_CS_ScoreObject"
+			var TypeB = "5c7ffa58d114cabd:TEP_TECH_CS_ScoreObject"
+			var SkipResolution = false
+			var SkipDetectingCollision = true
+			var StartEvent = false
+			var EndEvent = false
+			var PersistedEvent = false
+			var PreSolveEvent = false
+		}
+		Object
+		{
+			var TypeA = "5c447d3d9bb6e200:TEP_TECH_CS_Player"
+			var TypeB = "5c447d3d9bb6e200:TEP_TECH_CS_Player"
+			var SkipResolution = false
+			var SkipDetectingCollision = false
+			var StartEvent = false
+			var EndEvent = false
+			var PersistedEvent = false
+			var PreSolveEvent = false
+		}
+		Object
+		{
+			var TypeA = "5c7ff5a53955cdb2:TEP_TECH_CS_DeadEnemy"
+			var TypeB = "5c7ffa58d114cabd:TEP_TECH_CS_ScoreObject"
+			var SkipResolution = false
+			var SkipDetectingCollision = true
+			var StartEvent = false
+			var EndEvent = false
+			var PersistedEvent = false
+			var PreSolveEvent = false
+		}
+		Object
+		{
+			var TypeA = "5c7ff5a53955cdb2:TEP_TECH_CS_DeadEnemy"
+			var TypeB = "5c447d3d9bb6e200:TEP_TECH_CS_Player"
+			var SkipResolution = false
+			var SkipDetectingCollision = true
+			var StartEvent = false
+			var EndEvent = false
+			var PersistedEvent = false
+			var PreSolveEvent = false
+		}
+		Object
+		{
+			var TypeA = "5c7ff5a53955cdb2:TEP_TECH_CS_DeadEnemy"
+			var TypeB = "5c7ffa25da7a7ba4:TEP_TECH_CS_Enemy"
+			var SkipResolution = false
+			var SkipDetectingCollision = true
+			var StartEvent = false
+			var EndEvent = false
+			var PersistedEvent = false
+			var PreSolveEvent = false
+		}
+		Object
+		{
+			var TypeA = "5c7ff5a53955cdb2:TEP_TECH_CS_DeadEnemy"
+			var TypeB = "5c7ff5a53955cdb2:TEP_TECH_CS_DeadEnemy"
+			var SkipResolution = false
+			var SkipDetectingCollision = true
+			var StartEvent = false
+			var EndEvent = false
+			var PersistedEvent = false
+			var PreSolveEvent = false
+		}
+		Object
+		{
+			var TypeA = "4e740859314e5515:DefaultGroup"
+			var TypeB = "5c7ff5a53955cdb2:TEP_TECH_CS_DeadEnemy"
+			var SkipResolution = false
+			var SkipDetectingCollision = false
+			var StartEvent = false
+			var EndEvent = false
+			var PersistedEvent = false
+			var PreSolveEvent = false
+		}
+		Object
+		{
+			var TypeA = "5c7fc19598062650:PassthroughDeadEnemy"
+			var TypeB = "5c7ffa58d114cabd:TEP_TECH_CS_ScoreObject"
+			var SkipResolution = false
+			var SkipDetectingCollision = true
+			var StartEvent = false
+			var EndEvent = false
+			var PersistedEvent = false
+			var PreSolveEvent = false
+		}
+		Object
+		{
+			var TypeA = "5c7fc19598062650:PassthroughDeadEnemy"
+			var TypeB = "5c447d3d9bb6e200:TEP_TECH_CS_Player"
+			var SkipResolution = false
+			var SkipDetectingCollision = true
+			var StartEvent = false
+			var EndEvent = false
+			var PersistedEvent = false
+			var PreSolveEvent = false
+		}
+		Object
+		{
+			var TypeA = "5c7fc19598062650:PassthroughDeadEnemy"
+			var TypeB = "5c7ffa25da7a7ba4:TEP_TECH_CS_Enemy"
+			var SkipResolution = false
+			var SkipDetectingCollision = true
+			var StartEvent = false
+			var EndEvent = false
+			var PersistedEvent = false
+			var PreSolveEvent = false
+		}
+		Object
+		{
+			var TypeA = "5c7fc19598062650:PassthroughDeadEnemy"
+			var TypeB = "5c7ff5a53955cdb2:TEP_TECH_CS_DeadEnemy"
+			var SkipResolution = false
+			var SkipDetectingCollision = true
+			var StartEvent = false
+			var EndEvent = false
+			var PersistedEvent = false
+			var PreSolveEvent = false
+		}
+		Object
+		{
+			var TypeA = "5c7fc19598062650:PassthroughDeadEnemy"
+			var TypeB = "5c447afe8f94d94b:PlayerUp"
+			var SkipResolution = false
+			var SkipDetectingCollision = true
+			var StartEvent = false
+			var EndEvent = false
+			var PersistedEvent = false
+			var PreSolveEvent = false
+		}
+		Object
+		{
+			var TypeA = "5c7fc19598062650:PassthroughDeadEnemy"
+			var TypeB = "5c7fc19598062650:PassthroughDeadEnemy"
+			var SkipResolution = false
+			var SkipDetectingCollision = true
+			var StartEvent = false
+			var EndEvent = false
+			var PersistedEvent = false
+			var PreSolveEvent = false
+		}
+		Object
+		{
+			var TypeA = "4e740859314e5515:DefaultGroup"
+			var TypeB = "5c7fc19598062650:PassthroughDeadEnemy"
+			var SkipResolution = false
+			var SkipDetectingCollision = true
+			var StartEvent = false
+			var EndEvent = false
+			var PersistedEvent = false
+			var PreSolveEvent = false
+		}
+		Object
+		{
+			var TypeA = "5c7fc009a33f5b3c:Wall"
+			var TypeB = "5c7fc009a33f5b3c:Wall"
+			var SkipResolution = false
+			var SkipDetectingCollision = true
+			var StartEvent = false
+			var EndEvent = false
+			var PersistedEvent = false
+			var PreSolveEvent = false
+		}
+		Object
+		{
+			var TypeA = "5c447d3d9bb6e200:TEP_TECH_CS_Player"
+			var TypeB = "5c7fc009a33f5b3c:Wall"
+			var SkipResolution = false
+			var SkipDetectingCollision = false
+			var StartEvent = false
+			var EndEvent = false
+			var PersistedEvent = false
+			var PreSolveEvent = false
+		}
+		Object
+		{
+			var TypeA = "5cb1619882794a50:BigBubble"
+			var TypeB = "5c7ffa58d114cabd:TEP_TECH_CS_ScoreObject"
+			var SkipResolution = false
+			var SkipDetectingCollision = true
+			var StartEvent = false
+			var EndEvent = false
+			var PersistedEvent = false
+			var PreSolveEvent = false
+		}
+		Object
+		{
+			var TypeA = "5cb1619882794a50:BigBubble"
+			var TypeB = "5c7ffa25da7a7ba4:TEP_TECH_CS_Enemy"
+			var SkipResolution = false
+			var SkipDetectingCollision = true
+			var StartEvent = false
+			var EndEvent = false
+			var PersistedEvent = false
+			var PreSolveEvent = false
+		}
+		Object
+		{
+			var TypeA = "5cb1619882794a50:BigBubble"
+			var TypeB = "5c7ff5a53955cdb2:TEP_TECH_CS_DeadEnemy"
+			var SkipResolution = false
+			var SkipDetectingCollision = true
+			var StartEvent = false
+			var EndEvent = false
+			var PersistedEvent = false
+			var PreSolveEvent = false
+		}
+		Object
+		{
+			var TypeA = "5cb1619882794a50:BigBubble"
+			var TypeB = "5c447afe8f94d94b:PlayerUp"
+			var SkipResolution = false
+			var SkipDetectingCollision = false
+			var StartEvent = false
+			var EndEvent = false
+			var PersistedEvent = false
+			var PreSolveEvent = false
+		}
+		Object
+		{
+			var TypeA = "5cb1619882794a50:BigBubble"
+			var TypeB = "5c7fc19598062650:PassthroughDeadEnemy"
+			var SkipResolution = false
+			var SkipDetectingCollision = true
+			var StartEvent = false
+			var EndEvent = false
+			var PersistedEvent = false
+			var PreSolveEvent = false
+		}
+		Object
+		{
+			var TypeA = "5cb1619882794a50:BigBubble"
+			var TypeB = "4e740859314e5515:DefaultGroup"
+			var SkipResolution = false
+			var SkipDetectingCollision = true
+			var StartEvent = false
+			var EndEvent = false
+			var PersistedEvent = false
+			var PreSolveEvent = false
+		}
+		Object
+		{
+			var TypeA = "5cb160f3a7376fd1:BubbleProjectile"
+			var TypeB = "5c7ffa58d114cabd:TEP_TECH_CS_ScoreObject"
+			var SkipResolution = false
+			var SkipDetectingCollision = true
+			var StartEvent = false
+			var EndEvent = false
+			var PersistedEvent = false
+			var PreSolveEvent = false
+		}
+		Object
+		{
+			var TypeA = "5cb160f3a7376fd1:BubbleProjectile"
+			var TypeB = "5c447d3d9bb6e200:TEP_TECH_CS_Player"
+			var SkipResolution = false
+			var SkipDetectingCollision = true
+			var StartEvent = false
+			var EndEvent = false
+			var PersistedEvent = false
+			var PreSolveEvent = false
+		}
+		Object
+		{
+			var TypeA = "5cb160f3a7376fd1:BubbleProjectile"
+			var TypeB = "5c7ff5a53955cdb2:TEP_TECH_CS_DeadEnemy"
+			var SkipResolution = false
+			var SkipDetectingCollision = true
+			var StartEvent = false
+			var EndEvent = false
+			var PersistedEvent = false
+			var PreSolveEvent = false
+		}
+		Object
+		{
+			var TypeA = "5cb160f3a7376fd1:BubbleProjectile"
+			var TypeB = "5c7fc19598062650:PassthroughDeadEnemy"
+			var SkipResolution = false
+			var SkipDetectingCollision = true
+			var StartEvent = false
+			var EndEvent = false
+			var PersistedEvent = false
+			var PreSolveEvent = false
+		}
+		Object
+		{
+			var TypeA = "5cb160f3a7376fd1:BubbleProjectile"
+			var TypeB = "5cb160f3a7376fd1:BubbleProjectile"
 			var SkipResolution = false
 			var SkipDetectingCollision = true
 			var StartEvent = false

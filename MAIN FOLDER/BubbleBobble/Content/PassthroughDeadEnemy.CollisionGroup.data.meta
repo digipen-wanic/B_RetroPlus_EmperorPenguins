@@ -1,0 +1,11 @@
+[Version:1]
+DataContent 
+{
+	DataBuilder 
+	{
+		var Name = "PassthroughDeadEnemy"
+		var ResourceId = 0x5c7fc19598062650
+		var LoaderType = "CollisionGroup"
+		var Version = 0
+	}
+}

@@ -40,7 +40,8 @@ Level
 		}
 		TEP_TECH_CS_GameVars 
 		{
-			var RespawnLocation = Real3{-5.13999987, 4.76999998, 0}
+			var HurryTimer = 53
+			var RespawnLocation = Real3{-14, -11, 0}
 		}
 	}
 	Cog [ContextId:2]
@@ -81,7 +82,7 @@ Level
 		var Name = "EditorCamera"
 		Transform 
 		{
-			var Translation = Real3{-0.834668458, -1.52814841, 20}
+			var Translation = Real3{-1.76357841, 3.47316957, 20.0100002}
 			var Scale = Real3{1, 1, 1}
 			var Rotation = Quaternion{0, -1.09278471e-08, 0, 1}
 		}
@@ -134,7 +135,7 @@ Level
 			var FarPlane = 500
 			var PerspectiveMode = PerspectiveMode.Orthographic
 			var FieldOfView = 45
-			var Size = 36.4423141
+			var Size = 36.4423561
 		}
 		EditorCameraController 
 		{
@@ -143,7 +144,7 @@ Level
 			var LookDistance = 20
 			var VerticalAngle = 0
 			var HorizontalAngle = 0
-			var LookTarget = Real3{-0.834668458, -1.52814841, 4.15387547e-07}
+			var LookTarget = Real3{-1.76357841, 3.47316957, 0.0100006247}
 			var MoveSensitivity = 1
 		}
 	}
@@ -152,7 +153,7 @@ Level
 		var Name = "GameCamera"
 		Transform 
 		{
-			var Translation = Real3{0, -0.631930351, 10}
+			var Translation = Real3{0, -0.517570496, 10}
 			var Scale = Real3{1, 1, 1}
 			var Rotation = Quaternion{0, 0, 0, 1}
 		}
@@ -214,7 +215,7 @@ Level
 			var FarPlane = 200
 			var PerspectiveMode = PerspectiveMode.Orthographic
 			var FieldOfView = 60
-			var Size = 25
+			var Size = 26
 		}
 		SoundListener 
 		{
@@ -410,12 +411,30 @@ Level
 	{
 		Transform 
 		{
-			var Translation = Real3{-9.69903755, 4.06811523, 0}
+			var Translation = Real3{-0.0481290817, 9.02011681, 0}
 			var Rotation = Quaternion{0, 0, 0, 1}
 			var Scale = Real3{1, 1, 1}
 		}
 	}
-	Cog [ContextId:9]
+	Cog [InheritId:"5c3c2c78230c0e36:Enemy"][ContextId:9]
+	{
+		Transform 
+		{
+			var Translation = Real3{-0.0481290817, 11.2084064, 0}
+			var Rotation = Quaternion{0, 0, 0, 1}
+			var Scale = Real3{1, 1, 1}
+		}
+	}
+	Cog [InheritId:"5c3c2c78230c0e36:Enemy"][ContextId:10]
+	{
+		Transform 
+		{
+			var Translation = Real3{-0.0481290817, 13.396698, 0}
+			var Rotation = Quaternion{0, 0, 0, 1}
+			var Scale = Real3{1, 1, 1}
+		}
+	}
+	Cog [ContextId:11]
 	{
 		var Name = "LivesText"
 		Transform 
@@ -446,7 +465,7 @@ Level
 		{
 		}
 	}
-	Cog [ContextId:10]
+	Cog [ContextId:12]
 	{
 		var Name = "LevelText"
 		Transform 
@@ -472,6 +491,69 @@ Level
 			var FontSize = 100
 			var PixelsPerUnit = 128
 			var TextAlign = TextAlign.Center
+		}
+	}
+	Cog [ContextId:13]
+	{
+		var Name = "ScoreText"
+		Transform 
+		{
+			var Translation = Real3{-8.99385643, 11.8518219, 4.15387547e-07}
+			var Scale = Real3{1, 1, 1}
+			var Rotation = Quaternion{0, 0, 0, 1}
+		}
+		SpriteText 
+		{
+			var Visible = true
+			var ViewCulling = true
+			var VisibilityEvents = true
+			var OverrideBoundingBox = false
+			var LocalAabbCenter = Real3{0, 0, 0}
+			var LocalAabbHalfExtents = Real3{1, 1, 1}
+			var GroupSortValue = 0
+			var Material = "582c575af53d18c9:AlphaSprite"
+			var VertexColor = Real4{0.996078491, 0.737254918, 0.984313667, 1}
+			var GeometryMode = SpriteGeometryMode.ZPlane
+			var Text = "SCORE"
+			var Font = "5c78857259567c4d:bubb"
+			var FontSize = 100
+			var PixelsPerUnit = 128
+			var TextAlign = TextAlign.Right
+		}
+		TEP_TECH_CS_ScoreText 
+		{
+		}
+	}
+	Cog [ContextId:14]
+	{
+		var Name = "HurryText"
+		Transform 
+		{
+			var Translation = Real3{-0.00519314408, -6.05243111, 0}
+			var Scale = Real3{1, 1, 1}
+			var Rotation = Quaternion{0, 0, 0, 1}
+		}
+		SpriteText 
+		{
+			var Visible = true
+			var ViewCulling = true
+			var VisibilityEvents = true
+			var OverrideBoundingBox = false
+			var LocalAabbCenter = Real3{0, 0, 0}
+			var LocalAabbHalfExtents = Real3{1, 1, 1}
+			var GroupSortValue = 0
+			var Material = "582c575af53d18c9:AlphaSprite"
+			var VertexColor = Real4{1, 0, 0, 0}
+			var GeometryMode = SpriteGeometryMode.ZPlane
+			var Text = "HURRY!"
+			var Font = "5c78857259567c4d:bubb"
+			var FontSize = 100
+			var PixelsPerUnit = 128
+			var TextAlign = TextAlign.Center
+		}
+		TEP_TECH_CS_HurryTimer 
+		{
+			var Enemy = "null"
 		}
 	}
 }

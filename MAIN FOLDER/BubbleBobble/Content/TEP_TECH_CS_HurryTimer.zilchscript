@@ -1,0 +1,61 @@
+class TEP_TECH_CS_HurryTimer : ZilchComponent
+{
+  var FlashTimer : Real = 0.5;
+  var Visible : Boolean = false;
+  var StartFlashing : Boolean = false;
+  
+  function Initialize(init : CogInitializer)
+  {
+    Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+  }
+
+  function OnLogicUpdate(event : UpdateEvent)
+  {
+    
+    
+    this.LevelSettings.TEP_TECH_CS_GameVars.HurryTimer -= event.Dt;
+    
+    if(!(this.LevelSettings.TEP_TECH_CS_GameVars.HurryTimer < -3))
+    {
+      if(this.LevelSettings.TEP_TECH_CS_GameVars.HurryTimer < 0)
+      {
+        
+        this.FlashTimer -= event.Dt;
+        Console.WriteLine(this.FlashTimer);
+        
+        if(this.Owner.Transform.Translation.Y <= 0)
+        {
+          this.Owner.Transform.Translation += Real3(0, 0.17, 0);
+          this.Owner.SpriteText.VertexColor = Real4(255, 0, 0, 1);
+          if(this.Owner.Transform.Translation.Y >= 0)
+          {
+            this.StartFlashing = true;
+          }
+        }
+        
+        if(this.StartFlashing == true)
+        {
+          if(this.FlashTimer <= 0 && this.Visible == true)
+          {
+            this.Owner.SpriteText.VertexColor = Real4(255, 0, 0, 0);
+            this.FlashTimer = 0.5;
+            this.Visible = false;
+          }
+          if(this.Visible == false && this.FlashTimer <= 0)
+          {
+            this.Owner.SpriteText.VertexColor = Real4(255, 0, 0, 1);
+            this.FlashTimer = 0.5;
+            this.Visible = true;
+          }
+        }
+      }
+    }
+      else
+      {
+        this.Owner.SpriteText.VertexColor = Real4(255, 0, 0, 0);
+        this.Visible = false;
+        // add baron dude
+      }
+    }
+  }
+

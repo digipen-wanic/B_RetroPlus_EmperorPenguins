@@ -4,7 +4,7 @@ Cog
 	var Name = "Enemy"
 	Transform 
 	{
-		var Translation = Real3{-9.69903755, 4.06811523, 0}
+		var Translation = Real3{-0.0481290817, 13.396698, 0}
 		var Scale = Real3{1, 1, 1}
 		var Rotation = Quaternion{0, 0, 0, 1}
 	}
@@ -32,12 +32,12 @@ Cog
 	}
 	BoxCollider 
 	{
-		var Ghost = false
+		var Ghost = true
 		var SendsEvents = true
 		var Material = "4de020863e872da8:DefaultPhysicsMaterial"
-		var CollisionGroup = "5c447d3d9bb6e200:TEP_TECH_CS_Player"
+		var CollisionGroup = "5c7ffa25da7a7ba4:TEP_TECH_CS_Enemy"
 		var Offset = Real3{0, 0, 0}
-		var HalfSize = Real3{1, 1, 0.5}
+		var HalfSize = Real3{0.5, 1, 0.5}
 	}
 	RigidBody 
 	{
@@ -52,19 +52,16 @@ Cog
 	TEP_TECH_JD_EnemyMovement 
 	{
 		var RandomGoUpNumber = 30
-		var TopLevelY = 0
 		var FirstHole = Real2{-13.4799995, -11.54}
 		var SecondHole = Real2{11.5, 13.5}
 		var YDistance = 4.80000019
 		var YSpeed = 0.100000001
-		var RandomizedGoUp = false
+		var RandomizedGoUp = true
 		var WaitToGoUp = 50
-		var MaxRightXPos = 15.5
-		var MaxLeftXPos = -15.5
+		var MaxRightXPos = 15
+		var MaxLeftXPos = -15
 		var OriginalSpeed = 0.100000001
-		var IsGrounded = false
 		var XJumpMovement = 0.0500000007
-		var IsJumping = false
 	}
 	IgnoreSpaceEffects 
 	{
@@ -80,5 +77,8 @@ Cog
 		var IgnoreTorque = true
 		var IgnoreBuoyancy = true
 		var IgnoreCustom = true
+	}
+	TEP_TECH_CS_EnemyHurry 
+	{
 	}
 }
