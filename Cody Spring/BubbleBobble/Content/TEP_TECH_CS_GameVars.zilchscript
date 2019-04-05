@@ -31,4 +31,6 @@ class TEP_TECH_CS_GameVars : ZilchComponent
   
   var BubbleCollsion = false;
   
+  var NumberOfEnemies = Real();
+  
 }

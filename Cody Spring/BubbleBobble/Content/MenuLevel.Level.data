@@ -615,7 +615,7 @@ Level
 			var Material = "582c575af53d18c9:AlphaSprite"
 			var VertexColor = Real4{1, 1, 1, 1}
 			var GeometryMode = SpriteGeometryMode.ZPlane
-			var Text = "1P START"
+			var Text = "P1 START"
 			var Font = "5c78857259567c4d:bubb"
 			var FontSize = 100
 			var PixelsPerUnit = 128

@@ -23,6 +23,7 @@ class TEP_TECH_CS_DeadEnemy : ZilchComponent
     this.ScoreArray.Add(this.Grape);
     this.ScoreArray.Add(this.Pepper);
     this.ScoreArray.Add(this.Orange);
+    this.LevelSettings.TEP_TECH_CS_GameVars.NumberOfEnemies -= 1;
   }
 
   function OnCollisionStarted(event : CollisionEvent)
