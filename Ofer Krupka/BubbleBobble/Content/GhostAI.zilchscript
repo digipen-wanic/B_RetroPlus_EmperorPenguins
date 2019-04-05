@@ -1,3 +1,22 @@
+///////////////////////////////////
+//Name: Ofer Krupka
+//Date - Created:  04/04/2019
+//Date - Release:  04/05/2019
+//Date - Modified: 04/05/2019
+//Brife:
+//This code controls the Ghost to chase the player
+//Setup:
+//1. Make new Ghost archetype.
+//2. Add component - BoxCollider (make sure it dosen't collide with the walls).
+//3. Add this component.
+//4. Adjust parameters.
+//5. Make it spawn on the map.
+///////////////////////////////////
+//Version: 1.0
+//Version date:    04/01/2019
+//Version notes:
+//Release - It felt rushed, I wish I couldve write it on wednesday, I am sorry for that, I didn't felt well (depression).
+///////////////////////////////////
 class GhostAI : ZilchComponent
 {
   [Property]
@@ -5,7 +24,7 @@ class GhostAI : ZilchComponent
   
   
   [Property]
-  var MovingDistance : Real;
+  var MovingDistance : Real = 1;
   [Property]
   var MovingDuration : Real = 1;
   [Property]
@@ -13,23 +32,24 @@ class GhostAI : ZilchComponent
   
   
   [Property]
-  var SpeedUpTimer : Real;
+  var SpeedUpTimer : Real = 20;
   [Property]
-  var SpeedUpMovingDistance : Real;
+  var SpeedUpMovingDistance : Real = 10;
   [Property]
-  var SpeedUpMovingDuration : Real;
+  var SpeedUpMovingDuration : Real = 1;
   [Property]
-  var SpeedUpStillDuration : Real;
+  var SpeedUpStillDuration : Real = 1;
   
   [Property]
-  var SpawnAndDeathSpeed : Real;
+  var SpawnAndDeathSpeed : Real = 0.75;
   [Property]
   var SpawnAndDeathSprite : SpriteSource;
   [Property]
   var GhostSprite : SpriteSource;
   
+  
+  var OnLogicUpdateEnabled : Boolean = false;
   var MoveNow : Boolean;
-  var OnLogicUpdateEnabled : Boolean = true;
   var MoveNowHorizontally : Boolean;
   
   
@@ -64,50 +84,50 @@ class GhostAI : ZilchComponent
   
   function OnLogicUpdate(event : UpdateEvent)
   {
-    //Move
-    if(this.MoveNow && this.OnLogicUpdateEnabled)
+    //If not playing death animation
+    if(this.OnLogicUpdateEnabled)
     {
-      //TODO
-      var movement = (event.Dt/this.MovingDuration)*(this.MovingDistance/1);
-      
-      //Horizontal
-      if(this.MoveNowHorizontally)
-      {
-        if(this.Owner.Transform.Translation.X < this.Target.Transform.Translation.X)
-        {
-          this.Owner.Transform.Translation += Real3(movement , 0, 0);
-        }
-        else
-        {
-          this.Owner.Transform.Translation -= Real3(movement, 0, 0);
-        }
-      }
-      //Vertical
+      //Flip the ghost to the right (or left, no pun intended) direction based on the players location.
+      if(this.Owner.Transform.Translation.X < this.Target.Transform.Translation.X)
+        this.Owner.Sprite.FlipX = true;
       else
+        this.Owner.Sprite.FlipX = false;
+      
+      //Move
+      if(this.MoveNow)
       {
-        if(this.Owner.Transform.Translation.Y < this.Target.Transform.Translation.Y)
+        //Update movement
+        var movement = this.MovingDistance*(event.Dt/this.MovingDuration);
+        
+        //Horizontal
+        if(this.MoveNowHorizontally)
         {
-          this.Owner.Transform.Translation += Real3(0, movement, 0);
+          if(this.Owner.Transform.Translation.X < this.Target.Transform.Translation.X)
+          {
+            this.Owner.Transform.Translation += Real3(movement , 0, 0);
+          }
+          else
+          {
+            this.Owner.Transform.Translation -= Real3(movement, 0, 0);
+          }
         }
+        //Vertical
         else
         {
-          this.Owner.Transform.Translation -= Real3(0, movement, 0);
+          if(this.Owner.Transform.Translation.Y < this.Target.Transform.Translation.Y)
+          {
+            this.Owner.Transform.Translation += Real3(0, movement, 0);
+          }
+          else
+          {
+            this.Owner.Transform.Translation -= Real3(0, movement, 0);
+          }
         }
       }
     }
   }
   
-  function OnCollisionStarted(event : CollisionEvent)
-  {
-    if(event.OtherObject == this.Target.Cog)
-    {
-      //TODO: Kill player
-      this.LevelSettings.TEP_TECH_CS_GameVars.Dead = true;
-      //TODO: Disappear animation
-      this.Death();
-    }
-  }
-  
+  //Update the ghost to move
   function Move()
   {
     this.MoveNow = true;
@@ -123,6 +143,7 @@ class GhostAI : ZilchComponent
     
   }
   
+  //Update the ghost to stay still
   function Still()
   {
     this.MoveNow = false;
@@ -132,6 +153,7 @@ class GhostAI : ZilchComponent
     Action.Call(seq, this.Move);
   }
   
+  //Update speed after timer is run out
   function SpeedUp()
   {
     this.MovingDistance = this.SpeedUpMovingDistance;
@@ -142,6 +164,19 @@ class GhostAI : ZilchComponent
     Console.WriteLine(this.StillDuration);
   }
   
+  function OnCollisionStarted(event : CollisionEvent)
+  {
+    if(event.OtherObject == this.Target.Cog)
+    {
+      //Kill player
+      this.LevelSettings.TEP_TECH_CS_GameVars.Dead = true;
+      //Disappear animation
+      this.Death();
+    }
+  }
+  
+  //Death animation + destroy
+  //Use this instead of destroy
   function Death()
   {
     //Disable on logic update
@@ -169,19 +204,23 @@ class GhostAI : ZilchComponent
     Action.Call(seq, this.Owner.Destroy);
   }
   
-  /////
+  //////////////////////////////////
   
+  //Swap to ghost sprite (after it spawned)
   function SwitchToGhostSprite()
   {
     this.Owner.Sprite.AnimationActive = true;
+    this.OnLogicUpdateEnabled = true;
     this.Owner.Sprite.SpriteSource = this.GhostSprite;
   }
   
+  //Increase frame
   function IncreaseFrame()
   {
     ++this.Owner.Sprite.CurrentFrame;
   }
   
+  //Decrease frame
   function DecreaseFrame()
   {
     ++this.Owner.Sprite.CurrentFrame;
