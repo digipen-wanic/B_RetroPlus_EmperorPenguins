@@ -1,0 +1,11 @@
+[Version:1]
+DataContent 
+{
+	DataBuilder 
+	{
+		var Name = "TEP_TECH_CS_Enemy"
+		var ResourceId = 0x5c7ffa25da7a7ba4
+		var LoaderType = "CollisionGroup"
+		var Version = 0
+	}
+}

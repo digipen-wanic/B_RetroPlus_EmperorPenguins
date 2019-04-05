@@ -1,0 +1,244 @@
+///////////////////////////////////
+//Name: Ofer Krupka
+//Date - Created:  03/29/2019
+//Date - Release:  04/01/2019
+//Date - Modified: 04/02/2019
+//Brife:
+// --
+//Setup:
+//1. Add component - RigidBody.
+//2. Add component - IgnoreSpaceEffect.
+//3. Add component - BoxCollider.
+//4. Adjust parameters.
+//5. Upload as archetype.
+//6. Update BubbleProjectile to contain this archetype.
+//Notes:
+//The Timer is since the BubbleProjectile was destroyed.
+///////////////////////////////////
+//Version: 1.1
+//Version date:    04/02/2019
+//Version notes:
+//- Bug fixed: Animation played one extra frame than it should.
+//Version Setup:
+//- Please disable AnimationActive (Sprite->AnimationActive)
+///////////////////////////////////
+class BubbleBig : ZilchComponent
+{
+  [Property]
+  var BubblePopSound : SoundCue = null;
+  
+  [Property]
+  var Destination : Real2;
+  
+  [Property]
+  var BubbleSpeed : Real;
+  [Property]
+  var Player : CogPath = null;
+  
+  [Property]
+  var RedSprite : SpriteSource;
+  
+  [Property]
+  var RedTimer : Real;
+  
+  [Property]
+  var BlueSprite : SpriteSource;
+  
+  [Property]
+  var BlueTimer : Real;
+  
+  [Property]
+  var PopSprite : SpriteSource;
+  
+  [Property]
+  var PopTimer : Real;
+  
+  [Property]
+  var DelayToLetPopAnimationToPlay : Real = 0.2;
+  
+  [Property]
+  var SmallDistanceAntiFlicker : Real = 0.5;
+  
+  [Property]
+  var PopTimer2 : Real = 0.2;
+  
+  
+  function Initialize(init : CogInitializer)
+  {
+    Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+    Zero.Connect(this.Owner, Events.CollisionStarted, this.OnCollisionStarted);
+    Zero.Connect(this.Owner, Events.CollisionPersisted, this.OnCollisionPersisted);   
+    Zero.Connect(this.Owner,Events.CollisionEnded, this.OnCollisionEnded);
+    //Actions of the bubble
+    var seq = Action.Sequence(this.Owner.Actions);
+    //Red
+    Action.Delay(seq, this.RedTimer);
+    Action.Call(seq, this.TurnRed);
+    //Blue
+    Action.Delay(seq, this.BlueTimer);
+    Action.Call(seq, this.TurnBlue);
+    //Pop
+    Action.Delay(seq, this.PopTimer);
+    Action.Call(seq, this.PopAndDestroy);
+  }
+
+  function OnCollisionEnded(event : CollisionEvent)
+  {
+    if(event.OtherObject.Name == "Player" && (Math.Abs(this.Owner.Transform.Translation.X - event.OtherObject.Transform.Translation.X)
+      <
+      Math.Abs(this.Owner.Transform.Translation.Y - event.OtherObject.Transform.Translation.Y)) 
+      && Zero.Keyboard.KeyIsPressed(this.Player.TEP_TECH_JL_PlayerMovementInput.JumpKey) && this.PopTimer2 > 0)
+    {
+      this.Player.TEP_TECH_JL_PlayerMovementController.JumpUnconditionally();
+      this.LevelSettings.TEP_TECH_CS_GameVars.BubbleCollsion = false; 
+      this.PopTimer2 = 0.2;
+    }
+    else if(event.OtherObject.Name == "Player" && (Math.Abs(this.Owner.Transform.Translation.X - event.OtherObject.Transform.Translation.X)
+      <
+      Math.Abs(this.Owner.Transform.Translation.Y - event.OtherObject.Transform.Translation.Y)) && this.PopTimer2 < 0.12)
+      {
+        this.PopAndDestroy();
+        this.LevelSettings.TEP_TECH_CS_GameVars.BubbleCollsion = false;
+        this.PopTimer2 = 0.2;
+      }
+  }
+
+  function OnCollisionPersisted(event : CollisionEvent)
+  {
+    if(event.OtherObject.Name == "Player")
+    {
+      //check for keypress
+      if (Zero.Keyboard.KeyIsPressed(this.Player.TEP_TECH_JL_PlayerMovementInput.JumpKey) 
+      && this.LevelSettings.TEP_TECH_CS_GameVars.Dead != true 
+      && Math.Abs(this.Owner.Transform.Translation.X - event.OtherObject.Transform.Translation.X)
+      <
+        Math.Abs(this.Owner.Transform.Translation.Y - event.OtherObject.Transform.Translation.Y))
+      {
+        //jump unconditionally
+        this.Player.TEP_TECH_JL_PlayerMovementController.JumpUnconditionally();
+        this.LevelSettings.TEP_TECH_CS_GameVars.BubbleCollsion = false;
+        this.PopTimer2 = 0.2;
+      }
+      if(this.PopTimer2 <= 0 && Math.Abs(this.Owner.Transform.Translation.X - event.OtherObject.Transform.Translation.X)
+      <
+      Math.Abs(this.Owner.Transform.Translation.Y - event.OtherObject.Transform.Translation.Y))
+      {
+        this.PopAndDestroy();
+        this.LevelSettings.TEP_TECH_CS_GameVars.BubbleCollsion = false;
+        this.PopTimer2 = 0.2;
+      }
+    }
+  }
+  
+  
+  //Go to the destination
+  function OnLogicUpdate(event : UpdateEvent)
+  {
+    //Move vertically
+    if(this.Owner.Transform.Translation.Y < this.Destination.Y && this.SmallDistanceAntiFlicker < Math.Abs(this.Owner.Transform.Translation.Y - this.Destination.Y))//Move up
+    {
+      this.Owner.RigidBody.Velocity = Real3(0, this.BubbleSpeed, 0);
+    }
+    else if(this.Owner.Transform.Translation.Y > this.Destination.Y && this.SmallDistanceAntiFlicker < Math.Abs(this.Owner.Transform.Translation.Y - this.Destination.Y))//Move down
+    {
+      this.Owner.RigidBody.Velocity = Real3(0, 0-this.BubbleSpeed, 0);
+    }
+    //Move horizontally
+    else
+    {
+      if(this.Owner.Transform.Translation.X < this.Destination.X && this.SmallDistanceAntiFlicker < Math.Abs(this.Owner.Transform.Translation.X - this.Destination.X))//Move right
+      {
+        this.Owner.RigidBody.Velocity = Real3(this.BubbleSpeed, 0, 0);
+      }
+      else if(this.Owner.Transform.Translation.X > this.Destination.X && this.SmallDistanceAntiFlicker < Math.Abs(this.Owner.Transform.Translation.X - this.Destination.X))//Move left
+      {
+        this.Owner.RigidBody.Velocity = Real3(-this.BubbleSpeed, 0, 0);
+      }
+      else//At the right location
+      {
+        this.Owner.RigidBody.Velocity = Real3(0, 0, 0);
+      }
+    }
+    if(this.LevelSettings.TEP_TECH_CS_GameVars.BubbleCollsion == true)
+    {
+      this.PopTimer2 -= event.Dt;
+      //Console.WriteLine(this.PopTimer2);
+    }
+    if(this.PopTimer2 <= -0.4)
+      {
+        this.LevelSettings.TEP_TECH_CS_GameVars.BubbleCollsion = false;
+        this.PopTimer2 = 0.2;
+      }
+  }
+  
+  
+  //Collide with the player
+  function OnCollisionStarted(event : CollisionEvent)
+  {
+    if(event.OtherObject.Name == "Player")
+    {
+      if(Math.Abs(this.Owner.Transform.Translation.X - event.OtherObject.Transform.Translation.X)
+      <
+      Math.Abs(this.Owner.Transform.Translation.Y - event.OtherObject.Transform.Translation.Y))
+      {
+        this.LevelSettings.TEP_TECH_CS_GameVars.BubbleCollsion = true;
+      }
+      //Touching bubble from top/bottom | destroy if touching the top or buttom (looks like x shape)
+      /*if(Math.Abs(this.Owner.Transform.Translation.X - event.OtherObject.Transform.Translation.X)
+      <
+      Math.Abs(this.Owner.Transform.Translation.Y - event.OtherObject.Transform.Translation.Y))
+      {
+        this.PopAndDestroy();
+        this.LevelSettings.TEP_TECH_CS_GameVars.BubbleCollsion = false;
+        this.PopTimer2 = 1;
+      }
+      */
+    }
+  }
+  
+  
+  //Turn to red
+  function TurnRed()
+  {
+    this.Owner.Sprite.SpriteSource = this.RedSprite;
+  }
+  
+  
+  //Turn to blue
+  function TurnBlue()
+  {
+    this.Owner.Sprite.SpriteSource = this.BlueSprite;
+  }
+  
+  
+  //Pop bubble
+  function PopAndDestroy()
+  {
+    this.Owner.Collider.Ghost = true;
+    this.Owner.Collider.SendsEvents = false; 
+    
+    this.Owner.Sprite.SpriteSource = this.PopSprite;
+    var seq = Action.Sequence(this.Owner.Actions);
+    var frameCount = this.Owner.Sprite.SpriteSource.FrameCount;
+    
+    if(frameCount != 1)
+    {
+      for(var i = 0; i < frameCount-1; ++i)
+      {
+        Action.Delay(seq, this.DelayToLetPopAnimationToPlay/(frameCount+1));
+        Action.Call(seq, this.IncrementFrame);
+      }
+      Action.Delay(seq, this.DelayToLetPopAnimationToPlay/(frameCount+1));
+    }
+    else
+    {
+      Action.Delay(seq, this.DelayToLetPopAnimationToPlay);
+    }
+    
+    Action.Call(seq, this.Owner.Destroy);
+  }
+  function IncrementFrame()
+  {
+    ++this.Owner.Sprite.CurrentFrame;
+  }
+}

@@ -1,0 +1,125 @@
+class TEP_TECH_JL_PlayerAnimation : ZilchComponent
+{
+  [Dependency]
+  var Sprite : Sprite = null;
+  [Dependency]
+  var TEP_TECH_JL_PlayerMovementController : TEP_TECH_JL_PlayerMovementController = null;
+  [Dependency]
+  var TEP_TECH_JL_PlayerMovementInput : TEP_TECH_JL_PlayerMovementInput = null;
+  
+  [Property] 
+  var PlayerIdle : SpriteSource = null;
+  [Property]
+  var PlayerJump : SpriteSource = null;
+  [Property]
+  var PlayerWalk : SpriteSource = null;
+  [Property]
+  var DeathAnim : SpriteSource = null;
+  [Property]
+  var DeathSound : SoundCue = null;
+  [Property]
+  var DeathLevel : Level = null;
+  function Initialize(init : CogInitializer)
+  {
+    Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+    Zero.Connect(this.Owner ,Events.CollisionStarted, this.OnCollisionStarted);
+  }
+
+  function OnLogicUpdate(event : UpdateEvent)
+  {
+    var leftKeyDown = Zero.Keyboard.KeyIsDown(this.TEP_TECH_JL_PlayerMovementInput.LeftKey);
+    var rightKeyDown = Zero.Keyboard.KeyIsDown(this.TEP_TECH_JL_PlayerMovementInput.RightKey);
+   if(this.Sprite.SpriteSource == this.PlayerIdle && this.Sprite.SpriteSource != this.DeathAnim)
+    {
+      if((leftKeyDown || rightKeyDown))
+      {
+      this.Sprite.SpriteSource = this.PlayerWalk;
+      }
+      if(!this.TEP_TECH_JL_PlayerMovementController.Grounded)
+      {
+        this.Sprite.SpriteSource = this.PlayerJump;
+      }
+    }
+    else if(this.Sprite.SpriteSource == this.PlayerJump && this.Sprite.SpriteSource != this.DeathAnim)
+    {
+      if(this.TEP_TECH_JL_PlayerMovementController.Grounded)
+      {
+        this.Sprite.SpriteSource = this.PlayerIdle;
+      }
+    }
+    else if(this.Sprite.SpriteSource == this.PlayerWalk && this.Sprite.SpriteSource != this.DeathAnim)
+    {
+      if( !(leftKeyDown || rightKeyDown))
+      {
+        this.Sprite.SpriteSource = this.PlayerIdle;
+      }
+      
+      if(!this.TEP_TECH_JL_PlayerMovementController.Grounded)
+      {
+        this.Sprite.SpriteSource = this.PlayerJump;
+      }
+  }
+  else if(this.Sprite.SpriteSource == this.TEP_TECH_JL_PlayerMovementInput.ShootFrame && this.Sprite.SpriteSource != this.DeathAnim && this.LevelSettings.TEP_TECH_CS_GameVars.ShootTimer <= 0)
+    {
+      if( !(leftKeyDown || rightKeyDown))
+      {
+        this.Sprite.SpriteSource = this.PlayerIdle;
+      }
+      if( (leftKeyDown || rightKeyDown))
+      {
+        this.Sprite.SpriteSource = this.PlayerWalk;
+      }
+      if(!this.TEP_TECH_JL_PlayerMovementController.Grounded)
+      {
+        this.Sprite.SpriteSource = this.PlayerJump;
+      }
+      //change 0.5 to starting of shoot timer if changed in gamevars
+       this.LevelSettings.TEP_TECH_CS_GameVars.ShootTimer = 0.25;
+       this.LevelSettings.TEP_TECH_CS_GameVars.IsShooting = false;
+  }
+  
+  if(this.LevelSettings.TEP_TECH_CS_GameVars.Dead == true) 
+  {
+    this.LevelSettings.TEP_TECH_CS_GameVars.DeathTimer -= event.Dt;
+    this.Owner.SimpleSound.Cue = this.DeathSound;
+    if(!this.Owner.SimpleSound.IsPlaying)
+    this.Owner.SimpleSound.Play();
+    if(this.LevelSettings.TEP_TECH_CS_GameVars.DeathTimer <= 0)
+    {
+      var newEvent = ZilchEvent();
+      this.LevelSettings.TEP_TECH_CS_GameVars.PlayerLives -= 1;
+      //add a lose level when the player goes below 0 lives
+      this.LevelSettings.Space.DispatchEvent("LivesUpdate", newEvent);
+      if(this.LevelSettings.TEP_TECH_CS_GameVars.PlayerLives < 0)
+      {
+        this.Space.LoadLevel(this.DeathLevel);
+      }
+      this.Owner.Transform.Translation = this.LevelSettings.TEP_TECH_CS_GameVars.RespawnLocation;
+      this.LevelSettings.TEP_TECH_CS_GameVars.DeathTimer = 1.2;
+      this.Owner.Sprite.SpriteSource = this.PlayerIdle;
+      this.LevelSettings.TEP_TECH_CS_GameVars.Dead = false;
+      this.Owner.SimpleSound.Cue = this.TEP_TECH_JL_PlayerMovementInput.JumpSound;
+    }
+  }
+  if(this.LevelSettings.TEP_TECH_CS_GameVars.IsShooting)
+  {
+  this.LevelSettings.TEP_TECH_CS_GameVars.ShootTimer -= event.Dt;
+  }
+  Console.WriteLine(this.LevelSettings.TEP_TECH_CS_GameVars.ShootTimer);
+}
+function OnCollisionStarted(event : CollisionEvent)
+  {
+    //check if we ran into a hazard that kills
+    if(event.OtherObject.TEP_TECH_CS_DeathZone != null)
+    {
+      this.OnDeath();
+  
+    }
+  }
+  
+  function OnDeath()
+  {
+    this.Sprite.SpriteSource = this.DeathAnim;
+    this.LevelSettings.TEP_TECH_CS_GameVars.Dead = true;
+  }
+}

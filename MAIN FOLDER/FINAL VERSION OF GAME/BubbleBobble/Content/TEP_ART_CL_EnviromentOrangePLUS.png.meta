@@ -1,0 +1,20 @@
+[Version:1]
+ImageContent 
+{
+	SpriteSourceBuilder 
+	{
+		var Name = "TEP_ART_CL_EnviromentOrangePLUS"
+		var ResourceId = 0x5c7c85b5628ebc67
+		var FrameSizeX = 72
+		var FrameSizeY = 72
+		var FrameCount = 1
+		var FrameDelay = 0.0833333358
+		var OriginX = 36
+		var OriginY = 36
+		var PixelsPerUnit = 248
+		var Sampling = SpriteSampling.Nearest
+		var Looping = true
+		var Slices = Real4{0, 0, 0, 0}
+		var Fill = SpriteFill.Stretch
+	}
+}

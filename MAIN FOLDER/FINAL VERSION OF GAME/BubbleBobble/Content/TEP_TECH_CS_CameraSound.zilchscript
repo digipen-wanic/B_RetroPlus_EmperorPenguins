@@ -1,0 +1,44 @@
+class TEP_TECH_CS_CameraSound : ZilchComponent
+{
+  [Property]
+  var HurrySound : SoundCue = null;
+  [Property]
+  var HurryMusic : SoundCue = null;
+  
+  [Property]
+  var Baron : Archetype = null;
+  
+  var IsSpawned : Boolean = false;
+  var IsPlayng : Boolean = false;
+  var IsPlayng2 : Boolean = false;
+
+  
+  function Initialize(init : CogInitializer)
+  {
+    Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+  }
+
+  function OnLogicUpdate(event : UpdateEvent)
+  {
+    if(this.LevelSettings.TEP_TECH_CS_GameVars.HurryTimer < 0 && this.IsPlayng == false)
+    {
+      this.Owner.SimpleSound.Stop();
+      this.Owner.SimpleSound.Cue = this.HurrySound;
+      this.Owner.SimpleSound.Play();
+      this.IsPlayng = true;
+    }
+    if(this.LevelSettings.TEP_TECH_CS_GameVars.HurryTimer < -1.94 && this.IsPlayng2 == false)
+    {
+      this.Owner.SimpleSound.Cue = this.HurryMusic;
+      this.Owner.SimpleSound.Play();
+      this.IsPlayng2 = true;
+    }
+    if(this.LevelSettings.TEP_TECH_CS_GameVars.HurryTimer < -7 && this.IsSpawned == false)
+    {
+      var baron = this.Space.CreateAtPosition(this.Baron, Real3(-13.1964, 6.57065, 0.1));
+      this.IsSpawned = true;
+      baron.SimpleSound.Play();
+    }
+  }
+  }
+

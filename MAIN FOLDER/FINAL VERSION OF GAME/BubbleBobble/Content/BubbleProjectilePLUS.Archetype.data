@@ -1,0 +1,72 @@
+[Version:1]
+Cog 
+{
+	var Name = "Sprite"
+	Transform 
+	{
+		var Translation = Real3{0, 0, 0}
+		var Scale = Real3{1, 1, 1}
+		var Rotation = Quaternion{0, 0, 0, 1}
+	}
+	Sprite 
+	{
+		var Visible = true
+		var ViewCulling = true
+		var VisibilityEvents = true
+		var OverrideBoundingBox = false
+		var LocalAabbCenter = Real3{0, 0, 0}
+		var LocalAabbHalfExtents = Real3{1, 1, 1}
+		var GroupSortValue = 0
+		var Material = "582c575af53d18c9:AlphaSprite"
+		var VertexColor = Real4{1, 1, 1, 1}
+		var GeometryMode = SpriteGeometryMode.ZPlane
+		var SpriteSource = "5c7c83bf8ec50815:TEP_ART_SM_BubbleGrowingPLUS_0"
+		var FlipX = false
+		var FlipY = false
+		var AnimationActive = false
+		var AnimationSpeed = 1
+		var StartFrame = 0
+	}
+	BubbleProjectile 
+	{
+		var Speed = 20
+		var TimeToGrow = 0.5
+		var BubbleBig = "5c7c83f485bb49cb:BubbleBigPLUS"
+		var BubbleBigMonster = "5c7c82d2b1bff68f:BubbleBigMonsterPLUS"
+		var Target = "5c7c80533662c3ca:EnemyPlus"
+	}
+	RigidBody 
+	{
+		var Velocity = Real3{7, 0, 0}
+		var AngularVelocity = Real3{0, 0, 0}
+		var DynamicState = RigidBodyDynamicState.Dynamic
+		var AllowSleep = true
+		var Asleep = false
+		var RotationLocked = true
+		var Mode2D = Mode2DStates.InheritFromSpace
+	}
+	IgnoreSpaceEffects 
+	{
+		var IgnoreDrag = true
+		var IgnoreFlow = true
+		var IgnoreForce = true
+		var IgnoreGravity = true
+		var IgnorePointForce = true
+		var IgnorePointGravity = true
+		var IgnoreThrust = true
+		var IgnoreVortex = true
+		var IgnoreWind = true
+		var IgnoreTorque = true
+		var IgnoreBuoyancy = true
+		var IgnoreCustom = true
+	}
+	BoxCollider 
+	{
+		var Ghost = false
+		var SendsEvents = true
+		var Material = "4de020863e872da8:DefaultPhysicsMaterial"
+		var CollisionGroup = "5cb160f3a7376fd1:BubbleProjectile"
+		var Offset = Real3{0, 0, 0}
+		var HalfSize = Real3{0.5, 0.5, 0.5}
+	}
+}

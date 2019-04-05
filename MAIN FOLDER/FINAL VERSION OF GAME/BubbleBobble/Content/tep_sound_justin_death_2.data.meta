@@ -1,0 +1,11 @@
+[Version:1]
+DataContent 
+{
+	DataBuilder 
+	{
+		var Name = "tep_sound_justin_death_2"
+		var ResourceId = 0x5c447afe8f966024
+		var LoaderType = "SoundCue"
+		var Version = 0
+	}
+}

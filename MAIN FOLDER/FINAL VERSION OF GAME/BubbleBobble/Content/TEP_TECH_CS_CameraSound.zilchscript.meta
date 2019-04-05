@@ -1,0 +1,9 @@
+[Version:1]
+TextContent 
+{
+	ZilchScriptBuilder 
+	{
+		var Name = "TEP_TECH_CS_CameraSound"
+		var ResourceId = 0x5c7c6d449c4169d6
+	}
+}

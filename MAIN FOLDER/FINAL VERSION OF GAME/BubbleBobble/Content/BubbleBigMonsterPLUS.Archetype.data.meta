@@ -1,0 +1,11 @@
+[Version:1]
+DataContent 
+{
+	DataBuilder 
+	{
+		var Name = "BubbleBigMonsterPLUS"
+		var ResourceId = 0x5c7c82d2b1bff68f
+		var LoaderType = "Cog"
+		var Version = 0
+	}
+}

@@ -1,0 +1,20 @@
+[Version:1]
+ImageContent 
+{
+	SpriteSourceBuilder 
+	{
+		var Name = "TEP_ART_onm_EnemyBubble"
+		var ResourceId = 0x5c7ff03189fd845f
+		var FrameSizeX = 68
+		var FrameSizeY = 128
+		var FrameCount = 1
+		var FrameDelay = 0.0833333358
+		var OriginX = 34
+		var OriginY = 64
+		var PixelsPerUnit = 64
+		var Sampling = SpriteSampling.Linear
+		var Looping = true
+		var Slices = Real4{0, 0, 0, 0}
+		var Fill = SpriteFill.Stretch
+	}
+}

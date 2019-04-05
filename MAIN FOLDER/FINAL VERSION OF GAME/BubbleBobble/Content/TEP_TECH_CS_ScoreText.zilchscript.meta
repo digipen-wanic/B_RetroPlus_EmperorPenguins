@@ -1,0 +1,9 @@
+[Version:1]
+TextContent 
+{
+	ZilchScriptBuilder 
+	{
+		var Name = "TEP_TECH_CS_ScoreText"
+		var ResourceId = 0x5c7929d231434904
+	}
+}

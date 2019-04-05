@@ -1,0 +1,36 @@
+/**************************
+Cody Spring
+TEP_TECH_CS_GameVars.ziltch
+3/27/19
+Global Game vars
+***************************/
+class TEP_TECH_CS_GameVars : ZilchComponent
+{
+  //player lives used in update lives
+  var PlayerLives = 2;
+  
+  //used to add score and update HUD
+  var PlayerScore = Real(00);
+  
+  // used for baron von bubble
+  [Property]
+  var HurryTimer = Real(1);
+  
+  var DeathTimer = 1.2;
+  
+  var Dead = false;
+  
+  var ShootTimer = 0.25;
+  
+  var ShootTimer2 = 0.0;
+  
+  var IsShooting = false;
+  
+  [Property]
+  var RespawnLocation = Real3(-5.14, 4.77, 0);
+  
+  var BubbleCollsion = false;
+  
+  var NumberOfEnemies = Real();
+  
+}

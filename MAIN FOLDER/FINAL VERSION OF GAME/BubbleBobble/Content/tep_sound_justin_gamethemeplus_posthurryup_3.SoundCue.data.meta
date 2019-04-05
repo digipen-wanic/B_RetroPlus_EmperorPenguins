@@ -1,0 +1,11 @@
+[Version:1]
+DataContent 
+{
+	DataBuilder 
+	{
+		var Name = "tep_sound_justin_gamethemeplus_posthurryup_3"
+		var ResourceId = 0x5c7c6c04b673147c
+		var LoaderType = "SoundCue"
+		var Version = 0
+	}
+}

@@ -1,0 +1,77 @@
+/**********************
+TEP_TECH_CS_ScoreObject.zilch
+Cody Spring
+3/28/19
+Add this to objects that give score to the player
+**********************/
+
+class TEP_TECH_CS_ScoreObject : ZilchComponent
+{
+  //change to modify the amount of score you want to add with this object
+  [Property]
+  var ScoreModifier : Real = Real();
+  [Property]
+  var Score300 : Archetype = null;
+  [Property]
+  var Score1000 : Archetype = null;
+  [Property]
+  var Score2000 : Archetype = null;
+  [Property]
+  var Score3000 : Archetype = null;
+  [Property]
+  var PickupSound : SoundCue = null;
+  function Initialize(init : CogInitializer)
+  {
+    Zero.Connect(this.Owner, Events.CollisionStarted, this.OnCollisionStarted);
+  }
+
+  function OnCollisionStarted(event : CollisionEvent)
+  {
+    
+    //if the object has collided into the player add the score
+    if(event.OtherObject.Name == "Player")
+    {
+    this.LevelSettings.TEP_TECH_CS_GameVars.PlayerScore += this.ScoreModifier;
+    this.Owner.Destroy();
+    
+    var newEvent = ZilchEvent();
+    
+    if(this.ScoreModifier == 300)
+    {
+      var scoreText = this.Space.CreateAtPosition(this.Score300, Real3(this.Owner.Transform.Translation.X,this.Owner.Transform.Translation.Y,0.1));
+      scoreText.RigidBody.Velocity = Real3(0,2,0);
+      scoreText.SimpleSound.Cue = this.PickupSound;
+      scoreText.SimpleSound.Play();
+      this.LevelSettings.Space.DispatchEvent("ScoreUpdate", newEvent);
+    }
+    else if(this.ScoreModifier == 1000)
+    {
+      var scoreText = this.Space.CreateAtPosition(this.Score1000, Real3(this.Owner.Transform.Translation.X,this.Owner.Transform.Translation.Y,0.1));
+      scoreText.RigidBody.Velocity = Real3(0,2,0);
+      scoreText.SimpleSound.Cue = this.PickupSound;
+      scoreText.SimpleSound.Play();
+      this.LevelSettings.Space.DispatchEvent("ScoreUpdate", newEvent);
+    }
+    else if(this.ScoreModifier == 2000)
+    {
+      var scoreText = this.Space.CreateAtPosition(this.Score2000, Real3(this.Owner.Transform.Translation.X,this.Owner.Transform.Translation.Y,0.1));
+      scoreText.RigidBody.Velocity = Real3(0,2,0);
+      scoreText.SimpleSound.Cue = this.PickupSound;
+      scoreText.SimpleSound.Play();
+      this.LevelSettings.Space.DispatchEvent("ScoreUpdate", newEvent);
+    }
+    else if(this.ScoreModifier == 3000)
+    {
+      var scoreText = this.Space.CreateAtPosition(this.Score3000, Real3(this.Owner.Transform.Translation.X,this.Owner.Transform.Translation.Y,0.1));
+      scoreText.RigidBody.Velocity = Real3(0,2,0);
+      scoreText.SimpleSound.Cue = this.PickupSound;
+      scoreText.SimpleSound.Play();
+      this.LevelSettings.Space.DispatchEvent("ScoreUpdate", newEvent);
+    }
+    }
+  }
+
+  function OnLogicUpdate(event : UpdateEvent)
+  {
+  }
+}

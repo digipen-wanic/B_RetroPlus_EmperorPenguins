@@ -1,0 +1,757 @@
+[Version:1]
+Level 
+{
+	Cog [ContextId:1]
+	{
+		var Name = "LevelSettings"
+		GravityEffect 
+		{
+			var Active = true
+			var WakeUpOnChange = false
+			var DebugDrawEffect = false
+			var LocalSpaceDirection = true
+			var Strength = 10
+			var Direction = Real3{0, -1, 0}
+		}
+		DragEffect 
+		{
+			var Active = true
+			var WakeUpOnChange = false
+			var DebugDrawEffect = false
+			var LinearDamping = 0.200000003
+			var AngularDamping = 0.100000001
+			var LinearDrag = 0
+			var AngularDrag = 0
+		}
+		GridDraw 
+		{
+			var Active = true
+			var HalfCellOffset = false
+			var CellSize = 1
+			var Axis = AxisDirection.Z
+			var Lines = 100
+			var DrawAxisOrigins = true
+			var AlwaysDrawInEditor = true
+			var DrawInGame = false
+			var GridColor = Real4{0.5, 0.5, 0.5, 0.400000006}
+			var GridHighlight = Real4{0, 0, 0, 0.400000006}
+			var HighlightInterval = 10
+			var FollowEditorCamera = false
+		}
+	}
+	Cog [ContextId:2]
+	{
+		var Name = "Renderer"
+		ForwardRenderer 
+		{
+			var EditorDebugDraw = true
+			var GameDebugDraw = true
+			var RenderDiffuse = true
+			var RenderSpecular = true
+			var RenderSkybox = false
+			var Skybox = "5822dec85e380cf1:SimpleSkybox"
+			var ClearColor = Real4{0, 0, 0, 1}
+			var DirectLighting = true
+			var IndirectLighting = true
+			var IndirectIntensity = 1
+			var ToneMap = true
+			var DirectionalLight = CogPath
+			{
+				var Path = ""
+				var ErrorOnResolveToNull = false
+				var ErrorOnPathCantCompute = false
+				var ErrorOnDirectLinkFail = false
+				var UpdateCogOnPathChange = true
+				var UpdatePathOnCogChange = true
+				var UpdateCogOnInitialize = true
+				var ResolvedNullErrorOccurred = false
+				var Cog = 4294967293
+				var PathPreference0 = CogPathPreference.CogRelative
+				var PathPreference1 = CogPathPreference.SpaceRelative
+				var PathPreference2 = CogPathPreference.Absolute
+			}
+		}
+	}
+	Cog [ContextId:3]
+	{
+		var Name = "EditorCamera"
+		Transform 
+		{
+			var Translation = Real3{-0.491093159, -12.4039555, 20}
+			var Scale = Real3{1, 1, 1}
+			var Rotation = Quaternion{0, -1.09278471e-08, 0, 1}
+		}
+		CameraViewport 
+		{
+			var RenderInEditor = true
+			var RenderInGame = false
+			var RenderOrder = 0
+			var CameraPath = CogPath
+			{
+				var Path = "."
+				var ErrorOnResolveToNull = false
+				var ErrorOnPathCantCompute = false
+				var ErrorOnDirectLinkFail = false
+				var UpdateCogOnPathChange = true
+				var UpdatePathOnCogChange = true
+				var UpdateCogOnInitialize = true
+				var ResolvedNullErrorOccurred = false
+				var Cog = 3
+				var PathPreference0 = CogPathPreference.CogRelative
+				var PathPreference1 = CogPathPreference.SpaceRelative
+				var PathPreference2 = CogPathPreference.Absolute
+			}
+			var RendererPath = CogPath
+			{
+				var Path = ":/Renderer"
+				var ErrorOnResolveToNull = false
+				var ErrorOnPathCantCompute = false
+				var ErrorOnDirectLinkFail = false
+				var UpdateCogOnPathChange = true
+				var UpdatePathOnCogChange = true
+				var UpdateCogOnInitialize = true
+				var ResolvedNullErrorOccurred = false
+				var Cog = 2
+				var PathPreference0 = CogPathPreference.CogRelative
+				var PathPreference1 = CogPathPreference.SpaceRelative
+				var PathPreference2 = CogPathPreference.Absolute
+			}
+			var ResolutionOrAspect = Integer2{1920, 1080}
+			var RenderToViewport = true
+			var ForwardViewportEvents = false
+			var ViewportScaling = ViewportScaling.Fill
+			var MarginColor = Real4{0, 0, 0, 1}
+			var NormalizedSize = Real2{1, 1}
+			var NormalizedOffset = Real2{0, 0}
+		}
+		Camera 
+		{
+			var NearPlane = 0.5
+			var FarPlane = 500
+			var PerspectiveMode = PerspectiveMode.Orthographic
+			var FieldOfView = 45
+			var Size = 26.9971561
+		}
+		EditorCameraController 
+		{
+			var ControlMode = ControlMode.ZPlane
+			var Previous3DMode = ControlMode.Orbit
+			var LookDistance = 20
+			var VerticalAngle = 0
+			var HorizontalAngle = 0
+			var LookTarget = Real3{-0.491093159, -12.4039555, -2.14663647e-08}
+			var MoveSensitivity = 1
+		}
+	}
+	Cog [ContextId:4]
+	{
+		var Name = "GameCamera"
+		Transform 
+		{
+			var Translation = Real3{0, 0, 10}
+			var Scale = Real3{1, 1, 1}
+			var Rotation = Quaternion{0, 0, 0, 1}
+		}
+		SelectionIcon 
+		{
+			var Visible = true
+			var VisibilityEvents = true
+			var Material = "56581e2bb81777be:DebugDrawOnTop"
+			var SpriteSource = "58f8e4be7360cf7c:CameraIcon"
+			var ViewScale = 1
+			var OverrideSelections = true
+		}
+		CameraViewport 
+		{
+			var RenderInEditor = false
+			var RenderInGame = true
+			var RenderOrder = 0
+			var CameraPath = CogPath
+			{
+				var Path = "."
+				var ErrorOnResolveToNull = false
+				var ErrorOnPathCantCompute = false
+				var ErrorOnDirectLinkFail = false
+				var UpdateCogOnPathChange = true
+				var UpdatePathOnCogChange = true
+				var UpdateCogOnInitialize = true
+				var ResolvedNullErrorOccurred = false
+				var Cog = 4
+				var PathPreference0 = CogPathPreference.CogRelative
+				var PathPreference1 = CogPathPreference.SpaceRelative
+				var PathPreference2 = CogPathPreference.Absolute
+			}
+			var RendererPath = CogPath
+			{
+				var Path = ":/Renderer"
+				var ErrorOnResolveToNull = false
+				var ErrorOnPathCantCompute = false
+				var ErrorOnDirectLinkFail = false
+				var UpdateCogOnPathChange = true
+				var UpdatePathOnCogChange = true
+				var UpdateCogOnInitialize = true
+				var ResolvedNullErrorOccurred = false
+				var Cog = 2
+				var PathPreference0 = CogPathPreference.CogRelative
+				var PathPreference1 = CogPathPreference.SpaceRelative
+				var PathPreference2 = CogPathPreference.Absolute
+			}
+			var ResolutionOrAspect = Integer2{1920, 1080}
+			var RenderToViewport = true
+			var ForwardViewportEvents = false
+			var ViewportScaling = ViewportScaling.Letterbox
+			var MarginColor = Real4{0, 0, 0, 1}
+			var NormalizedSize = Real2{1, 1}
+			var NormalizedOffset = Real2{0, 0}
+		}
+		Camera 
+		{
+			var NearPlane = 0.100000001
+			var FarPlane = 200
+			var PerspectiveMode = PerspectiveMode.Orthographic
+			var FieldOfView = 60
+			var Size = 20
+		}
+		SoundListener 
+		{
+			var Active = true
+			var AttenuationScale = 1
+		}
+	}
+	Cog [ContextId:5]
+	{
+		var Name = "SpriteParticles"
+		Transform 
+		{
+			var Translation = Real3{13.464076, -14.0339403, 0}
+			var Scale = Real3{10, 20, 1}
+			var Rotation = Quaternion{0, 0, 0, 1}
+		}
+		SpriteParticleSystem 
+		{
+			var Visible = true
+			var ViewCulling = true
+			var VisibilityEvents = true
+			var OverrideBoundingBox = true
+			var LocalAabbCenter = Real3{0, 0, 0}
+			var LocalAabbHalfExtents = Real3{1, 1, 1}
+			var GroupSortValue = 0
+			var Material = "582c50d330d372c3:AdditiveSprite"
+			var BoundingBoxSize = 2
+			var ChildSystem = false
+			var SystemSpace = SystemSpace.WorldSpace
+			var WarmUpTime = 8
+			var PreviewInEditor = false
+			var VertexColor = Real4{1, 1, 1, 1}
+			var GeometryMode = SpriteParticleGeometryMode.Billboarded
+			var SpriteSource = "5cc6942c1cb227d7:TEP_ART_SM_TextBubbles_0"
+			var ParticleAnimation = SpriteParticleAnimationMode.Looping
+			var ParticleSort = SpriteParticleSortMode.None
+			var BeamBaseScale = 1
+			var BeamVelocityScale = 1
+		}
+		SphericalParticleEmitter 
+		{
+			var Active = true
+			var EmitCount = 0
+			var EmitDelay = 0
+			var EmitRate = 30
+			var EmitVariance = 0
+			var EmitRateSoftStartTime = 0
+			var Size = 0.5
+			var SizeVariance = 0.0500000007
+			var Lifetime = 10
+			var LifetimeVariance = 10
+			var Spin = 0
+			var SpinVariance = 0
+			var RandomSpin = false
+			var Fill = 1
+			var EmitterVelocityPercent = 0
+			var StartVelocity = Real3{0, 0.00100000005, 0}
+			var RandomVelocity = Real3{0.100000001, 0.100000001, 0}
+			var TangentVelocity = Real3{0, 1, 0}
+			var EmitterSize = Real3{0, 0, 0}
+			var FastMovingEmitter = false
+		}
+		LinearParticleAnimator 
+		{
+			var Force = Real3{0, 0, 0}
+			var RandomForce = Real3{0, 0, 0}
+			var Torque = 0
+			var Growth = 0
+			var Dampening = 0
+			var Twist = Real3{0, 0, 0}
+		}
+		ParticleColorAnimator 
+		{
+			var TimeGradient = "591abd225f232eaa:FadeInOut"
+			var VelocityGradient = "null"
+			var MaxParticleSpeed = 1
+		}
+		SelectionIcon 
+		{
+			var Visible = true
+			var VisibilityEvents = true
+			var Material = "56581e2bb81777be:DebugDrawOnTop"
+			var SpriteSource = "5c3ec11ff1ceead9:TEP_ART_CL_BubblePopping_0"
+			var ViewScale = 1
+			var OverrideSelections = true
+		}
+	}
+	Cog [ContextId:6]
+	{
+		var Name = "SpriteParticles"
+		Transform 
+		{
+			var Translation = Real3{-11.5845699, -14.0339403, 0}
+			var Scale = Real3{10, 20, 1}
+			var Rotation = Quaternion{0, 0, 0, 1}
+		}
+		SpriteParticleSystem 
+		{
+			var Visible = true
+			var ViewCulling = true
+			var VisibilityEvents = true
+			var OverrideBoundingBox = true
+			var LocalAabbCenter = Real3{0, 0, 0}
+			var LocalAabbHalfExtents = Real3{1, 1, 1}
+			var GroupSortValue = 0
+			var Material = "582c50d330d372c3:AdditiveSprite"
+			var BoundingBoxSize = 2
+			var ChildSystem = false
+			var SystemSpace = SystemSpace.WorldSpace
+			var WarmUpTime = 8
+			var PreviewInEditor = false
+			var VertexColor = Real4{1, 1, 1, 1}
+			var GeometryMode = SpriteParticleGeometryMode.Billboarded
+			var SpriteSource = "5cc6942c1cb227d7:TEP_ART_SM_TextBubbles_0"
+			var ParticleAnimation = SpriteParticleAnimationMode.Looping
+			var ParticleSort = SpriteParticleSortMode.None
+			var BeamBaseScale = 1
+			var BeamVelocityScale = 1
+		}
+		SphericalParticleEmitter 
+		{
+			var Active = true
+			var EmitCount = 0
+			var EmitDelay = 0
+			var EmitRate = 30
+			var EmitVariance = 0
+			var EmitRateSoftStartTime = 0
+			var Size = 0.5
+			var SizeVariance = 0.0500000007
+			var Lifetime = 10
+			var LifetimeVariance = 10
+			var Spin = 0
+			var SpinVariance = 0
+			var RandomSpin = false
+			var Fill = 1
+			var EmitterVelocityPercent = 0
+			var StartVelocity = Real3{0, 0.00100000005, 0}
+			var RandomVelocity = Real3{0.100000001, 0.100000001, 0}
+			var TangentVelocity = Real3{0, 1, 0}
+			var EmitterSize = Real3{0, 0, 0}
+			var FastMovingEmitter = false
+		}
+		LinearParticleAnimator 
+		{
+			var Force = Real3{0, 0, 0}
+			var RandomForce = Real3{0, 0, 0}
+			var Torque = 0
+			var Growth = 0
+			var Dampening = 0
+			var Twist = Real3{0, 0, 0}
+		}
+		ParticleColorAnimator 
+		{
+			var TimeGradient = "591abd225f232eaa:FadeInOut"
+			var VelocityGradient = "null"
+			var MaxParticleSpeed = 1
+		}
+		SelectionIcon 
+		{
+			var Visible = true
+			var VisibilityEvents = true
+			var Material = "56581e2bb81777be:DebugDrawOnTop"
+			var SpriteSource = "5c3ec11ff1ceead9:TEP_ART_CL_BubblePopping_0"
+			var ViewScale = 1
+			var OverrideSelections = true
+		}
+	}
+	Cog [ContextId:7]
+	{
+		var Name = "SpriteParticles"
+		Transform 
+		{
+			var Translation = Real3{0.10668087, -14.0339403, 0}
+			var Scale = Real3{10, 20, 1}
+			var Rotation = Quaternion{0, 0, 0, 1}
+		}
+		SpriteParticleSystem 
+		{
+			var Visible = true
+			var ViewCulling = true
+			var VisibilityEvents = true
+			var OverrideBoundingBox = true
+			var LocalAabbCenter = Real3{0, 0, 0}
+			var LocalAabbHalfExtents = Real3{1, 1, 1}
+			var GroupSortValue = 0
+			var Material = "582c50d330d372c3:AdditiveSprite"
+			var BoundingBoxSize = 2
+			var ChildSystem = false
+			var SystemSpace = SystemSpace.WorldSpace
+			var WarmUpTime = 8
+			var PreviewInEditor = false
+			var VertexColor = Real4{1, 1, 1, 1}
+			var GeometryMode = SpriteParticleGeometryMode.Billboarded
+			var SpriteSource = "5cc6942c1cb227d7:TEP_ART_SM_TextBubbles_0"
+			var ParticleAnimation = SpriteParticleAnimationMode.Looping
+			var ParticleSort = SpriteParticleSortMode.None
+			var BeamBaseScale = 1
+			var BeamVelocityScale = 1
+		}
+		SphericalParticleEmitter 
+		{
+			var Active = true
+			var EmitCount = 0
+			var EmitDelay = 0
+			var EmitRate = 30
+			var EmitVariance = 0
+			var EmitRateSoftStartTime = 0
+			var Size = 0.5
+			var SizeVariance = 0.0500000007
+			var Lifetime = 10
+			var LifetimeVariance = 10
+			var Spin = 0
+			var SpinVariance = 0
+			var RandomSpin = false
+			var Fill = 1
+			var EmitterVelocityPercent = 0
+			var StartVelocity = Real3{0, 0.00100000005, 0}
+			var RandomVelocity = Real3{0.100000001, 0.100000001, 0}
+			var TangentVelocity = Real3{0, 1, 0}
+			var EmitterSize = Real3{0, 0, 0}
+			var FastMovingEmitter = false
+		}
+		LinearParticleAnimator 
+		{
+			var Force = Real3{0, 0, 0}
+			var RandomForce = Real3{0, 0, 0}
+			var Torque = 0
+			var Growth = 0
+			var Dampening = 0
+			var Twist = Real3{0, 0, 0}
+		}
+		ParticleColorAnimator 
+		{
+			var TimeGradient = "591abd225f232eaa:FadeInOut"
+			var VelocityGradient = "null"
+			var MaxParticleSpeed = 1
+		}
+		SelectionIcon 
+		{
+			var Visible = true
+			var VisibilityEvents = true
+			var Material = "56581e2bb81777be:DebugDrawOnTop"
+			var SpriteSource = "5c3ec11ff1ceead9:TEP_ART_CL_BubblePopping_0"
+			var ViewScale = 1
+			var OverrideSelections = true
+		}
+	}
+	Cog [ContextId:8]
+	{
+		var Name = "GameCamera"
+		Transform 
+		{
+			var Translation = Real3{0, 0, 10}
+			var Scale = Real3{1, 1, 1}
+			var Rotation = Quaternion{0, 0, 0, 1}
+		}
+		SelectionIcon 
+		{
+			var Visible = true
+			var VisibilityEvents = true
+			var Material = "56581e2bb81777be:DebugDrawOnTop"
+			var SpriteSource = "58f8e4be7360cf7c:CameraIcon"
+			var ViewScale = 1
+			var OverrideSelections = true
+		}
+		CameraViewport 
+		{
+			var RenderInEditor = false
+			var RenderInGame = true
+			var RenderOrder = 0
+			var CameraPath = CogPath
+			{
+				var Path = "."
+				var ErrorOnResolveToNull = false
+				var ErrorOnPathCantCompute = false
+				var ErrorOnDirectLinkFail = false
+				var UpdateCogOnPathChange = true
+				var UpdatePathOnCogChange = true
+				var UpdateCogOnInitialize = true
+				var ResolvedNullErrorOccurred = false
+				var Cog = 8
+				var PathPreference0 = CogPathPreference.CogRelative
+				var PathPreference1 = CogPathPreference.SpaceRelative
+				var PathPreference2 = CogPathPreference.Absolute
+			}
+			var RendererPath = CogPath
+			{
+				var Path = ":/Renderer"
+				var ErrorOnResolveToNull = false
+				var ErrorOnPathCantCompute = false
+				var ErrorOnDirectLinkFail = false
+				var UpdateCogOnPathChange = true
+				var UpdatePathOnCogChange = true
+				var UpdateCogOnInitialize = true
+				var ResolvedNullErrorOccurred = false
+				var Cog = 2
+				var PathPreference0 = CogPathPreference.CogRelative
+				var PathPreference1 = CogPathPreference.SpaceRelative
+				var PathPreference2 = CogPathPreference.Absolute
+			}
+			var ResolutionOrAspect = Integer2{1920, 1080}
+			var RenderToViewport = true
+			var ForwardViewportEvents = false
+			var ViewportScaling = ViewportScaling.Letterbox
+			var MarginColor = Real4{0, 0, 0, 1}
+			var NormalizedSize = Real2{1, 1}
+			var NormalizedOffset = Real2{0, 0}
+		}
+		Camera 
+		{
+			var NearPlane = 0.100000001
+			var FarPlane = 200
+			var PerspectiveMode = PerspectiveMode.Orthographic
+			var FieldOfView = 60
+			var Size = 20
+		}
+		SoundListener 
+		{
+			var Active = true
+			var AttenuationScale = 1
+		}
+		SoundEmitter 
+		{
+			var Volume = 1
+			var Pitch = 0
+			var Attenuator = "57ca8a6ad262efe5:DefaultNoAttenuation"
+			var Directional = false
+			var EmitAngle = 90
+			var RearVolume = 0.200000003
+		}
+		SimpleSound 
+		{
+			var StartPlaying = true
+			var Positional = false
+			var Cue = "5c789ca84dfd6913:BubbleBobbleTitleScreen"
+		}
+	}
+	Cog [ContextId:9]
+	{
+		var Name = "StartButton"
+		Transform 
+		{
+			var Translation = Real3{5, -5, 0}
+			var Scale = Real3{6.92369461, 1.10311973, 1}
+			var Rotation = Quaternion{0, 0, 0, 1}
+		}
+		Sprite 
+		{
+			var Visible = true
+			var ViewCulling = true
+			var VisibilityEvents = true
+			var OverrideBoundingBox = false
+			var LocalAabbCenter = Real3{0, 0, 0}
+			var LocalAabbHalfExtents = Real3{1, 1, 1}
+			var GroupSortValue = 0
+			var Material = "582c575af53d18c9:AlphaSprite"
+			var VertexColor = Real4{1, 0.430000007, 0.806199908, 0}
+			var GeometryMode = SpriteGeometryMode.ZPlane
+			var SpriteSource = "5275aa4d802dd6dc:Square"
+			var FlipX = false
+			var FlipY = false
+			var AnimationActive = true
+			var AnimationSpeed = 1
+			var StartFrame = 0
+		}
+		TEP_TECH_JL_StartButton 
+		{
+			var NextLevel = "5c447dbda129ea7d:Level"
+		}
+		BoxCollider 
+		{
+			var Ghost = false
+			var SendsEvents = true
+			var Material = "4de020863e872da8:DefaultPhysicsMaterial"
+			var CollisionGroup = "4e740859314e5515:DefaultGroup"
+			var Offset = Real3{0, 0, 0}
+			var HalfSize = Real3{0.5, 0.5, 0.5}
+		}
+		Reactive 
+		{
+			var Active = true
+		}
+	}
+	Cog [ContextId:10]
+	{
+		var Name = "SpriteText"
+		Transform 
+		{
+			var Translation = Real3{5, -5, 1.8854811e-08}
+			var Scale = Real3{1, 1, 1}
+			var Rotation = Quaternion{0, 0, 0, 1}
+		}
+		SpriteText 
+		{
+			var Visible = true
+			var ViewCulling = true
+			var VisibilityEvents = true
+			var OverrideBoundingBox = false
+			var LocalAabbCenter = Real3{0, 0, 0}
+			var LocalAabbHalfExtents = Real3{1, 1, 1}
+			var GroupSortValue = 0
+			var Material = "582c575af53d18c9:AlphaSprite"
+			var VertexColor = Real4{1, 1, 1, 1}
+			var GeometryMode = SpriteGeometryMode.ZPlane
+			var Text = "P1 START"
+			var Font = "5c78857259567c4d:bubb"
+			var FontSize = 100
+			var PixelsPerUnit = 128
+			var TextAlign = TextAlign.Center
+		}
+	}
+	Cog [ContextId:11]
+	{
+		var Name = "TEP_ART_SM_TextTitle"
+		Transform 
+		{
+			var Translation = Real3{0, 2, 0}
+			var Scale = Real3{5, 5, 1}
+			var Rotation = Quaternion{0, 0, 0, 1}
+		}
+		Sprite 
+		{
+			var Visible = true
+			var ViewCulling = true
+			var VisibilityEvents = true
+			var OverrideBoundingBox = false
+			var LocalAabbCenter = Real3{0, 0, 0}
+			var LocalAabbHalfExtents = Real3{1, 1, 1}
+			var GroupSortValue = 0
+			var Material = "582c575af53d18c9:AlphaSprite"
+			var VertexColor = Real4{1, 1, 1, 1}
+			var GeometryMode = SpriteGeometryMode.ZPlane
+			var SpriteSource = "5c789dc49f1410b3:TEP_ART_SM_TextTitle"
+			var FlipX = false
+			var FlipY = false
+			var AnimationActive = true
+			var AnimationSpeed = 1
+			var StartFrame = 0
+		}
+	}
+	Cog [ContextId:12]
+	{
+		var Name = "TEP_ART_SM_TextLogo"
+		Transform 
+		{
+			var Translation = Real3{0, -8.06925488, 0}
+			var Scale = Real3{3, 3, 1}
+			var Rotation = Quaternion{0, 0, 0, 1}
+		}
+		Sprite 
+		{
+			var Visible = true
+			var ViewCulling = true
+			var VisibilityEvents = true
+			var OverrideBoundingBox = false
+			var LocalAabbCenter = Real3{0, 0, 0}
+			var LocalAabbHalfExtents = Real3{1, 1, 1}
+			var GroupSortValue = 0
+			var Material = "582c575af53d18c9:AlphaSprite"
+			var VertexColor = Real4{1, 1, 1, 1}
+			var GeometryMode = SpriteGeometryMode.ZPlane
+			var SpriteSource = "5cc690ff2baa2572:TEP_ART_SM_TextLogo"
+			var FlipX = false
+			var FlipY = false
+			var AnimationActive = true
+			var AnimationSpeed = 1
+			var StartFrame = 0
+		}
+	}
+	Cog [ContextId:13]
+	{
+		var Name = "StartButtonPlus"
+		Transform 
+		{
+			var Translation = Real3{-5, -5, 0}
+			var Scale = Real3{6.29943657, 1.13271451, 1.03811896}
+			var Rotation = Quaternion{0, 0, 0, 1}
+		}
+		Sprite 
+		{
+			var Visible = true
+			var ViewCulling = true
+			var VisibilityEvents = true
+			var OverrideBoundingBox = false
+			var LocalAabbCenter = Real3{0, 0, 0}
+			var LocalAabbHalfExtents = Real3{1, 1, 1}
+			var GroupSortValue = 0
+			var Material = "582c575af53d18c9:AlphaSprite"
+			var VertexColor = Real4{0, 0, 0, 0}
+			var GeometryMode = SpriteGeometryMode.ZPlane
+			var SpriteSource = "5275aa4d802dd6dc:Square"
+			var FlipX = false
+			var FlipY = false
+			var AnimationActive = true
+			var AnimationSpeed = 1
+			var StartFrame = 0
+		}
+		TEP_TECH_JL_StartButton 
+		{
+			var NextLevel = "5c7c8da7c4f0d48d:Plus"
+		}
+		BoxCollider 
+		{
+			var Ghost = false
+			var SendsEvents = true
+			var Material = "4de020863e872da8:DefaultPhysicsMaterial"
+			var CollisionGroup = "4e740859314e5515:DefaultGroup"
+			var Offset = Real3{0, 0, 0}
+			var HalfSize = Real3{0.5, 0.5, 0.5}
+		}
+		Reactive 
+		{
+			var Active = true
+		}
+	}
+	Cog [ContextId:14]
+	{
+		var Name = "SpriteText"
+		Transform 
+		{
+			var Translation = Real3{-5, -5, 1.8854811e-08}
+			var Scale = Real3{1, 1, 1}
+			var Rotation = Quaternion{0, 0, 0, 1}
+		}
+		SpriteText 
+		{
+			var Visible = true
+			var ViewCulling = true
+			var VisibilityEvents = true
+			var OverrideBoundingBox = false
+			var LocalAabbCenter = Real3{0, 0, 0}
+			var LocalAabbHalfExtents = Real3{1, 1, 1}
+			var GroupSortValue = 0
+			var Material = "582c575af53d18c9:AlphaSprite"
+			var VertexColor = Real4{1, 1, 1, 1}
+			var GeometryMode = SpriteGeometryMode.ZPlane
+			var Text = "P1 PLUS"
+			var Font = "5c78857259567c4d:bubb"
+			var FontSize = 100
+			var PixelsPerUnit = 128
+			var TextAlign = TextAlign.Center
+		}
+	}
+}

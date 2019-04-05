@@ -1,0 +1,25 @@
+class TEP_TECH_CS_EnemyHurry : ZilchComponent
+{
+  var HurrySpeed : Boolean = false;
+  
+  [Property]
+  var EnemyHurry : SpriteSource = null;
+  function Initialize(init : CogInitializer)
+  {
+    Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+  }
+
+  function OnLogicUpdate(event : UpdateEvent)
+  {
+    //Console.WriteLine(this.Owner.TEP_TECH_JD_EnemyMovement.Speed);
+    if(this.LevelSettings.TEP_TECH_CS_GameVars.HurryTimer < -3 && this.HurrySpeed == false)
+    {
+      //this.Owner.TEP_TECH_JD_EnemyMovement.XJumpMovement = 0.1;
+      this.Owner.TEP_TECH_JD_EnemyMovement.YSpeed = 0.15;
+      this.Owner.TEP_TECH_JD_EnemyMovement.Speed = 0.2;
+      this.HurrySpeed = true;
+      this.Owner.Sprite.SpriteSource = this.EnemyHurry;
+    }
+    
+  }
+}

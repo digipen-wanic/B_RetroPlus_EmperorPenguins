@@ -1,0 +1,51 @@
+class TEP_TECH_CS_DeadEnemy : ZilchComponent
+{
+  [Property]
+  var SpawnTimer : Real = 3;
+  [Property]
+  var Cucumber : Archetype = null;
+  [Property]
+  var Grape : Archetype = null;
+  [Property]
+  var Pepper : Archetype = null;
+  [Property]
+  var Orange : Archetype = null;
+  
+  var Spawned : Boolean = false;
+  
+  var ScoreArray : Array[Archetype] = Array[Archetype]();
+  
+  function Initialize(init : CogInitializer)
+  {
+    Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+    Zero.Connect(this.Owner, Events.CollisionStarted, this.OnCollisionStarted);
+    this.ScoreArray.Add(this.Cucumber);
+    this.ScoreArray.Add(this.Grape);
+    this.ScoreArray.Add(this.Pepper);
+    this.ScoreArray.Add(this.Orange);
+    this.LevelSettings.TEP_TECH_CS_GameVars.NumberOfEnemies -= 1;
+  }
+
+  function OnCollisionStarted(event : CollisionEvent)
+  {
+    var random = Random();
+    var index = Integer();
+
+    if(this.SpawnTimer <= 0 && this.Spawned == false)
+    {
+      index = random.DieRoll(4) - 1;
+      this.Space.CreateAtPosition(this.ScoreArray[index], this.Owner.Transform.Translation);
+      this.Spawned = true;
+      this.Owner.Destroy();
+    }
+  }
+
+  function OnLogicUpdate(event : UpdateEvent)
+  {
+    this.SpawnTimer -= event.Dt;
+    if(this.SpawnTimer <= 0)
+    {
+      this.Owner.BoxCollider.CollisionGroup = CollisionGroup.TEP_TECH_CS_DeadEnemy;
+    }
+  }
+}

@@ -1,0 +1,17 @@
+class TEP_TECH_CS_ScoreText : ZilchComponent
+{
+[Dependency]
+  var SpriteText : SpriteText = null;
+  function Initialize(init : CogInitializer)
+  {
+    Zero.Connect(this.Space, "ScoreUpdate", this.OnScoreUpdate);
+    this.SpriteText.Text = "`this.LevelSettings.TEP_TECH_CS_GameVars.PlayerScore`";
+  }
+
+  function OnScoreUpdate(event : Event)
+  {
+     this.SpriteText.Text = "`this.LevelSettings.TEP_TECH_CS_GameVars.PlayerScore`";
+  }
+
+  
+}

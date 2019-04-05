@@ -1,0 +1,11 @@
+[Version:1]
+DataContent 
+{
+	DataBuilder 
+	{
+		var Name = "PepperPLUS"
+		var ResourceId = 0x5c7c843a0945699c
+		var LoaderType = "Cog"
+		var Version = 0
+	}
+}
