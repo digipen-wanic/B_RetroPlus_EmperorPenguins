@@ -1,10 +1,19 @@
+/*
+Cody Spring
+
+
+add this to a camera to make main music play
+*/
+
 class TEP_TECH_CS_CameraSound : ZilchComponent
 {
+  //type of sound for notification
   [Property]
   var HurrySound : SoundCue = null;
+  //music after hurry timer
   [Property]
   var HurryMusic : SoundCue = null;
-  
+  //baron enemy (used to make sound play)
   [Property]
   var Baron : Archetype = null;
   
@@ -20,6 +29,7 @@ class TEP_TECH_CS_CameraSound : ZilchComponent
 
   function OnLogicUpdate(event : UpdateEvent)
   {
+    //play hurry notif
     if(this.LevelSettings.TEP_TECH_CS_GameVars.HurryTimer < 0 && this.IsPlayng == false)
     {
       this.Owner.SimpleSound.Stop();
@@ -27,12 +37,14 @@ class TEP_TECH_CS_CameraSound : ZilchComponent
       this.Owner.SimpleSound.Play();
       this.IsPlayng = true;
     }
+    //play hurry music
     if(this.LevelSettings.TEP_TECH_CS_GameVars.HurryTimer < -1.94 && this.IsPlayng2 == false)
     {
       this.Owner.SimpleSound.Cue = this.HurryMusic;
       this.Owner.SimpleSound.Play();
       this.IsPlayng2 = true;
     }
+    //spawn baron and play music
     if(this.LevelSettings.TEP_TECH_CS_GameVars.HurryTimer < -7 && this.IsSpawned == false)
     {
       var baron = this.Space.CreateAtPosition(this.Baron, Real3(-13.1964, 6.57065, 0.1));

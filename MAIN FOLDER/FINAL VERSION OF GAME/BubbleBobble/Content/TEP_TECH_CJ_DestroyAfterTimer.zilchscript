@@ -1,3 +1,10 @@
+/*
+Cody Spring
+
+add this to score texts to make them dissapear after a certain amount of time
+
+*/
+
 class TEP_TECH_CJ_DestroyAfterTimer : ZilchComponent
 {
   [Property]
@@ -9,6 +16,7 @@ class TEP_TECH_CJ_DestroyAfterTimer : ZilchComponent
 
   function OnLogicUpdate(event : UpdateEvent)
   {
+    //wait for specified time then destroy owner
     this.DestructionTimer -= event.Dt;
     if(this.DestructionTimer <= 0)
     {

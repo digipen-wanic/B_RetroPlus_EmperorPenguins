@@ -1,3 +1,9 @@
+/*
+Cody Spring
+
+add this to the text of the hurry timer so it will notify the player
+*/
+
 class TEP_TECH_CS_HurryTimer : ZilchComponent
 {
   var FlashTimer : Real = 0.5;
@@ -16,7 +22,7 @@ class TEP_TECH_CS_HurryTimer : ZilchComponent
     
 
     this.LevelSettings.TEP_TECH_CS_GameVars.HurryTimer -= event.Dt;
-    
+    //to make sure it flashes then goes blank
     if(!(this.LevelSettings.TEP_TECH_CS_GameVars.HurryTimer < -3))
     {
       if(this.LevelSettings.TEP_TECH_CS_GameVars.HurryTimer < 0)
@@ -24,7 +30,7 @@ class TEP_TECH_CS_HurryTimer : ZilchComponent
         
         this.FlashTimer -= event.Dt;
        
-        
+        //make the text float up
         if(this.Owner.Transform.Translation.Y <= 0)
         {
           this.Owner.Transform.Translation += Real3(0, 0.17, 0);
@@ -34,7 +40,7 @@ class TEP_TECH_CS_HurryTimer : ZilchComponent
             this.StartFlashing = true;
           }
         }
-        
+        //flash
         if(this.StartFlashing == true)
         {
           if(this.FlashTimer <= 0 && this.Visible == true)
@@ -52,11 +58,11 @@ class TEP_TECH_CS_HurryTimer : ZilchComponent
         }
       }
     }
+    //make text invisible
       else
       {
         this.Owner.SpriteText.VertexColor = Real4(255, 0, 0, 0);
         this.Visible = false;
-        // add baron dude
       }
     }
   }

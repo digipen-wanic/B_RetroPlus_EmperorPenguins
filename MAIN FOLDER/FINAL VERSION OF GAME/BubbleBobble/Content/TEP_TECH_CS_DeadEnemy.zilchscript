@@ -19,10 +19,13 @@ class TEP_TECH_CS_DeadEnemy : ZilchComponent
   {
     Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
     Zero.Connect(this.Owner, Events.CollisionStarted, this.OnCollisionStarted);
+    
+    //add scoreObject types to array
     this.ScoreArray.Add(this.Cucumber);
     this.ScoreArray.Add(this.Grape);
     this.ScoreArray.Add(this.Pepper);
     this.ScoreArray.Add(this.Orange);
+    //count this enemy as spawned when it is created
     this.LevelSettings.TEP_TECH_CS_GameVars.NumberOfEnemies -= 1;
   }
 
@@ -30,7 +33,7 @@ class TEP_TECH_CS_DeadEnemy : ZilchComponent
   {
     var random = Random();
     var index = Integer();
-
+    //randomize what type of object spawns and spawn it when timer is 0
     if(this.SpawnTimer <= 0 && this.Spawned == false)
     {
       index = random.DieRoll(4) - 1;
@@ -42,6 +45,7 @@ class TEP_TECH_CS_DeadEnemy : ZilchComponent
 
   function OnLogicUpdate(event : UpdateEvent)
   {
+    //change collision group to collide with floors
     this.SpawnTimer -= event.Dt;
     if(this.SpawnTimer <= 0)
     {

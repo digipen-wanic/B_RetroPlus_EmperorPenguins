@@ -1,3 +1,11 @@
+/*
+
+Cody Spring
+
+add this to the lives text in the level
+*/
+
+
 class TEP_TECH_CS_LivesText : ZilchComponent
 {
   [Dependency]

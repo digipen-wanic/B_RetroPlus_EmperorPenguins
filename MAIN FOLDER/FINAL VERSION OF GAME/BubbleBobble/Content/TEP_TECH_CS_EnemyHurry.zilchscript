@@ -1,3 +1,9 @@
+/*
+Cody Spring
+
+add this to enemies that need to be affected by hurrytimer
+*/
+
 class TEP_TECH_CS_EnemyHurry : ZilchComponent
 {
   var HurrySpeed : Boolean = false;
@@ -11,10 +17,9 @@ class TEP_TECH_CS_EnemyHurry : ZilchComponent
 
   function OnLogicUpdate(event : UpdateEvent)
   {
-    //Console.WriteLine(this.Owner.TEP_TECH_JD_EnemyMovement.Speed);
+// set speeds of enemy to faster when timer is enough
     if(this.LevelSettings.TEP_TECH_CS_GameVars.HurryTimer < -3 && this.HurrySpeed == false)
     {
-      //this.Owner.TEP_TECH_JD_EnemyMovement.XJumpMovement = 0.1;
       this.Owner.TEP_TECH_JD_EnemyMovement.YSpeed = 0.15;
       this.Owner.TEP_TECH_JD_EnemyMovement.Speed = 0.2;
       this.HurrySpeed = true;

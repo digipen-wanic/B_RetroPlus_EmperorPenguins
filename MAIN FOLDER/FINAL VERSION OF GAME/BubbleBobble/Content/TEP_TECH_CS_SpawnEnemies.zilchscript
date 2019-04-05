@@ -1,3 +1,12 @@
+/*
+Cody Spring
+
+add this to the level settings so enemies will Spawn
+
+when added to the plus level it will ensure infinite rounds
+*/
+
+
 class TEP_TECH_CS_SpawnEnemies : ZilchComponent
 {
   [Property]
@@ -35,17 +44,19 @@ class TEP_TECH_CS_SpawnEnemies : ZilchComponent
   function OnLogicUpdate(event : UpdateEvent)
   {
     this.SpawnTimer -= event.Dt;
-   
+      //spawn specified amount of enemies over time
       if(this.SpawnTimer <= 0 && this.LevelSettings.TEP_TECH_CS_GameVars.NumberOfEnemies < this.NumberOfE && this.AllSpawned == false)
       {
         this.LevelSettings.TEP_TECH_CS_GameVars.NumberOfEnemies += 1;
         var enemy = this.Space.CreateAtPosition(this.EnemyToSpawn, Real3(0,10.8333,0.1)); 
         this.SpawnTimer = 0.3;
       }
+      //make sure no more than intended spawn
       if(this.LevelSettings.TEP_TECH_CS_GameVars.NumberOfEnemies == this.NumberOfE)
       {
         this.AllSpawned = true;
       }
+      //add one enemy (on plus level) when new wave starts
       if(this.LevelSettings.TEP_TECH_CS_GameVars.NumberOfEnemies <= 0 && this.Space.CurrentLevel == this.Plus && this.AllSpawned == true)
       {
         this.NumberOfE += 1;
@@ -54,7 +65,7 @@ class TEP_TECH_CS_SpawnEnemies : ZilchComponent
       
       if(this.LevelSettings.TEP_TECH_CS_GameVars.NumberOfEnemies <= 0 && this.Space.CurrentLevel != this.Plus)
       {
-        
+        //win timer when player kills all enemies
         this.WinTimer += event.Dt;
         if(this.WinTimer >= 5)
         {

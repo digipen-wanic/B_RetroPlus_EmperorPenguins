@@ -3,7 +3,7 @@ TextContent
 {
 	ZilchScriptBuilder 
 	{
-		var Name = "GhostAI"
+		var Name = "TEP_TECH_OK_GhostAI"
 		var ResourceId = 0x5cc68dfdbc1b2af3
 	}
 }
