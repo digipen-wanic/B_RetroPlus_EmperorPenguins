@@ -332,7 +332,7 @@ Level
 			var MaxGroundSlope = 45
 			var MaxCeilingSlope = 45
 			var GroundSnapDistance = 0.100000001
-			var BubbleProjectile = "5c3ec30f2d97e069:BubbleProjectile"
+			var BubbleProjectile = "5c786c34538c5e1c:BubbleProjectile"
 			var ControllerVelocity = Real3{0, 0, 0}
 			var Grounded = true
 			var Jumping = false

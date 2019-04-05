@@ -1,0 +1,23 @@
+class TEP_TECH_CS_IgnoreCollide : ZilchComponent
+{
+  function Initialize(init : CogInitializer)
+  {
+    Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+  }
+
+  function OnLogicUpdate(event : UpdateEvent)
+  {
+    if(this.Owner.TEP_TECH_JL_PlayerMovementController.ControllerVelocity.Y > 0)
+    {
+      this.Owner.BoxCollider.CollisionGroup = CollisionGroup.PlayerUp;
+      this.Owner.TEP_TECH_JL_PlayerMovementController.CastFilter.CollisionGroup = CollisionGroup.PlayerUp;
+      
+    }
+    if(this.Owner.TEP_TECH_JL_PlayerMovementController.ControllerVelocity.Y  <= 0)
+    {
+      this.Owner.BoxCollider.CollisionGroup = CollisionGroup.TEP_TECH_CS_Player;
+      this.Owner.TEP_TECH_JL_PlayerMovementController.CastFilter.CollisionGroup = CollisionGroup.TEP_TECH_CS_Player;
+      
+    }
+  }
+}

@@ -1,0 +1,52 @@
+class TEP_TECH_JL_PlayerMovementInput : ZilchComponent
+{
+  [Dependency] var TEP_TECH_JL_PlayerMovementController : TEP_TECH_JL_PlayerMovementController;
+  
+  [Property] var LeftKey : Keys = Keys.A;
+  [Property] var RightKey : Keys = Keys.D;
+  [Property] var JumpKey : Keys = Keys.Space;
+  [Property] var Shoot : Keys = Keys.E;
+  [Property] var PowerShot : Keys = Keys.W;
+  [Property]
+  var JumpSound : SoundCue = null;
+  
+  function Initialize(init : CogInitializer)
+  {
+    Zero.Connect(this.Space , Events.LogicUpdate, this.OnLogicUpdate);
+    
+  }
+
+  
+  function OnLogicUpdate(event : UpdateEvent)
+  {
+    var movement = Real3(0, 0, 0);
+    
+    if (Zero.Keyboard.KeyIsDown(this.LeftKey) && this.LevelSettings.TEP_TECH_CS_GameVars.Dead != true)
+      {
+      movement.X += -1;
+      this.Owner.Sprite.FlipX = true;
+      }
+    if (Zero.Keyboard.KeyIsDown(this.RightKey) && this.LevelSettings.TEP_TECH_CS_GameVars.Dead != true)
+    {
+      movement.X += 1;
+      this.Owner.Sprite.FlipX = false;
+    }
+    
+    if (Zero.Keyboard.KeyIsPressed(this.JumpKey) )
+    {
+      this.TEP_TECH_JL_PlayerMovementController.Jump();
+      this.Owner.SimpleSound.Cue = this.JumpSound;
+      
+    }
+    else if (Zero.Keyboard.KeyIsPressed(this.JumpKey) && this.LevelSettings.TEP_TECH_CS_GameVars.Dead != true)
+    {
+      this.TEP_TECH_JL_PlayerMovementController.Jump();
+    }
+    if(this.LevelSettings.TEP_TECH_CS_GameVars.Dead != true)
+    {
+    this.TEP_TECH_JL_PlayerMovementController.Update(movement, event.Dt);
+    }
+  }
+  
+  
+}

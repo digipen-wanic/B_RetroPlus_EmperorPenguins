@@ -4,7 +4,7 @@ Cog
 	var Name = "Sprite"
 	Transform 
 	{
-		var Translation = Real3{0, 0, 0}
+		var Translation = Real3{-3.91405177, 5.44122314, 0}
 		var Scale = Real3{1, 1, 1}
 		var Rotation = Quaternion{0, 0, 0, 1}
 	}
@@ -65,6 +65,21 @@ Cog
 	{
 		var Destination = Real2{0, 5}
 		var BubbleSpeed = 1
+		var Player = CogPath
+		{
+			var Path = ":/Player"
+			var ErrorOnResolveToNull = false
+			var ErrorOnPathCantCompute = false
+			var ErrorOnDirectLinkFail = false
+			var UpdateCogOnPathChange = true
+			var UpdatePathOnCogChange = true
+			var UpdateCogOnInitialize = true
+			var ResolvedNullErrorOccurred = false
+			var Cog = 4294967293
+			var PathPreference0 = CogPathPreference.CogRelative
+			var PathPreference1 = CogPathPreference.SpaceRelative
+			var PathPreference2 = CogPathPreference.Absolute
+		}
 		var RedSprite = "5274db4c2e7c11f9:Circle"
 		var RedTimer = 14
 		var BlueSprite = "5275aa4d802dd6dc:Square"
@@ -73,5 +88,6 @@ Cog
 		var PopTimer = 3
 		var DelayToLetPopAnimationToPlay = 0.200000003
 		var SmallDistanceAntiFlicker = 0.5
+		var PopTimer2 = 0.200000003
 	}
 }

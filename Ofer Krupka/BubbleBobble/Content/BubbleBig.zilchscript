@@ -65,7 +65,7 @@ class BubbleBig : ZilchComponent
     Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
     Zero.Connect(this.Owner, Events.CollisionStarted, this.OnCollisionStarted);
     Zero.Connect(this.Owner, Events.CollisionPersisted, this.OnCollisionPersisted);   
-    //Zero.Connect(this.Owner,Events.CollisionEnded, this.OnCollisionEnded);
+    Zero.Connect(this.Owner,Events.CollisionEnded, this.OnCollisionEnded);
     //Actions of the bubble
     var seq = Action.Sequence(this.Owner.Actions);
     //Red
@@ -83,11 +83,21 @@ class BubbleBig : ZilchComponent
   {
     if(event.OtherObject.Name == "Player" && (Math.Abs(this.Owner.Transform.Translation.X - event.OtherObject.Transform.Translation.X)
       <
-      Math.Abs(this.Owner.Transform.Translation.Y - event.OtherObject.Transform.Translation.Y)))
+      Math.Abs(this.Owner.Transform.Translation.Y - event.OtherObject.Transform.Translation.Y)) 
+      && Zero.Keyboard.KeyIsPressed(this.Player.TEP_TECH_JL_PlayerMovementInput.JumpKey) && this.PopTimer2 > 0)
     {
-      this.PopTimer2 = 0.2; 
-      Console.WriteLine("Ended");
+      this.Player.TEP_TECH_JL_PlayerMovementController.JumpUnconditionally();
+      this.LevelSettings.TEP_TECH_CS_GameVars.BubbleCollsion = false;
+      this.PopTimer2 = 0.2;
     }
+    else if(event.OtherObject.Name == "Player" && (Math.Abs(this.Owner.Transform.Translation.X - event.OtherObject.Transform.Translation.X)
+      <
+      Math.Abs(this.Owner.Transform.Translation.Y - event.OtherObject.Transform.Translation.Y)) && this.PopTimer2 < 0.12)
+      {
+        this.PopAndDestroy();
+        this.LevelSettings.TEP_TECH_CS_GameVars.BubbleCollsion = false;
+        this.PopTimer2 = 0.2;
+      }
   }
 
   function OnCollisionPersisted(event : CollisionEvent)
@@ -95,16 +105,18 @@ class BubbleBig : ZilchComponent
     if(event.OtherObject.Name == "Player")
     {
       //check for keypress
-      if (Zero.Keyboard.KeyIsPressed(this.Player.TEP_TECH_JL_PlayerMovementInput.JumpKey) && this.LevelSettings.TEP_TECH_CS_GameVars.Dead != true && Math.Abs(this.Owner.Transform.Translation.X - event.OtherObject.Transform.Translation.X)
+      if (Zero.Keyboard.KeyIsPressed(this.Player.TEP_TECH_JL_PlayerMovementInput.JumpKey) 
+      && this.LevelSettings.TEP_TECH_CS_GameVars.Dead != true 
+      && Math.Abs(this.Owner.Transform.Translation.X - event.OtherObject.Transform.Translation.X)
       <
-      Math.Abs(this.Owner.Transform.Translation.Y - event.OtherObject.Transform.Translation.Y))
+        Math.Abs(this.Owner.Transform.Translation.Y - event.OtherObject.Transform.Translation.Y))
       {
         //jump unconditionally
         this.Player.TEP_TECH_JL_PlayerMovementController.JumpUnconditionally();
         this.LevelSettings.TEP_TECH_CS_GameVars.BubbleCollsion = false;
         this.PopTimer2 = 0.2;
       }
-      if(this.PopTimer2 <= 0.05 && Math.Abs(this.Owner.Transform.Translation.X - event.OtherObject.Transform.Translation.X)
+      if(this.PopTimer2 <= 0 && Math.Abs(this.Owner.Transform.Translation.X - event.OtherObject.Transform.Translation.X)
       <
       Math.Abs(this.Owner.Transform.Translation.Y - event.OtherObject.Transform.Translation.Y))
       {
